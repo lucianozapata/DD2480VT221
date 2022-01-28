@@ -25,7 +25,7 @@ public class Parameter {
 
 
     // Initializing all the parameters to ZERO when creating the PARAMETER-object.
-    public Parameters() {
+    public Parameter() {
         this.LENGTH1 = 0;
         this.RADIUS1= 0;
         this.EPSILON= 0;
