@@ -1,4 +1,4 @@
-public class Parameters {
+public class Parameter {
     /**
         All parameters available.
      */
