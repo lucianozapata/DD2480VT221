@@ -28,7 +28,7 @@ public class LIC {
      * to each LIC condition.
      *
      */
-    public static boolean[] runLICConditions(int size){
+    public static boolean[] runLICConditions(int size, Datapoints[] points){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
 
@@ -36,11 +36,19 @@ public class LIC {
     }
 
     /**
-     *
+     * 
      * @return Return true if the condition is met, other
      * returns false.
      */
     public static boolean Condition0(){
+
+        this.parameters 
+        /**
+        Condition 0: There exists at least one set of two consecutive 
+        data points that are a distance greater than the length, LENGTH1, apart. (0 ≤ LENGTH1)
+         */
+
+
         return true;
     }
 
