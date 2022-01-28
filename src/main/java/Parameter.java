@@ -37,7 +37,7 @@ public class Parameters {
         this.K_PTS= 0;
         this.A_PTS= 0;
         this.B_PTS= 0;
-        this,.C_PTS= 0;
+        this.C_PTS= 0;
         this.D_PTS= 0;
         this.E_PTS= 0;
         this.F_PTS = 0;
