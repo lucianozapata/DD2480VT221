@@ -5,6 +5,12 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
+jar{
+    manifest{
+        attributes 'Decide': 'com.group24.decide'
+    }
+}
+
 repositories {
     mavenCentral()
 }
