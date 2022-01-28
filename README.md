@@ -20,15 +20,15 @@ If not installed, please follow the operating system-dependent instructions on t
 
 To run a build (this includes running tests). The jar file can then be found in the following directory #TODO.
 ```bash
-$ gradle build
+$ ./gradlew build
 ```
 To only run the tests
 ```bash
-$ gradle build
+$ ./gradlew test
 ```
 To generate documentation based with the help of JavaDoc
 ```bash
-$ gradle javadoc
+$ ./gradlew javadoc
 ```
 
 ## Usage
