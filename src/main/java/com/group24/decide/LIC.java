@@ -9,14 +9,17 @@ package com.group24.decide;
 public class LIC {
 
     Parameter parameters;
+    Datapoints[] datapoints;
 
     /**
      *
      * @param parameters Contains the inputs for LIC.
      */
-    public LIC(Parameter parameters){
+    public LIC(Parameter parameters, Datapoints[] points){
         this.parameters = parameters;
+        this.datapoints = points;
     }
+
 
     /**
      *
@@ -28,7 +31,7 @@ public class LIC {
      * to each LIC condition.
      *
      */
-    public static boolean[] runLICConditions(int size, Datapoints[] points){
+    public static boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
 
