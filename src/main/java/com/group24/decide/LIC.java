@@ -42,7 +42,7 @@ public class LIC {
      */
     public static boolean Condition0(){
 
-        this.parameters 
+        
         /**
         Condition 0: There exists at least one set of two consecutive 
         data points that are a distance greater than the length, LENGTH1, apart. (0 ≤ LENGTH1)
