@@ -16,19 +16,23 @@ based on planar data points representing radar echos.
 ## Setup 
 
 For this project, the build tool [Gradle](https://gradle.org/) is used.
-If not installed, please follow the operating system-dependent instructions on their web page.
+This project can be built with the help of a wrapper without additional downloads
+If an installation is preferred, please follow the operating system-dependent instructions on linked web page.
 
 To run a build (this includes running tests). The jar file can then be found in the following directory #TODO.
 ```bash
-$ ./gradlew build
+$ ./gradlew build       (Linux/Mac)
+$ gradlew.bat build     (Windows)
 ```
 To only run the tests
 ```bash
-$ ./gradlew test
+$ ./gradlew test        (Linux/Mac)
+$ gradlew.bat test      (Windows)
 ```
 To generate documentation based with the help of JavaDoc
 ```bash
-$ ./gradlew javadoc
+$ ./gradlew javadoc     (Linux/Mac)
+$ gradlew.bat javadoc   (Windows)
 ```
 
 ## Usage
