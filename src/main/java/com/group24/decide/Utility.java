@@ -1,4 +1,4 @@
-package java.com.group24.decide;
+package com.group24.decide;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
