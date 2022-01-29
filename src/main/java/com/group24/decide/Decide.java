@@ -1,4 +1,5 @@
-package com.group24.decide;
+package java.com.group24.decide;
+
 
 /**
  * Add description for javaDoc
@@ -25,6 +26,8 @@ public class Decide {
         ANDD
     }
 
+
+
     /**
      *
      * @param args
@@ -39,16 +42,19 @@ public class Decide {
         Points[0] = new Datapoints(4, 7); 
         Points[0] = new Datapoints(7, 6); 
         Points[0] = new Datapoints(9, 8); 
-        Points[0] = new Datapoints(10,20); 
+        Points[0] = new Datapoints(10,20);
+
+
+        
 
         lic = new LIC(parameters, Points);
-
 
         // Input all values for LCM.
         CONNECTORS[][] LCM = {
                 {CONNECTORS.ANDD, CONNECTORS.ANDD, CONNECTORS.ORR, CONNECTORS.ANDD, CONNECTORS.NOTUSED},
                 {CONNECTORS.ANDD, CONNECTORS.ANDD, CONNECTORS.ORR, CONNECTORS.ANDD, CONNECTORS.NOTUSED}
         };
+
 
         CMV = lic.runLICConditions(CMV.length); // Run the LIC conditions
 

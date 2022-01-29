@@ -1,4 +1,4 @@
-package com.group24.decide;
+package java.com.group24.decide;
 
 /**
  * @author

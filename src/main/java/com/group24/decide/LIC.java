@@ -1,5 +1,7 @@
-package com.group24.decide;
+package java.com.group24.decide;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 /**
  * A class for the LIC conditions
  *
@@ -31,28 +33,37 @@ public class LIC {
      * to each LIC condition.
      *
      */
-    public static boolean[] runLICConditions(int size){
+    public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
 
+
         return CMV;
     }
-
     /**
-     * 
-     * @return Return true if the condition is met, other
-     * returns false.
+     *
+     * @return Return true if there exists at least one set
+     * of two consecutive data points that are a distance greater
+     * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
      */
-    public static boolean Condition0(){
+    public boolean Condition0(){
+        // How many datapoints we are going to check.
+        int steps = this.datapoints.length;
 
-        
-        /**
-        Condition 0: There exists at least one set of two consecutive 
-        data points that are a distance greater than the length, LENGTH1, apart. (0 ≤ LENGTH1)
-         */
+        for(int index = 0; index < steps; index++ ) {
+           double datapoint1X = this.datapoints[index].x;
+           double datapoint1Y = this.datapoints[index].y;
+           double datapoint2X = this.datapoints[index+1].x;
+           double datapoint2Y = this.datapoints[index+1].y;
 
+           // TODO: Use a help function to calculate this distance!
+           if((sqrt(pow(datapoint1X - datapoint2X, 2) + pow(datapoint1Y -datapoint2Y, 2)) < this.parameters.LENGTH1)) {
+                return true;
+            }
 
-        return true;
+        }
+        return false;
+
     }
 
 
