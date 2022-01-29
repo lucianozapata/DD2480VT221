@@ -1,5 +1,7 @@
 # Launch Interceptor Program 
-a
+
+This repository contains the code for the first lab in the course DD2480 at KTH.
+
 <img align="right" width="150" height="150" src="https://cdn-icons-png.flaticon.com/512/2590/2590496.png">
 
 ### DD2480 | Assignment 1 | Group 24
@@ -7,12 +9,20 @@ a
 [![CI Build](https://github.com/lucianozapata/DD2480VT221/actions/workflows/gradle.yml/badge.svg)](https://github.com/lucianozapata/DD2480VT221/actions/workflows/gradle.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Motivation
+
+The purpose of this project was to learn about Software Fundamentals and to learn how to develop software in teams.
+
 ## Summary
 
 This software is part of a hypothetical anti-ballistic missile system.
 It can decide whether an interceptor should be launched based upon input radar tracking information.
 It automatically determines the conditions relevant to the immediate situation and decides based
 based on planar data points representing radar echos.
+
+## File structure
+
+The code for the Decide functionality is in src/main/java/com/group24/decide/. The code for the test cases are in src/test/java/com/group24/decide/.
 
 ## Setup 
 
