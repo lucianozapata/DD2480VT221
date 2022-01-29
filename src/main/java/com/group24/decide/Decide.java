@@ -37,7 +37,7 @@ public class Decide {
         Datapoints[] Points = new Datapoints[NUMPOINTS];
         Points[0] = new Datapoints(1, 2); // Input the data points
 
-        lic = new LIC(parameters);
+        lic = new LIC(parameters, Points);
 
 
         // Input all values for LCM.
