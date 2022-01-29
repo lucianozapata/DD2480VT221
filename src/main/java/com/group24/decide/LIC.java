@@ -9,13 +9,17 @@ package com.group24.decide;
 public class LIC {
 
     Parameter parameters;
+    Datapoints[] points;
+    int numberPoints;
 
     /**
      *
      * @param parameters Contains the inputs for LIC.
      */
-    public LIC(Parameter parameters){
+    public LIC(Parameter parameters, Datapoints[] points){
         this.parameters = parameters;
+        this.points = points;
+        this.numberPoints = points.length;
     }
 
     /**
@@ -28,9 +32,10 @@ public class LIC {
      * to each LIC condition.
      *
      */
-    public static boolean[] runLICConditions(int size){
+    public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
+        CMV[3] = Condition3();
 
         return CMV;
     }
@@ -60,14 +65,28 @@ public class LIC {
      */
     public static boolean Condition2(){
         return true;
-    }    /**
+    }
+
+    /**
+     * Check if there exists at least one set of three consecutive data points that are the vertices of a triangle
+     * with area greater than AREA1 (parameters.AREA)
      *
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition3(){
-        return true;
-    }    /**
+    public boolean Condition3(){
+        for (int idx = 0; idx < this.numberPoints; idx++) {
+            Datapoints a = this.points[idx];
+            Datapoints b = this.points[idx+1];
+            Datapoints c = this.points[idx+2];
+
+            double triangleArea = Utility.calcTriangleArea(a,b,c);
+            if (triangleArea > parameters.AREA1) return true;
+        }
+        return false;
+    }
+
+    /**
      *
      * @return Return true if the condition is met, other
      * returns false.
