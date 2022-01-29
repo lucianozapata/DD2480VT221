@@ -29,4 +29,24 @@ public class Utility {
        double p = (lengthSide1 + lengthSide2 + lengthSide3)/2;
        return Math.sqrt(p*(p-lengthSide1)*(p-lengthSide2)*(p-lengthSide3));
     }
+
+    /**
+     * Determine which quadrant the point lies on
+     * @param x First datapoint
+     * @return one of the four quadrants
+     */
+    public static int chooseQuadrant(Datapoints x) {
+        if (x.x >= 0 && x.y >= 0){
+            return 1;
+        }
+        else if (x.x < 0 && x.y >= 0){
+            return 2;
+        }
+        else if (x.x <= 0 && x.y < 0){
+            return 3;
+        }
+        else {
+            return 4;
+        }
+    }
 }

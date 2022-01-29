@@ -1,5 +1,8 @@
 package com.group24.decide;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * A class for the LIC conditions
  *
@@ -36,6 +39,7 @@ public class LIC {
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
         CMV[3] = Condition3();
+        CMV[4] = Condition4();
 
         return CMV;
     }
@@ -87,12 +91,29 @@ public class LIC {
     }
 
     /**
+     *Check if there exists one set of Q_PTS consecutive data points that lie in more than QUADS quadrants
      *
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition4(){
-        return true;
+    public boolean Condition4(){
+        if (parameters.Q_PTS < 2 || parameters.Q_PTS > numberPoints) {
+            return false;
+        }
+        if (parameters.QUADS < 1 || parameters.QUADS > 3) {
+            return false;
+        }
+        Queue<Integer> pointsQueue = new LinkedList<>();
+        for (int idx = 0; idx < this.numberPoints; idx++) {
+            pointsQueue.add(Utility.chooseQuadrant(this.points[idx]));
+            if (pointsQueue.size() > parameters.Q_PTS) {
+                pointsQueue.poll();
+            }
+            if (pointsQueue.stream().distinct().count() > parameters.QUADS) {
+                return true;
+            }
+        }
+        return false;
     }    /**
      *
      * @return Return true if the condition is met, other
