@@ -32,10 +32,10 @@ public class LIC {
      * to each LIC condition.
      *
      */
-    public static boolean[] runLICConditions(int size){
+    public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
-        CMV[3] = Condition4();
+        CMV[3] = Condition3();
 
         return CMV;
     }
@@ -68,6 +68,8 @@ public class LIC {
     }
 
     /**
+     * Check if there exists at least one set of three consecutive data points that are the vertices of a triangle
+     * with area greater than AREA1 (parameters.AREA)
      *
      * @return Return true if the condition is met, other
      * returns false.
