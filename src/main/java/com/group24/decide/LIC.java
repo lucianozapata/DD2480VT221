@@ -22,6 +22,14 @@ public class LIC {
         this.numberPoints = points.length;
     }
 
+    public void setPoints(Datapoints[] points) {
+        this.points = points;
+    }
+
+    public void setParameters(Parameter parameters){
+        this.parameters = parameters;
+    }
+
     /**
      *
      * @param size Definiens how many conditions there
@@ -156,13 +164,36 @@ public class LIC {
      */
     public static boolean Condition13(){
         return true;
-    }    /**
+    }
+
+    /**
+     * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area > AREA1
+     * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area < AREA2
      *
-     * @return Return true if the condition is met, other
-     * returns false.
+     * @return Return true if the both SubConditions are met, otherwise return false
      */
-    public static boolean Condition14(){
-        return true;
+    public boolean Condition14(){
+
+        if(this.numberPoints < 5) {return false;}
+
+        boolean biggerArea = false;
+        boolean smallerArea = false;
+        int indexPoint1, indexPoint2;
+        int maxIndex = this.numberPoints - 2 - parameters.E_PTS - parameters.F_PTS;
+
+        for (int i = 0; i < maxIndex; i++) {
+
+            indexPoint1 = i + 1 + parameters.E_PTS;
+            indexPoint2 = i + 2 + + parameters.E_PTS + parameters.F_PTS;
+
+            double area = Utility.calcTriangleArea(this.points[i],this.points[indexPoint1], this.points[indexPoint2]);
+
+            if (area > parameters.AREA1) {biggerArea = true;}
+            if (area < parameters.AREA2) {smallerArea = true;}
+
+            if (biggerArea && smallerArea) {return true;}
+        }
+        return false;
     }
 
 
