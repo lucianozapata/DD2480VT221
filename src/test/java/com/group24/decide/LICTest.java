@@ -1,6 +1,8 @@
 package com.group24.decide;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author
  */
 class LICTest {
+
 
     /**
      *
@@ -27,7 +30,24 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition3: compare max triangle area")
     void condition3() {
+        // check max area of 3 consecutive data-points against threshold
+
+        Parameter parameter = new Parameter();
+        Datapoints[] points = { new Datapoints(0, 0),
+                                new Datapoints(5, 0),
+                                new Datapoints(0, 5),};
+        LIC lic = new LIC(parameter, points);
+
+        // default AREA1 is set to 0
+        assertTrue(lic.Condition3());
+
+        parameter.AREA1 = 10;
+        assertTrue(lic.Condition3());
+
+        parameter.AREA1 = 15;
+        assertFalse(lic.Condition3());
     }
 
     @Test

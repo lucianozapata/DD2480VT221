@@ -75,7 +75,7 @@ public class LIC {
      * returns false.
      */
     public boolean Condition3(){
-        for (int idx = 0; idx < this.numberPoints; idx++) {
+        for (int idx = 0; idx < this.numberPoints - 2; idx++) {
             Datapoints a = this.points[idx];
             Datapoints b = this.points[idx+1];
             Datapoints c = this.points[idx+2];
