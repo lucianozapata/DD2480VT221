@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -20,6 +21,14 @@ class LICTest {
      */
     @Test
     void condition0() {
+        Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] testDataPoints = new Datapoints[2];
+        testDataPoints[0] = new Datapoints(1,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        // Distance should be 1.
+        LIC testLIC = new LIC(parameters, testDataPoints);
+        assertFalse(testLIC.Condition0());
+
     }
 
     @Test

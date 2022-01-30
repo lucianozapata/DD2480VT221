@@ -1,5 +1,7 @@
 package com.group24.decide;
 
+
+import static java.lang.Math.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -46,29 +48,38 @@ public class LIC {
     public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
+
+        CMV[3] = Condition3();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
         CMV[7] = Condition7();
+
 
         return CMV;
     }
 
     /**
      *
-     * @return Return true if the condition is met, other
-     * returns false.
+     * @return Return true if there exists at least one set
+     * of two consecutive data points that are a distance greater
+     * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
      */
-    public static boolean Condition0(){
-        return true;
-    }
+        public boolean Condition0() {
+            // How many datapoints we are going to check.
 
+            for (int index = 0; index < numberPoints-1; index++) {
+                // The distance between the two datapoints
+                double distance = Utility.calcEuclideanDistance(this.points[index], this.points[index + 1]);
 
-    /**
-     *
-     * @return Return true if the condition is met, other
-     * returns false.
-     */
-    public static boolean Condition1(){
+                if ( distance > this.parameters.LENGTH1) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public static boolean Condition1(){
         return true;
     }
     /**
