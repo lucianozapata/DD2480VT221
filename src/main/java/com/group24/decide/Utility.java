@@ -15,6 +15,19 @@ public class Utility {
         return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
     }
 
+
+    /**
+     * Calculate the difference
+     * @param a First datapoint
+     * @param b Second datapoint
+     * @return difference
+     */
+    public static double difference(Datapoints a, Datapoints b) {
+         
+       return a.x -b.x;
+    }
+
+
     /**
      * Calculate the area of a triangle
      * @param a First datapoint
