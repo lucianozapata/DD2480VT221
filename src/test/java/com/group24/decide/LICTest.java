@@ -106,6 +106,22 @@ class LICTest {
 
     @Test
     void condition5() {
+        Parameter parameter = new Parameter();
+        
+        Datapoints[] points = { new Datapoints(0,0),
+                                new Datapoints(-1,0),
+                                new Datapoints(0,0),};
+        LIC lic = new LIC(parameter,points);
+        //there exist at least one set of two consecutive points such that X[j] - X[i] < 0 where i = j-1, LIC5 should return true.
+        assertTrue(lic.Condition5());
+
+        Datapoints[] points1 = { new Datapoints(0,0),
+                                new Datapoints(1,0),
+                                new Datapoints(2,0),};
+        LIC lic1 = new LIC(parameter,points1);
+        //there exist no set of two consecutive points such that X[j] - X[i] < 0 where i = j-1, LIC5 should return false.
+        assertFalse(lic1.Condition5()); 
+
     }
 
     @Test

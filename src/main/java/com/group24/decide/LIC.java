@@ -119,8 +119,18 @@ public class LIC {
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition5(){
-        return true;
+    public  boolean Condition5(){
+        for(int idx=0; idx < this.numberPoints -1; idx++){
+                Datapoints a = this.points[idx];
+                Datapoints b = this.points[idx+1];
+                double diff = Utility.difference(b,a);
+            if(diff < 0){
+
+             return true;
+            }
+        }
+        return false;
+
     }    /**
      *
      * @return Return true if the condition is met, other
