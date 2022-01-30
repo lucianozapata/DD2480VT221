@@ -114,6 +114,44 @@ class LICTest {
 
     @Test
     void condition7() {
+        Datapoints[] points1 = {
+                new Datapoints(0, 1),
+                new Datapoints(2, 3),
+                new Datapoints(-1, 5),
+                new Datapoints(2, -2),
+                new Datapoints(-1, -1)
+        };
+        Parameter parameters = new Parameter();
+
+        // Positive test
+        parameters.K_PTS = 2;
+        parameters.LENGTH1 = 3;
+        LIC lic1 = new LIC(parameters, points1);
+        assertTrue(lic1.Condition7());
+
+        // Negative test 1: invalid input for points (input too few)
+        Datapoints[] points2 = {
+                new Datapoints(-1, 5),
+                new Datapoints(-1, -1)
+        };
+        LIC lic2 = new LIC(parameters, points2);
+        assertFalse(lic2.Condition7());
+
+        // Negative test 2: invalid input for parameter K_PTS (input too small)
+        parameters.K_PTS = 0;
+        LIC lic3 = new LIC(parameters, points1);
+        assertFalse(lic3.Condition7());
+
+        // Negative test 3: invalid input for parameter K_PTS (input too small)
+        parameters.K_PTS = 4;
+        LIC lic4 = new LIC(parameters, points1);
+        assertFalse(lic4.Condition7());
+
+        // Negative test 4: all inputs are valid but the result is false
+        parameters.K_PTS = 2;
+        parameters.LENGTH1 = 5.1;
+        LIC lic5 = new LIC(parameters, points1);
+        assertFalse(lic5.Condition7());
     }
 
     @Test
