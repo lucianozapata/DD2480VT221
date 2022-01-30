@@ -32,12 +32,12 @@ public class Decide {
      */
     public static void main(String[] args){
 
-        Parameter parameters = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,
                 0,0,0,0,0);
 
         Datapoints[] Points = new Datapoints[NUMPOINTS];
         Points[0] = new Datapoints(1, 2); // Input the data points
-
+        Points[1] = new Datapoints(1,2);
         lic = new LIC(parameters, Points);
 
 
