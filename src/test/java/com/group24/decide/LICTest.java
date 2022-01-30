@@ -181,7 +181,53 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition8: check if three points fit in a circle")
     void condition8() {
+        Datapoints[] points1 = {
+                new Datapoints(0, 1),
+                new Datapoints(-2, 0),
+                new Datapoints(-1, 5),
+                new Datapoints(0, 2),
+                new Datapoints(-1, -1),
+                new Datapoints(2, 0)
+        };
+        Parameter parameters = new Parameter();
+
+        // Positive test
+        parameters.A_PTS = 1;
+        parameters.B_PTS = 1;
+        parameters.RADIUS1 = 3;
+        LIC lic1 = new LIC(parameters, points1);
+        assertTrue(lic1.Condition8());
+
+        // Negative test 1: all inputs are valid but the result is false
+        parameters.RADIUS1 = 1.9;
+        LIC lic2 = new LIC(parameters, points1);
+        assertFalse(lic2.Condition8());
+
+        // Negative test 2: invalid input for points (input too few)
+        Datapoints[] points2 = {
+                new Datapoints(-1, 5),
+                new Datapoints(-1, -1)
+        };
+        LIC lic3 = new LIC(parameters, points2);
+        assertFalse(lic3.Condition8());
+
+        // Negative test 3: invalid inputs for parameters A_PTS and B_PTS (inputs too small)
+        parameters.A_PTS = 0;
+        LIC lic4 = new LIC(parameters, points1);
+        assertFalse(lic4.Condition8());
+        parameters.B_PTS = 0;
+        parameters.A_PTS = 1;
+        LIC lic5 = new LIC(parameters, points1);
+        assertFalse(lic5.Condition8());
+
+        // Negative test 4: invalid inputs for parameters A_PTS and B_PTS (inputs too large)
+        parameters.A_PTS = 3;
+        parameters.B_PTS = 1;
+        LIC lic6 = new LIC(parameters, points1);
+        assertFalse(lic6.Condition8());
+
     }
 
     @Test

@@ -177,14 +177,38 @@ public class LIC {
             }
         }
         return false;
-    }    /**
+    }
+
+    /**
+     * Check if there exists at least one set of three data points separated by exactly A PTS and B PTS consecutive
+     * intervening points, respectively, that cannot be contained within or on a circle of radius RADIUS1
      *
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition8(){
-        return true;
-    }    /**
+    public boolean Condition8(){
+        if (numberPoints < 5) {
+            return false;
+        }
+        if (parameters.A_PTS < 1 || parameters.B_PTS < 1) {
+            return false;
+        }
+        if (parameters.A_PTS + parameters.B_PTS > numberPoints - 3) {
+            return false;
+        }
+
+        for (int idx = 0; idx < numberPoints - parameters.A_PTS - parameters.B_PTS - 2; idx++) {
+            Datapoints a = points[idx];
+            Datapoints b = points[idx + parameters.A_PTS + 1];
+            Datapoints c = points[idx + parameters.A_PTS + parameters.B_PTS + 2];
+            if (Utility.findSmallestCircle(a, b, c) < parameters.RADIUS1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      *
      * @return Return true if the condition is met, other
      * returns false.
