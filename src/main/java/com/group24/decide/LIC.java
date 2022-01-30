@@ -188,8 +188,20 @@ public class LIC {
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition7(){
-        return true;
+    public boolean Condition7(){
+        if (numberPoints < 3) {
+            return false;
+        }
+        if (parameters.K_PTS < 1 || parameters.K_PTS > numberPoints - 2) {
+            return false;
+        }
+        for (int idx = 0; idx < numberPoints - parameters.K_PTS - 1; idx++) {
+            double distance = Utility.calcEuclideanDistance(points[idx], points[idx + parameters.K_PTS + 1]);
+            if (distance > parameters.LENGTH1) {
+                return true;
+            }
+        }
+        return false;
     }    /**
      *
      * @return Return true if the condition is met, other
