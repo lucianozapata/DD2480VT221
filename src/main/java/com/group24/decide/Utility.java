@@ -2,6 +2,7 @@ package com.group24.decide;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import static java.lang.Math.abs;
 
 public class Utility {
 
@@ -62,4 +63,44 @@ public class Utility {
             return 4;
         }
     }
+
+    /**
+     * Two Datapoints should be considered equal if
+     * they have the same coordinates
+     *
+     * @param point1 The first Datapoint to compare
+     * @param point2 The second Datapoint to compare
+     * @return True if the the x-and y-coordinate
+     *  of the two datapoints are equal, otherwise
+     *  returns false
+     */
+    public static boolean checkIfEqual(Datapoints point1, Datapoints point2){
+        if(point1.x == point2.x && point1.y == point2.y){return true;}
+        return false;
+    }
+
+    /**
+     * Calculates the shortest distance between the line joining the
+     * Datapoints first and last to that of cpr.
+     *
+     * @param first The first Datapoint, can not be identical to last
+     * @param last The last Datapoint, can not be identical to first
+     * @param cpr The Datapoint to check distance
+     * @return Returns the shortest distance between cpr
+     * and the line between first and last.
+     */
+    public static double lineDistPoints(Datapoints first, Datapoints last, Datapoints cpr){
+        if(checkIfEqual(first, last)){
+            return calcEuclideanDistance(first, cpr);
+        }
+        // (y1-y2)x + (x2-x1)y + (x1y2 -x2y1) = 0
+        double a = first.y - last.y;
+        double b = last.x - first.x;
+        double c = (first.x * last.y) - (last.x * first.y);
+
+        double distance = abs( (a*cpr.x) + (b*cpr.y) + c ) / (sqrt( pow(a,2)+pow(b,2) ) );
+        return distance;
+
+    }
+
 }

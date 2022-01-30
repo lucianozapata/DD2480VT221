@@ -46,8 +46,21 @@ public class LIC {
     public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
+        CMV[1] = Condition1();
+        CMV[2] = Condition2();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
+        CMV[5] = Condition5();
+        CMV[6] = Condition6();
+        CMV[7] = Condition7();
+        CMV[8] = Condition8();
+        CMV[9] = Condition9();
+
+        CMV[10] = Condition10();
+        CMV[11] = Condition11();
+        CMV[12] = Condition12();
+        CMV[13] = Condition13();
+        CMV[14] = Condition14();
 
         return CMV;
     }
@@ -127,11 +140,11 @@ public class LIC {
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public  boolean Condition5(){
+    public boolean Condition5(){
         for(int idx=0; idx < this.numberPoints -1; idx++){
-                Datapoints a = this.points[idx];
-                Datapoints b = this.points[idx+1];
-                double diff = Utility.difference(b,a);
+            Datapoints a = this.points[idx];
+            Datapoints b = this.points[idx+1];
+            double diff = Utility.difference(b,a);
             if(diff < 0){
 
              return true;
@@ -139,14 +152,38 @@ public class LIC {
         }
         return false;
 
-    }    /**
+    }
+
+
+    /**
+     * Checks if there exists one point belonging to a set of N_PTS
+     * consecutive points, such that the distance between the line made
+     * up by the first and last point of this set and one point in the set
+     * is greater than DIST. If the the first and last point is the same
+     * then the distance is simply from this coincident point. It is assumed
+     * that the line joining the first and last point is infinite rather
+     * the finite.
      *
-     * @return Return true if the condition is met, other
+     *
+     * @return Return true if the condition is met, otherwise it
      * returns false.
      */
-    public static boolean Condition6(){
-        return true;
-    }    /**
+    public boolean Condition6(){
+        if(numberPoints<3 || parameters.DIST<0 || points.length>100){return false;}
+
+        for(int i=0;i<numberPoints-parameters.N_PTS;i++){
+            for(int j=i+1; j<parameters.N_PTS; j++){
+                double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS], points[j]);
+                if (distance>parameters.DIST){return true;}
+            }
+        }
+
+        return false;
+    }
+
+
+
+    /**
      *
      * @return Return true if the condition is met, other
      * returns false.

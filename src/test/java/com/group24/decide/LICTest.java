@@ -126,7 +126,65 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition6: Compare distance of a point and the line between two other points")
     void condition6() {
+        // Positive test
+        Parameter parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 3;
+        Datapoints[] points = { new Datapoints(0,0),
+                new Datapoints(0,0),
+                new Datapoints(0,1.01),
+                new Datapoints(1,0),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition6());
+
+        // Negative test
+        parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 4;
+        Datapoints[] points1 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(1,0),
+                new Datapoints(0,1),
+                new Datapoints(1,1),
+                };
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition6());
+
+        // Invalid input (N_PTS>NUMPOINTS)
+        parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 5;
+        Datapoints[] points2 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(100,0),
+                new Datapoints(1,1),
+        };
+        lic = new LIC(parameter, points2);
+        assertFalse(lic.Condition6());
+
+        // Invalid input (DIST < 0)
+        parameter = new Parameter();
+        parameter.DIST = -1;
+        parameter.N_PTS = 3;
+        Datapoints[] points3 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(100,0),
+                new Datapoints(1,1),
+        };
+        lic = new LIC(parameter, points3);
+        assertFalse(lic.Condition6());
+
+        // Invalid input (Too many datapoints)
+        parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 5;
+        Datapoints[] points4 = createTooManyDatapoints();
+        lic = new LIC(parameter, points4);
+        assertFalse(lic.Condition6());
+
     }
 
     @Test
@@ -187,5 +245,20 @@ class LICTest {
         parameter.AREA1 = 10;
         parameter.AREA2 = 0;
         assertFalse(lic.Condition14());
+    }
+
+    /**
+     * Method for creating a invalid input (too many datapoints).
+     * The datapoints may need to be adjusted depending on the test
+     * case for accurate results.
+     *
+     * @return
+     */
+    Datapoints[] createTooManyDatapoints(){
+        Datapoints[] points = new Datapoints[101];
+        for(int i=0;i<101;i++){
+            points[i] = new Datapoints(i%5,i%7);
+        }
+        return points;
     }
 }
