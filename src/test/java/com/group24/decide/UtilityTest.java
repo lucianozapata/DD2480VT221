@@ -49,8 +49,7 @@ class UtilityTest {
 
         double maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
 
-        assertTrue(maxAngle < 90.01);
-        assertTrue(maxAngle > 89.99);
+        assertEquals(90, maxAngle, 0.01);
 
         p1 = new Datapoints(0, 0);
         p2 = new Datapoints(10, 0);
@@ -62,7 +61,24 @@ class UtilityTest {
 
         maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
 
-        assertTrue(maxAngle > 157.38);
-        assertTrue(maxAngle < 157.39);
+        assertEquals(157.38, maxAngle, 0.01);
+    }
+
+    @Test
+    void calcMinEnclosingRadius() {
+        Datapoints p1 = new Datapoints(0, 0);
+        Datapoints p2 = new Datapoints(1, 0);
+        Datapoints p3 = new Datapoints(0, 1);
+
+        double minRadius = Utility.calcMinEnclosingRadius(p1,p2,p3);
+        assertEquals(Math.sqrt(2)/2, minRadius, 0.01);
+
+        p1 = new Datapoints(0, 0);
+        p2 = new Datapoints( 2, 0);
+        p3 = new Datapoints(1, Math.sqrt(3));
+
+        minRadius = Utility.calcMinEnclosingRadius(p1,p2,p3);
+        assertEquals(1.15, minRadius, 0.01);
+
     }
 }
