@@ -107,7 +107,7 @@ public class LIC {
             }
 
             for(int idx = 0; idx < numberPoints - 2; idx++){
-               double radius = Utility.findSmallestCircle(points[idx], points[idx+1], points[idx+2]);
+               double radius = Utility.calcMinEnclosingRadius(points[idx], points[idx+1], points[idx+2]);
                if(radius > parameters.RADIUS1){
                    return true;
                }
