@@ -304,6 +304,23 @@ class LICTest {
 
     @Test
     void condition13() {
+        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] points = { new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 1),
+                new Datapoints(1, 1),
+                new Datapoints(2, 2),
+        };
+        LIC lic = new LIC(parameter, points);
+
+        // for these points then smallest radius is 0.5 and biggest 1.15
+        parameter.RADIUS1 = 1;
+        parameter.RADIUS2 = 1;
+        assertTrue(lic.Condition13());
+
+        parameter.RADIUS1 = 2;
+        parameter.RADIUS2 = 1;
+        assertFalse(lic.Condition13());
     }
 
     @Test

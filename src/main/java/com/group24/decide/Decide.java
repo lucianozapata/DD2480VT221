@@ -40,7 +40,6 @@ public class Decide {
         Points[1] = new Datapoints(1,2);
         lic = new LIC(parameters, Points);
 
-
         // Input all values for LCM.
         CONNECTORS[][] LCM = {
                 {CONNECTORS.ANDD, CONNECTORS.ANDD, CONNECTORS.ORR, CONNECTORS.ANDD, CONNECTORS.NOTUSED},
