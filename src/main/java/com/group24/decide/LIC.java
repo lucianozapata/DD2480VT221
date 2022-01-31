@@ -64,11 +64,15 @@ public class LIC {
 
     /**
      *
-     * @return Return true if there exists at least one set
+     * Return true if there exists at least one set
      * of two consecutive data points that are a distance greater
      * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
+     * 
+     * @return Return true if the condition is met, other
+     * returns false.
      */
         public boolean Condition0() {
+
             // If the length in a negative number.
             if(parameters.LENGTH1 < 0){
                 return false;
@@ -77,7 +81,6 @@ public class LIC {
             if(numberPoints < 2) {
                 return false;
             }
-
             for (int index = 0; index < numberPoints-1; index++) {
                 // The distance between the two datapoints
                 double distance = Utility.calcEuclideanDistance(this.points[index], this.points[index + 1]);
@@ -89,9 +92,28 @@ public class LIC {
             }
             return false;
         }
+     /**
+     * There exists at least one set of three consecutive data points that cannot all be contained
+     * within or on a circle of radius RADIUS1. (0 ≤ RADIUS1)
+     *
+     * @return Return true if the condition is met, other
+     * returns false.
+     */
+        public boolean Condition1(){
+            if(parameters.RADIUS1 < 0){
+                return false;
+            }
+            if(numberPoints < 3){
+                return false;
+            }
 
-        public static boolean Condition1(){
-        return true;
+            for(int idx = 0; idx < numberPoints - 2; idx++){
+               double radius = Utility.calcMinEnclosingRadius(points[idx], points[idx+1], points[idx+2]);
+               if(radius > parameters.RADIUS1){
+                   return true;
+               }
+            }
+        return false;
     }
     /**
      *

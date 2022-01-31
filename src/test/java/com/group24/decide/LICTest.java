@@ -38,6 +38,35 @@ class LICTest {
 
     @Test
     void condition1() {
+        // Positive test where smallest circle has radius higher than 1.
+        Parameter parameters = new Parameter(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,9);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        LIC testLIC = new LIC(parameters,testDataPoints);
+        assertTrue(testLIC.Condition1());
+
+
+        // Negative test were all points fits in a circle with radius 3.
+        parameters = new Parameter(0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        testDataPoints[2] = new Datapoints(0,0);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+        // Negative test where all points are on the circle with radius 1
+        parameters = new Parameter(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+
     }
 
     @Test
