@@ -329,8 +329,8 @@ public class LIC {
     }
 
     /**
-     * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area > AREA1
-     * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area < AREA2
+     * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
+     * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area smaller AREA2
      *
      * @return Return true if the both SubConditions are met, otherwise return false
      */
