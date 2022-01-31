@@ -38,6 +38,49 @@ class UtilityTest {
         assertEquals(4, Utility.chooseQuadrant(p4));
     }
 
+
+    /**
+     *
+     */
+    @Test
+    void lineDistPoints() {
+        // Test a valid input
+        Datapoints p1 = new Datapoints(1, 1);
+        Datapoints p2 = new Datapoints(1, 2);
+        Datapoints p3 = new Datapoints(2, 2);
+        assertEquals(1, Utility.lineDistPoints(p1, p2, p3) );
+
+        // Test if the Datapoint is on the line
+        p1 = new Datapoints(1, 1);
+        p2 = new Datapoints(1, 2);
+        p3 = new Datapoints(1, 0.5);
+        assertEquals(0, Utility.lineDistPoints(p1, p2, p3) );
+
+        // Test the distance if p1==p2
+        p1 = new Datapoints(1, 1);
+        p2 = new Datapoints(1, 1);
+        p3 = new Datapoints(1, 2);
+        assertEquals(1, Utility.lineDistPoints(p1, p2, p3) );
+
+    }
+
+    /**
+     *
+     */
+    @Test
+    void checkIfEqual(){
+        // Check if true for two identical points
+        Datapoints p1 = new Datapoints(1, 1);
+        Datapoints p2 = new Datapoints(1, 1);
+        assertTrue(Utility.checkIfEqual(p1,p2) );
+
+        // Check if false for two different Datapoints
+        p1 = new Datapoints(1, 1);
+        p2 = new Datapoints(1, 2);
+        assertFalse(Utility.checkIfEqual(p1,p2) );
+    }
+
+
     @Test
     void calcMaxAngle() {
         Datapoints p1 = new Datapoints(0, 0);
@@ -108,4 +151,5 @@ class UtilityTest {
         Datapoints c4 = new Datapoints(2, 0);
         assertEquals(2, Utility.findSmallestCircle(a4, b4, c4));
     }
+
 }
