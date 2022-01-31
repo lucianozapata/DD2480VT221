@@ -169,10 +169,12 @@ public class LIC {
      * returns false.
      */
     public boolean Condition6(){
-        if(numberPoints<3 || parameters.DIST<0 || points.length>100){return false;}
 
-        for(int i=0;i<numberPoints-parameters.N_PTS;i++){
-            for(int j=i+1; j<parameters.N_PTS; j++){
+        //3 ≤ N PTS ≤ NUMPOINTS
+        if(numberPoints<3 || parameters.DIST<0 || !( (3<=parameters.N_PTS) && (parameters.N_PTS<=numberPoints)) ){return false;}
+
+        for(int i=0;i<=numberPoints-parameters.N_PTS;i++){
+            for(int j=i; j<parameters.N_PTS; j++){
                 double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS], points[j]);
                 if (distance>parameters.DIST){return true;}
             }
