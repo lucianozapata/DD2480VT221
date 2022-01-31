@@ -15,19 +15,24 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class LICTest {
 
-
-    /**
-     *
-     */
     @Test
     void condition0() {
+
+        // Negative test where the distance is 1 and LENGTH1 is 1.
         Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
         Datapoints[] testDataPoints = new Datapoints[2];
         testDataPoints[0] = new Datapoints(1,1);
         testDataPoints[1] = new Datapoints(1,0);
-        // Distance should be 1.
         LIC testLIC = new LIC(parameters, testDataPoints);
         assertFalse(testLIC.Condition0());
+
+        //Positive test where the distance is 9 and LENGTH1 is 1.
+        testDataPoints[0] = new Datapoints(0,0);
+        testDataPoints[1] = new Datapoints(0,9);
+        LIC postiveLIC = new LIC(parameters, testDataPoints);
+        assertTrue(postiveLIC.Condition0());
+
+
 
     }
 
