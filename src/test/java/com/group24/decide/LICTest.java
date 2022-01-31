@@ -295,7 +295,52 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition 11: Checks if there is a set of Datapoints such that they are separated by G_PTS and the first is bigger than the latter.")
     void condition11() {
+        // Positive test
+        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        parameter.G_PTS = 2;
+
+        Datapoints[] points = { new Datapoints(1, 1),
+                new Datapoints(2, 0),
+                new Datapoints(2, 0),
+                new Datapoints(0, 0),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition11());
+
+        // Negative test
+        parameter.G_PTS = 1;
+
+        Datapoints[] points1 = { new Datapoints(1, 1),
+                new Datapoints(1, 0),
+                new Datapoints(2, 0),
+                new Datapoints(1.01, 0),
+        };
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition11());
+
+        // Invalid input
+        parameter.G_PTS = 2;
+
+        Datapoints[] points2 = { new Datapoints(1, 1),
+                new Datapoints(-1, 0),
+                new Datapoints(-2, 0),
+        };
+        lic = new LIC(parameter, points2);
+        assertFalse(lic.Condition11());
+
+        // Invalid input (G_PTS>NUMPOINTS-2)
+        parameter.G_PTS = 3;
+
+        Datapoints[] points3 = { new Datapoints(1, 1),
+                new Datapoints(2, 0),
+                new Datapoints(2, 0),
+                new Datapoints(0, 0),
+        };
+        lic = new LIC(parameter, points3);
+        assertFalse(lic.Condition11());
+
     }
 
     @Test
