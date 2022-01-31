@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'application'
 }
 
 group 'org.example'
@@ -10,6 +11,10 @@ jar{
     manifest{
         attributes 'Decide': 'com.group24.decide'
     }
+}
+
+application {
+    mainClass = 'com.group24.decide.Decide'
 }
 
 repositories {
