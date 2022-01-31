@@ -27,6 +27,27 @@ public class Decide {
     }
 
     /**
+     * Calculate PUM using CMV and LCM
+     * @param CMV Conditions Met Vector
+     * @param LCM Logical Connector Matrix
+     * @return PUM (Preliminary Unlocking Matrix)
+     */
+    public boolean[][] calcPUM(boolean[] CMV, CONNECTORS[][] LCM) {
+        boolean[][] PUM = new boolean[15][15];
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                CONNECTORS connector = LCM[i][j];
+                switch (connector) {
+                    case ORR -> PUM[i][j] = CMV[i] || CMV[j];
+                    case ANDD -> PUM[i][j] = CMV[i] && CMV[j];
+                    case NOTUSED -> PUM[i][j] = true;
+                }
+            }
+        }
+        return PUM;
+    }
+
+    /**
      *
      * @param args
      */
