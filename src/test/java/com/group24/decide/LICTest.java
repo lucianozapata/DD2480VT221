@@ -300,6 +300,51 @@ class LICTest {
 
     @Test
     void condition12() {
+        // Positive test
+        Parameter parameter = new Parameter();
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 2;
+        Datapoints[] points = { new Datapoints(0,0),
+                new Datapoints(0,0),
+                new Datapoints(0,0.01),
+                new Datapoints(1,1),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition12());
+
+        // Negative test
+        parameter = new Parameter();
+        parameter.LENGTH1 = 2;
+        parameter.LENGTH2 = 2;
+        parameter.K_PTS = 2;
+
+        lic = new LIC(parameter, points);
+        assertFalse(lic.Condition12());
+
+        // Invalid test (K_PTS>NUMPOINTS-2)
+        parameter = new Parameter();
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 3;
+
+        lic = new LIC(parameter, points);
+        assertFalse(lic.Condition12());
+
+        // Invalid test (NUMPOINTS<3)
+        parameter = new Parameter();
+        Datapoints[] points1 = { new Datapoints(0,0),
+                new Datapoints(0,0),
+        };
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 3;
+
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition12());
+
+
+
     }
 
     @Test
