@@ -22,7 +22,18 @@ public class Utility {
      * @param b Second datapoint
      * @return difference
      */
-    public static double difference(Datapoints a, Datapoints b) {
+    public static double differenceX(Datapoints a, Datapoints b) {
+         
+       return a.x -b.x;
+    }
+
+    /**
+     * Calculate the difference
+     * @param a First datapoint
+     * @param b Second datapoint
+     * @return difference
+     */
+    public static double differenceY(Datapoints a, Datapoints b) {
          
        return a.x -b.x;
     }

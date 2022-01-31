@@ -254,12 +254,12 @@ class LICTest {
                 new Datapoints(0, 0),
                 new Datapoints(0, 1.0),
                 new Datapoints(0, 0)};
-        parameter.EPSILON = Math.PI/2.1;
+        parameter.EPSILON = Math.PI/2;
         parameter.C_PTS = 1;
         parameter.D_PTS = 1;
         
         LIC lic1 = new LIC(parameter,points1);
-        //Should return false if NUMPOINTS < 5
+        //Should return false if NUMPOINTS < 5, the result return false.
         assertFalse(lic1.Condition9());
 
     }
