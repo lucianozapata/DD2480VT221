@@ -213,8 +213,27 @@ public class LIC {
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition9(){
-        return true;
+    public  boolean Condition9(){
+        //There exists three points seperated by C_PTS and D_PTS apart which have PI - EPSILON < angle < PI + EPSILON
+        if(this.numberPoints < 5){
+            return false;
+        }
+
+        for(int idx=0; idx < this.numberPoints - parameters.C_PTS -parameters.D_PTS-2; idx++){
+            Datapoints a1 = this.points[idx];
+            Datapoints b1 = this.points[idx];
+            Datapoints a2 = this.points[idx + parameters.C_PTS +1];
+            Datapoints b2 = this.points[idx + parameters.C_PTS+1];
+            Datapoints a3 = this.points[idx + parameters.C_PTS+ parameters.D_PTS+2];
+            Datapoints b3 = this.points[idx + parameters.C_PTS+ parameters.D_PTS+2];
+            double angle = (Math.toDegrees((Math.atan2(Utility.difference(b1,b2), Utility.difference(a1,a2)) - Math.atan2(Utility.difference(b3,b2), Utility.difference(a3,a2)))) + 360) % 360;
+            if((angle < Math.toDegrees(Math.PI - parameters.EPSILON)) || (angle > Math.toDegrees(Math.PI + parameters.EPSILON))){
+                return true;
+            }
+
+        }
+        return false;
+
     }    /**
      *
      * @return Return true if the condition is met, other

@@ -232,6 +232,36 @@ class LICTest {
 
     @Test
     void condition9() {
+        Parameter parameter = new Parameter();
+        Datapoints[] points = {
+                new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 1.0),
+                new Datapoints(0, 0),
+                new Datapoints(1.0, 1.0)};
+        
+        parameter.EPSILON = Math.PI/2.1;
+        parameter.C_PTS =1;
+        parameter.D_PTS=1;
+        LIC lic = new LIC(parameter,points);
+        ////For the 5 NUMPOINTS there exist at least one set of three points separated by exactly 1 and 1 
+        //consecutive intervening points respectively that form an angle that is either smaller than PI - (Math.PI/2.1)
+        // or bigger than PI + (Math.PI/2.1), the result return true.
+        assertTrue(lic.Condition9());
+
+        Datapoints[] points1 = {
+                new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 1.0),
+                new Datapoints(0, 0)};
+        parameter.EPSILON = Math.PI/2.1;
+        parameter.C_PTS = 1;
+        parameter.D_PTS = 1;
+        
+        LIC lic1 = new LIC(parameter,points1);
+        //Should return false if NUMPOINTS < 5
+        assertFalse(lic1.Condition9());
+
     }
 
     @Test
