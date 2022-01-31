@@ -64,6 +64,7 @@ public class Utility {
     }
 
     /**
+<<<<<<< HEAD
      * Calculate the maximum angle in a triangle given by three points
      * @param lengthA first length of triangle
      * @param lengthB second length of triangle
@@ -118,5 +119,36 @@ public class Utility {
         // case 2: obtuse triangle (one angle bigger than 90 deg)
         // the smallest radius is the longest distance
         return Math.max(distanceAB, Math.max(distanceAC, distanceBC)) / 2;
+    }
+
+    /*
+     * Find the radius of the smallest circle that datapoints a, b, c can form.
+     * The smallest circle is the circumscribed circle of the triangle that points a, b, c form if the triangle is acute.
+     * Otherwise the diameter of the smallest circle is the longest line a, b, c can form.
+     * @param a First datapoint
+     * @param b Second datapoint
+     * @param c Third datapoint
+     * @return the radius of the circle
+     */
+    public static double findSmallestCircle(Datapoints a, Datapoints b, Datapoints c){
+        double distanceAB = calcEuclideanDistance(a, b);
+        double distanceAC = calcEuclideanDistance(a, c);
+        double distanceBC = calcEuclideanDistance(b, c);
+
+        // Calculating the circumscribed circle of triangle ABC
+        double cosA = ((b.x - a.x) * (c.x - a.x) + (b.y - a.y) * (c.y - a.y)) / (distanceAB * distanceAC);
+        double sinA = Math.sqrt(1 - cosA * cosA);
+        double radius = distanceBC / (sinA * 2);
+
+        // If the triangle is obtuse, right-angle, or the three points form a line,
+        // then the diameter of smallest circle is the longest line in AB, AC, BC.
+        double cosB = ((a.x - b.x) * (c.x - b.x) + (a.y - b.y) * (c.y - b.y)) / (distanceAB * distanceBC);
+        double cosC = ((a.x - c.x) * (b.x - c.x) + (a.y - c.y) * (b.y - c.y)) / (distanceAC * distanceBC);
+        if (cosA <= 0 || cosB <= 0 || cosC <= 0) {
+            return Math.max(Math.max(distanceAB, distanceAC), distanceBC) / 2;
+        }
+
+        // If the triangle is acute, the smallest circle is its circumscribed circle.
+        return radius;
     }
 }

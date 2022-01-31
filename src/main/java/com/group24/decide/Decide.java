@@ -1,5 +1,6 @@
 package com.group24.decide;
 
+
 /**
  * Add description for javaDoc
  *
@@ -31,17 +32,13 @@ public class Decide {
      */
     public static void main(String[] args){
 
-        Parameter parameters = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,
                 0,0,0,0,0);
 
-        Datapoints[] points = { new Datapoints(0, 0),
-                new Datapoints(0, 0),
-                new Datapoints(0, 1),
-                new Datapoints(1, 1),
-                new Datapoints(2, 2),
-        };
-        lic = new LIC(parameters, points);
-
+        Datapoints[] Points = new Datapoints[NUMPOINTS];
+        Points[0] = new Datapoints(1, 2); // Input the data points
+        Points[1] = new Datapoints(1,2);
+        lic = new LIC(parameters, Points);
 
         // Input all values for LCM.
         CONNECTORS[][] LCM = {
