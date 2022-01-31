@@ -38,9 +38,15 @@ public class Decide {
             for (int j = 0; j < 15; j++) {
                 CONNECTORS connector = LCM[i][j];
                 switch (connector) {
-                    case ORR -> PUM[i][j] = CMV[i] || CMV[j];
-                    case ANDD -> PUM[i][j] = CMV[i] && CMV[j];
-                    case NOTUSED -> PUM[i][j] = true;
+                    case ORR :
+                        PUM[i][j] = CMV[i] || CMV[j];
+                        break;
+                    case ANDD :
+                        PUM[i][j] = CMV[i] && CMV[j];
+                        break;
+                    case NOTUSED :
+                        PUM[i][j] = true;
+                        break;
                 }
             }
         }
