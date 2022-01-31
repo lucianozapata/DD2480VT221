@@ -65,7 +65,14 @@ public class LIC {
      * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
      */
         public boolean Condition0() {
-            // How many datapoints we are going to check.
+            // If the length in a negative number.
+            if(parameters.LENGTH1 < 0){
+                return false;
+            }
+            // If the number of points is less than 2, we can't have two consectutive points.
+            if(numberPoints < 2) {
+                return false;
+            }
 
             for (int index = 0; index < numberPoints-1; index++) {
                 // The distance between the two datapoints
