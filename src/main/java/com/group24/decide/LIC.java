@@ -49,6 +49,8 @@ public class LIC {
         CMV[3] = Condition3();
         CMV[4] = Condition4();
         CMV[7] = Condition7();
+        CMV[13] = Condition13();
+        CMV[14] = Condition14();
 
         return CMV;
     }
@@ -201,13 +203,38 @@ public class LIC {
      */
     public static boolean Condition12(){
         return true;
-    }    /**
+    }
+
+    /**
+     * Calculate the minimum enclosing radius for 3 data points, seperated by E_PTS and F_PTS points
+     * SubCondition1: minimum enclosing radius greater than RADIUS1
+     * SubCondition1: minimum enclosing radius smaller than RADIUS2
      *
-     * @return Return true if the condition is met, other
-     * returns false.
+     * @return Return true if the both SubConditions are met, otherwise return false
      */
-    public static boolean Condition13(){
-        return true;
+    public boolean Condition13(){
+
+        if(this.numberPoints < 5) {return false;}
+
+        boolean biggerRadius = false;
+        boolean smallerRadius = false;
+
+        int indexPoint1, indexPoint2;
+        int maxIndex = this.numberPoints - 2 - parameters.A_PTS - parameters.B_PTS;
+
+        for (int i = 0; i < maxIndex; i++) {
+
+            indexPoint1 = i + 1 + parameters.A_PTS;
+            indexPoint2 = i + 2 + + parameters.A_PTS + parameters.B_PTS;
+
+            double radius = Utility.calcMinEnclosingRadius(this.points[i],this.points[indexPoint1], this.points[indexPoint2]);
+
+            if (radius > parameters.RADIUS1) {biggerRadius = true;}
+            if (radius < parameters.RADIUS2) {smallerRadius = true;}
+
+            if (biggerRadius && smallerRadius) {return true;}
+        }
+        return false;
     }
 
     /**
