@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'application'
 }
 
 group 'org.example'
@@ -9,6 +11,10 @@ jar{
     manifest{
         attributes 'Decide': 'com.group24.decide'
     }
+}
+
+application {
+    mainClass = 'com.group24.decide.Decide'
 }
 
 repositories {
@@ -22,4 +28,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }

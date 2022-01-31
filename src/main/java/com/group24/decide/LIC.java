@@ -52,7 +52,10 @@ public class LIC {
         CMV[3] = Condition3();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
+        CMV[6] = Condition6();
         CMV[7] = Condition7();
+        CMV[13] = Condition13();
+        CMV[14] = Condition14();
 
 
         return CMV;
@@ -68,6 +71,15 @@ public class LIC {
      * returns false.
      */
         public boolean Condition0() {
+
+            // If the length in a negative number.
+            if(parameters.LENGTH1 < 0){
+                return false;
+            }
+            // If the number of points is less than 2, we can't have two consectutive points.
+            if(numberPoints < 2) {
+                return false;
+            }
             for (int index = 0; index < numberPoints-1; index++) {
                 // The distance between the two datapoints
                 double distance = Utility.calcEuclideanDistance(this.points[index], this.points[index + 1]);
@@ -159,11 +171,11 @@ public class LIC {
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public  boolean Condition5(){
+    public boolean Condition5(){
         for(int idx=0; idx < this.numberPoints -1; idx++){
-                Datapoints a = this.points[idx];
-                Datapoints b = this.points[idx+1];
-                double diff = Utility.difference(b,a);
+            Datapoints a = this.points[idx];
+            Datapoints b = this.points[idx+1];
+            double diff = Utility.difference(b,a);
             if(diff < 0){
 
              return true;
@@ -171,14 +183,40 @@ public class LIC {
         }
         return false;
 
-    }    /**
+    }
+
+
+    /**
+     * Checks if there exists one point belonging to a set of N_PTS
+     * consecutive points, such that the distance between the line made
+     * up by the first and last point of this set and one point in the set
+     * is greater than DIST. If the the first and last point is the same
+     * then the distance is simply from this coincident point. It is assumed
+     * that the line joining the first and last point is infinite rather
+     * the finite.
      *
-     * @return Return true if the condition is met, other
+     *
+     * @return Return true if the condition is met, otherwise it
      * returns false.
      */
-    public static boolean Condition6(){
-        return true;
-    }    /**
+    public boolean Condition6(){
+
+        //3 ≤ N PTS ≤ NUMPOINTS
+        if(numberPoints<3 || parameters.DIST<0 || !( (3<=parameters.N_PTS) && (parameters.N_PTS<=numberPoints)) ){return false;}
+
+        for(int i=0;i<=numberPoints-parameters.N_PTS;i++){
+            for(int j=i; j<i + parameters.N_PTS; j++){
+                double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS-1], points[j]);
+                if (distance>parameters.DIST){return true;}
+            }
+        }
+
+        return false;
+    }
+
+
+
+    /**
      *
      * @return Return true if the condition is met, other
      * returns false.
@@ -256,13 +294,38 @@ public class LIC {
      */
     public static boolean Condition12(){
         return true;
-    }    /**
+    }
+
+    /**
+     * Calculate the minimum enclosing radius for 3 data points, seperated by E_PTS and F_PTS points
+     * SubCondition1: minimum enclosing radius greater than RADIUS1
+     * SubCondition1: minimum enclosing radius smaller than RADIUS2
      *
-     * @return Return true if the condition is met, other
-     * returns false.
+     * @return Return true if the both SubConditions are met, otherwise return false
      */
-    public static boolean Condition13(){
-        return true;
+    public boolean Condition13(){
+
+        if(this.numberPoints < 5) {return false;}
+
+        boolean biggerRadius = false;
+        boolean smallerRadius = false;
+
+        int indexPoint1, indexPoint2;
+        int maxIndex = this.numberPoints - 2 - parameters.A_PTS - parameters.B_PTS;
+
+        for (int i = 0; i < maxIndex; i++) {
+
+            indexPoint1 = i + 1 + parameters.A_PTS;
+            indexPoint2 = i + 2 + + parameters.A_PTS + parameters.B_PTS;
+
+            double radius = Utility.calcMinEnclosingRadius(this.points[i],this.points[indexPoint1], this.points[indexPoint2]);
+
+            if (radius > parameters.RADIUS1) {biggerRadius = true;}
+            if (radius < parameters.RADIUS2) {smallerRadius = true;}
+
+            if (biggerRadius && smallerRadius) {return true;}
+        }
+        return false;
     }
 
     /**

@@ -15,19 +15,24 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class LICTest {
 
-
-    /**
-     *
-     */
     @Test
     void condition0() {
+
+        // Negative test where the distance is 1 and LENGTH1 is 1.
         Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
         Datapoints[] testDataPoints = new Datapoints[2];
         testDataPoints[0] = new Datapoints(1,1);
         testDataPoints[1] = new Datapoints(1,0);
-        // Distance should be 1.
         LIC testLIC = new LIC(parameters, testDataPoints);
         assertFalse(testLIC.Condition0());
+
+        //Positive test where the distance is 9 and LENGTH1 is 1.
+        testDataPoints[0] = new Datapoints(0,0);
+        testDataPoints[1] = new Datapoints(0,9);
+        LIC postiveLIC = new LIC(parameters, testDataPoints);
+        assertTrue(postiveLIC.Condition0());
+
+
 
     }
 
@@ -164,7 +169,58 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition6: Compare distance of a point and the line between two other points")
     void condition6() {
+        // Positive test
+        Parameter parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 3;
+        Datapoints[] points = { new Datapoints(0,0),
+                new Datapoints(0,0),
+                new Datapoints(0,1.01),
+                new Datapoints(1,0),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition6());
+
+        // Negative test
+        parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 4;
+        Datapoints[] points1 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(1,0),
+                new Datapoints(0,1),
+                new Datapoints(1,1),
+                };
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition6());
+
+        // Invalid input (N_PTS>NUMPOINTS)
+        parameter = new Parameter();
+        parameter.DIST = 1;
+        parameter.N_PTS = 5;
+        Datapoints[] points2 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(100,0),
+                new Datapoints(1,1),
+        };
+        lic = new LIC(parameter, points2);
+        assertFalse(lic.Condition6());
+
+        // Invalid input (DIST < 0)
+        parameter = new Parameter();
+        parameter.DIST = -1;
+        parameter.N_PTS = 3;
+        Datapoints[] points3 = { new Datapoints(0,0),
+                new Datapoints(-1,0),
+                new Datapoints(100,0),
+                new Datapoints(1,1),
+        };
+        lic = new LIC(parameter, points3);
+        assertFalse(lic.Condition6());
+
+
     }
 
     @Test
@@ -277,6 +333,23 @@ class LICTest {
 
     @Test
     void condition13() {
+        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] points = { new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 1),
+                new Datapoints(1, 1),
+                new Datapoints(2, 2),
+        };
+        LIC lic = new LIC(parameter, points);
+
+        // for these points then smallest radius is 0.5 and biggest 1.15
+        parameter.RADIUS1 = 1;
+        parameter.RADIUS2 = 1;
+        assertTrue(lic.Condition13());
+
+        parameter.RADIUS1 = 2;
+        parameter.RADIUS2 = 1;
+        assertFalse(lic.Condition13());
     }
 
     @Test
@@ -310,4 +383,6 @@ class LICTest {
         parameter.AREA2 = 0;
         assertFalse(lic.Condition14());
     }
+
+
 }
