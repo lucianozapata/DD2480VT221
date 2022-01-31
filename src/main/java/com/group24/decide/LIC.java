@@ -54,6 +54,7 @@ public class LIC {
         CMV[4] = Condition4();
         CMV[6] = Condition6();
         CMV[7] = Condition7();
+        CMV[12] = Condition12();
         CMV[13] = Condition13();
         CMV[14] = Condition14();
 
@@ -265,13 +266,34 @@ public class LIC {
      */
     public static boolean Condition11(){
         return true;
-    }    /**
+    }
+
+    /**
+     * Calculate distance between two consecutive intervening datapoints
+     * that are exactly K_PTS apart from each other.
      *
-     * @return Return true if the condition is met, other
+     * SubCondition1: That distance > LENGTH1
+     * SubCondition2: That distance > LENGTH2
+     *
+     * @return Return true if the condition is met, otherwise
      * returns false.
      */
-    public static boolean Condition12(){
-        return true;
+    public boolean Condition12(){
+        // 1 ≤ K_PTS ≤ (NUMPOINTS − 2)
+        if ( numberPoints<3 || !(0<=parameters.LENGTH1) || !(0<=parameters.LENGTH2) || !((1<= parameters.K_PTS) && (parameters.K_PTS<=numberPoints-2)) ) {return false;}
+
+        boolean geLength1 = false, geLength2 = false;
+        for(int i=0;i<numberPoints-parameters.K_PTS-1;i++){
+            int j = i + parameters.K_PTS + 1;
+            double dist = Utility.calcEuclideanDistance(points[i], points[j] );
+
+            if(dist>parameters.LENGTH1){geLength1=true;}
+            if(dist>parameters.LENGTH2){geLength2=true;}
+
+            if(geLength1 && geLength2){return true;}
+        }
+
+        return false;
     }
 
     /**
