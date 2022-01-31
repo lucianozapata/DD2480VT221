@@ -64,18 +64,31 @@ public class Utility {
     }
 
     /**
-     * Calculate the relative angle between two data points
-     * @param a First datapoint
-     * @param b Second datapoint
-     * @return angle between these points
+     * Calculate the maximum angle in a triangle given by three points
+     * @param lengthA first length of triangle
+     * @param lengthB second length of triangle
+     * @param lengthC third length of triangle
+     * @return maximum angle in this triangle
      */
-    public static double calcAngle(Datapoints a, Datapoints b) {
-        double angleRadians = Math.atan2(a.y - b.y, a.x - b.x);
-        // radians -> degrees
-        double angleDegrees = Math.toDegrees(angleRadians);
-        // Transform negative angles into positive angles
-        if (angleDegrees < 0) angleDegrees += 360;
-        return angleDegrees;
+    public static double calcMaxAngle(double lengthA, double lengthB, double lengthC) {
+
+        // Square of lengths
+        double lengthA2 = Math.pow(lengthA, 2);
+        double lengthB2 = Math.pow(lengthB, 2);
+        double lengthC2 = Math.pow(lengthC, 2);
+
+        // Cosine law
+        double alpha = Math.acos((lengthB2 + lengthC2 - lengthA2)/(2*lengthB*lengthC));
+        double betta = Math.acos((lengthA2 + lengthC2 - lengthB2)/(2*lengthA*lengthC));
+        double gamma = Math.acos((lengthA2 + lengthB2 - lengthC2)/(2*lengthA*lengthB));
+
+        // Converting radius to degrees
+        alpha = Math.toDegrees(alpha);
+        betta = Math.toDegrees(betta);
+        gamma = Math.toDegrees(gamma);
+
+        // return maximum angle
+        return Math.max(alpha, Math.max(betta, gamma));
     }
 
     /**
@@ -91,13 +104,11 @@ public class Utility {
         double distanceAC = Utility.calcEuclideanDistance(a,c);
         double distanceBC = Utility.calcEuclideanDistance(b,c);
 
-        double angleAB = Utility.calcAngle(a,b);
-        double angleAC = Utility.calcAngle(a,c);
-        double angleBC = Utility.calcAngle(b,c);
+        double biggestAngle = Utility.calcMaxAngle(distanceAB, distanceAC, distanceBC);
 
         // case 1: acute triangle (all angles smaller than 90 deg)
         // the smallest radius is circumcircle
-        if ( angleAB < 90 || angleAC < 90 || angleBC < 90) {
+        if (biggestAngle < 90) {
             // Circumcircle reference: https://www.mathopenref.com/trianglecircumcircle.html
            double denominator = (distanceAB*distanceAB*distanceBC);
            double divider = (distanceAB + distanceAC + distanceBC) * (distanceAC + distanceBC - distanceAB) * (distanceBC + distanceAB - distanceAC)*(distanceAB + distanceAC - distanceBC);

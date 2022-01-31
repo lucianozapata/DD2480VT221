@@ -36,4 +36,33 @@ class UtilityTest {
         assertEquals(3, Utility.chooseQuadrant(p3));
         assertEquals(4, Utility.chooseQuadrant(p4));
     }
+
+    @Test
+    void calcMaxAngle() {
+        Datapoints p1 = new Datapoints(0, 0);
+        Datapoints p2 = new Datapoints(1, 0);
+        Datapoints p3 = new Datapoints(0, 1);
+
+        double distanceA = Utility.calcEuclideanDistance(p1,p2);
+        double distanceB = Utility.calcEuclideanDistance(p1,p3);
+        double distanceC = Utility.calcEuclideanDistance(p2,p3);
+
+        double maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
+
+        assertTrue(maxAngle < 90.01);
+        assertTrue(maxAngle > 89.99);
+
+        p1 = new Datapoints(0, 0);
+        p2 = new Datapoints(10, 0);
+        p3 = new Datapoints(5, 1);
+
+        distanceA = Utility.calcEuclideanDistance(p1,p2);
+        distanceB = Utility.calcEuclideanDistance(p1,p3);
+        distanceC = Utility.calcEuclideanDistance(p2,p3);
+
+        maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
+
+        assertTrue(maxAngle > 157.38);
+        assertTrue(maxAngle < 157.39);
+    }
 }
