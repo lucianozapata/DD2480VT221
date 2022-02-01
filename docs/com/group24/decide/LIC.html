@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":9,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -281,9 +281,14 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition9()">Condition9</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of three data points separated by exactly C PTS and D PTS
+       consecutive intervening points, respectively, that form an angle such that: 
+       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+       The second point of the set of three points is always the vertex of the angle.</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean[]</code></td>
@@ -537,7 +542,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition9</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition9()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition9()</pre>
+<div class="block">There exists at least one set of three data points separated by exactly C PTS and D PTS
+       consecutive intervening points, respectively, that form an angle such that: 
+       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+       The second point of the set of three points is always the vertex of the angle. If either the first
+       point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+       is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
