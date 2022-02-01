@@ -90,5 +90,6 @@ Firstly, we had a start-up meeting and discussed how we wanted to set up the pro
 - Pull requests settings and reviewing   
 - Issue creation   
 - Documentation and how tests should be implemented.  
+
 Over time, more tools began to be implemented (such as Javadocs and Github Actions for tests). Recently, all team members have followed our way or working by following a clear way on how to create branches and creating issues in Github and gradually solving these by implementing and integrating code.  
 In order to be able to reach the next step,**working well** , it is still necessary for everyone in the group to clearly follow the practices and use the tools available to perform their work. Example is using Javadocs.
