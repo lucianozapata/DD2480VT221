@@ -42,6 +42,49 @@ class LICTest {
 
     @Test
     void condition2() {
+
+        // Positive test where angle is less than PI - EPSILON where EPSILON equals PI/4
+        Parameter parameters = new Parameter(0,0,Math.PI/4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] testDataPoints = new Datapoints[3];
+        // This creates a triangle where (0,0) is the vertex datapoint and the angle is 90 degrees (PI/2)
+        testDataPoints[0] = new Datapoints(1,0);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(0,1);
+
+        LIC testLIC = new LIC(parameters, testDataPoints);
+        // angle is PI/2 and (PI-EPSILON) is 3PI/4
+        assertTrue(testLIC.Condition2());
+
+        // Positive test where angle is greater than PI + EPSILON where EPSILON equals 0
+        parameters = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints[0] = new Datapoints(1,0);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(-1,1);
+
+        testLIC = new LIC(parameters,testDataPoints);
+        assertTrue(testLIC.Condition2());
+
+        //Negative test where angle is equal to (PI-EPSILON) where EPSILON = 0
+        parameters = new Parameter(0,0,Math.PI/2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints[0] = new Datapoints(1,0);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        testLIC = new LIC(parameters,testDataPoints);
+
+        assertFalse(testLIC.Condition2());
+
+        // Negative test where datapoints coincede. Epsilon is whatever
+        parameters = new Parameter(0,0,Math.PI/2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints[0] = new Datapoints(0,0);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        testLIC = new LIC(parameters,testDataPoints);
+
+        assertFalse(testLIC.Condition2());
+
+
+
+
     }
 
     @Test
