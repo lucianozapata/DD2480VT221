@@ -54,6 +54,41 @@ public class Decide {
     }
 
     /**
+     * Calculates a Final unlocking vector using the PUM and PUV. 
+     * 
+     * @param PUM Preliminary Unlocking Matrix
+     * @param PUV Preliminary Unlocking Vector
+     * @return Returns the FUV (Final unlocking vector) with boolean values.
+     */
+    public boolean[] calcFUV(boolean[][] PUM, boolean[] PUV){
+        boolean[] FUV = new boolean[15];
+        // Goes through the entire boolean array
+        for (int index = 0; index < FUV.length; index++) {
+            // If the PUV[index] is true then PUM[index][i] has to be true for all i in order for FUV[index] to be true.
+            // All other cases makes FUV[index] false.
+            if((PUV[index] && checkPUM(PUM, index)) || !PUV[index]){
+                FUV[index] = true;
+            }
+        }
+        return FUV;
+    }
+
+    /**
+     * Check if the entire vector PUM[index][i] is true for all i's. Returns true if it is.
+     * @param PUM Preliminary Unlocking Matrix
+     * @param index The fixed row index.
+     * @return True if the entire vector contains true values. Else false.
+     */
+    private boolean checkPUM(boolean[][] PUM, int index) {
+        for (int i = 0; i < PUM.length; i++) {
+            if(!PUM[index][i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      *
      * @param args
      */
