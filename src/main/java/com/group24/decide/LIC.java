@@ -119,11 +119,37 @@ public class LIC {
     }
     /**
      *
+     * There exists at least one set of three consecutive data points which form an angle such that:
+     * angle &lt;  (PI − EPSILON) or angle  &gt; (PI + EPSILON) The second of the three consecutive points is always the vertex of the angle.
+     * If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC
+     * is not satisfied by those three points. (0 &lt; EPSILON &lt; PI)
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition2(){
-        return true;
+    public boolean Condition2(){
+
+        // Input criterias for the method.
+        if(this.parameters.EPSILON < 0 || this.parameters.EPSILON >= Math.PI || this.points.length < 3){
+            return false;
+        }
+        for (int i = 0; i < points.length-2; i++) {
+            Datapoints points1 = this.points[i];
+            Datapoints vertexPoints = this.points[i+1];
+            Datapoints points3 = this.points[i+2];
+            
+            // If datapoint 1 or 2 coincides with vertex, the angle is considered undefined and we skip this for-loop iteration.
+            if(points1.x == vertexPoints.x && points1.y == vertexPoints.y || points3.x == vertexPoints.x && points3.y == vertexPoints.y){
+                continue;
+            }
+        
+            double angle = Utility.calculateAngle(points1, vertexPoints, points3);
+
+            if(angle < Math.PI- parameters.EPSILON || angle > Math.PI + parameters.EPSILON){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -288,9 +314,9 @@ public class LIC {
 
     /**
      * There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
-     * exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j ) The
-     * condition is not met when NUMPOINTS < 3.
-     * (1 ≤ G PTS ≤ NUMPOINTS − 2)
+     * exactly G PTS consecutive intervening points, such that X[j] - X[i] less than 0. (where i is less than j ) The
+     * condition is not met when NUMPOINTS less than 3.
+     * (1 less or equal to G PTS less or equal to NUMPOINTS − 2)
      *
      * @return Return true if the condition is met, otherwise returns false.
      */
@@ -309,8 +335,8 @@ public class LIC {
 
     /**
      *
-     * SubCondition1: That distance > LENGTH1
-     * SubCondition2: That distance > LENGTH2
+     * SubCondition1: That distance strict greater than LENGTH1
+     * SubCondition2: That distance strict greater than LENGTH2
      *
      * @return Return true if the condition is met, otherwise
      * returns false.

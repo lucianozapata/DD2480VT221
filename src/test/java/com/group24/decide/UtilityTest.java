@@ -1,8 +1,5 @@
 package com.group24.decide;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class UtilityTest {
@@ -123,6 +120,18 @@ class UtilityTest {
 
         minRadius = Utility.calcMinEnclosingRadius(p1, p2, p3);
         assertEquals(1.15, minRadius, 0.01);
+    }
+
+
+    @Test
+    void calcAngleInRadians() {
+        // P1 is the vertex datapoint and the angle between P2 and P3 is 180 degrees PI radians.
+        Datapoints p1 = new Datapoints(0, 0);
+        Datapoints p2 = new Datapoints(1, 0);
+        Datapoints p3 = new Datapoints(-1, 0);
+        double angle = Utility.calculateAngle(p2, p1, p3);
+    
+        assertEquals(angle, Math.PI) ;
     }
 
 }

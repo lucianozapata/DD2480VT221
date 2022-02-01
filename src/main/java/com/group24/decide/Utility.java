@@ -159,4 +159,27 @@ public class Utility {
         return distance;
     }
 
+    /**
+     * 
+     * Find the angle between three data points where one is the Vertex points,
+     * described as the vertexPoints in this method. The returned angle is in radians.
+     * 
+     * @param pointsA One datapoints
+     * @param vertexPoints The datapoints which angle we are calculating
+     * @param pointsB Second datapoints
+     * @return The angle of vertexPoints in radians.
+     */
+    public static double calculateAngle(Datapoints pointsA, Datapoints vertexPoints, Datapoints pointsB){
+        
+        double b = calcEuclideanDistance(pointsA, vertexPoints);
+        double c = calcEuclideanDistance(pointsA, pointsB);
+        double a = calcEuclideanDistance(vertexPoints, pointsB);
+
+        // Law of cosinus a2=b2+c2−2bc⋅cosα
+        // α = aCos((b2 + c2 - a2) / 2bc)
+        
+        double angle = Math.acos((Math.pow(a, 2) +Math.pow(b, 2) - Math.pow(c, 2))/(2*b*a));
+
+        return angle;
+    }
 }
