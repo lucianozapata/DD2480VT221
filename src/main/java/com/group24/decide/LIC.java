@@ -176,7 +176,7 @@ public class LIC {
         for(int idx=0; idx < this.numberPoints -1; idx++){
             Datapoints a = this.points[idx];
             Datapoints b = this.points[idx+1];
-            double diff = Utility.difference(b,a);
+            double diff = Utility.differenceX(b,a);
             if(diff < 0){
 
              return true;
@@ -269,11 +269,34 @@ public class LIC {
 
     /**
      *
+     * There exists at least one set of three data points separated by exactly C PTS and D PTS
+       consecutive intervening points, respectively, that form an angle such that: 
+       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+       The second point of the set of three points is always the vertex of the angle. If either the first
+       point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+       is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition9(){
-        return true;
+    public  boolean Condition9(){
+        //There exists three points seperated by C_PTS and D_PTS apart which have PI - EPSILON &lt; angle and &lt;  PI + EPSILON
+        if(this.numberPoints < 5){
+            return false;
+        }
+
+        for(int idx=0; idx < this.numberPoints - parameters.C_PTS -parameters.D_PTS-2; idx++){
+            Datapoints a1 = this.points[idx];
+            Datapoints a2 = this.points[idx + parameters.C_PTS +1];
+            Datapoints a3 = this.points[idx + parameters.C_PTS+ parameters.D_PTS+2];
+            double angle = (Math.toDegrees((Math.atan2(Utility.differenceY(a1,a2), Utility.differenceX(a1,a2)) - Math.atan2(Utility.differenceY(a3,a2), Utility.differenceX(a3,a2)))) + 360) % 360;
+            if((angle < Math.toDegrees(Math.PI - parameters.EPSILON)) || (angle > Math.toDegrees(Math.PI + parameters.EPSILON))){
+                return true;
+            }
+
+        }
+        return false;
+
+
     }    /**
      *
      * @return Return true if the condition is met, other
