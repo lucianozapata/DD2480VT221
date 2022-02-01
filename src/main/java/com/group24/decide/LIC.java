@@ -48,12 +48,14 @@ public class LIC {
     public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
-
-        CMV[3] = Condition3();
+        CMV[1] = Condition1();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
+        CMV[5] = Condition5();
         CMV[6] = Condition6();
         CMV[7] = Condition7();
+        CMV[8] = Condition8();
+        CMV[11] = Condition11();
         CMV[12] = Condition12();
         CMV[13] = Condition13();
         CMV[14] = Condition14();
@@ -281,18 +283,31 @@ public class LIC {
      */
     public static boolean Condition10(){
         return true;
-    }    /**
+    }
+
+
+    /**
+     * There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+     * exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j ) The
+     * condition is not met when NUMPOINTS < 3.
+     * (1 ≤ G PTS ≤ NUMPOINTS − 2)
      *
-     * @return Return true if the condition is met, other
-     * returns false.
+     * @return Return true if the condition is met, otherwise returns false.
      */
-    public static boolean Condition11(){
-        return true;
+
+    public boolean Condition11(){
+        if (numberPoints<3 || !( (1<=parameters.G_PTS) && (parameters.G_PTS<= numberPoints -2) ) ){return false;}
+
+        for(int i=0;i<numberPoints-parameters.G_PTS-1;i++ ){
+            int j = i + parameters.G_PTS + 1;
+            if( (points[j].x - points[i].x) < 0 ){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * Calculate distance between two consecutive intervening datapoints
-     * that are exactly K_PTS apart from each other.
      *
      * SubCondition1: That distance > LENGTH1
      * SubCondition2: That distance > LENGTH2
