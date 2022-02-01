@@ -1,12 +1,6 @@
 package com.group24.decide;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 class UtilityTest {
 
