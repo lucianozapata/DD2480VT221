@@ -11,45 +11,66 @@
 This software is part of a hypothetical anti-ballistic missile system.
 It can decide whether an interceptor should be launched based upon input radar tracking information.
 It automatically determines the conditions relevant to the immediate situation and decides based
-based on planar data points representing radar echos.
+on planar data points representing radar echos.
 
 ## Setup 
 
-For this project, the build tool [Gradle](https://gradle.org/) is used.
-This project can be built with the help of a wrapper without additional downloads
-If an installation is preferred, please follow the operating system-dependent instructions on linked web page.
+### Requirements 
+* Java JDK 11
 
-To run a build (this includes running tests). The jar file can then be found in the following directory #TODO.
+For this project, the build tool [Gradle](https://gradle.org/) is used.
+This project can be built with the help of the included wrapper without downloading this tool.
+If an installation is preferred, please follow the operating system-dependent instructions on the linked web page.
+
+### Build 
 ```bash
 $ ./gradlew build       (Linux/Mac)
 $ gradlew.bat build     (Windows)
 ```
-To only run the tests
+### Tests
 ```bash
 $ ./gradlew test        (Linux/Mac)
 $ gradlew.bat test      (Windows)
 ```
-To generate documentation based with the help of JavaDoc
+Note: this task triggers the jacoco-plugin, which is used the determine the test coverage. 
+To open the test-report, open build/jacocoHtml/index.html with your browser.
+
+## Usage
+
+As this software is only one part of a complete anti-ballistic missile system, it should be included as a package in other projects.
+
+### Configuration 
+
+The decision of the algorithm method depends on the given data points and the predefined parameters.
+The parameters can be adjusted here: src/main/java/com/group24/decide/Parameter.java. 
+The datapoints are provided here: src/main/java/com/group24/decide/Decide.java.
+Note that after changing the parameters, you have to rebuild the project.
+
+### Try it out 
+To try out the program, some data points and an example configuration are given. The result of the algorithm is displayed in the console.
+```bash
+$ ./gradlew run        (Linux/Mac)
+$ gradlew.bat run      (Windows)
+```
+
+## Documentation 
+
+The JavaDoc documentation can be found [here](https://lucianozapata.github.io/DD2480VT221). <br>
+To generate the documentation locally:
 ```bash
 $ ./gradlew javadoc     (Linux/Mac)
 $ gradlew.bat javadoc   (Windows)
 ```
-
-## Usage
-This project can be used as a package. #TODO
+To open the documentation, open build/docs/javadoc/index.html with your browser.
 
 ## Statement of contributions
 
-| Name      |     Features     |
-|:----------|:----------------:|
-| Yilin Chang    |                  |
-| Nikolai Limbrunner | README, skeleton |
-| Pontus Persman    |  Github Actions  |
-| Rafi Youssef |              |
-| Luciano Zapata |     Skeleton     |
+| Name      |                    Features                    |
+|:----------|:----------------------------------------------:|
+| Yilin Chang    |                LIC4, LIC7, LIC8                |
+| Nikolai Limbrunner | README, Skeleton, JavaDocs, LIC3, LIC13, LIC14 |
+| Pontus Persman    |            Skeleton, Github Actions            |
+| Rafi Youssef |                  README, LIC5                  |
+| Luciano Zapata |                Skeleton, LIC0,                 |
 
-
-## Release notes
-- `0.1`:
-    - Creation of a project skeleton, Github Actions Pipeline 
 

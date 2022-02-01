@@ -38,6 +38,35 @@ class LICTest {
 
     @Test
     void condition1() {
+        // Positive test where smallest circle has radius higher than 1.
+        Parameter parameters = new Parameter(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Datapoints[] testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,9);
+        testDataPoints[1] = new Datapoints(0,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        LIC testLIC = new LIC(parameters,testDataPoints);
+        assertTrue(testLIC.Condition1());
+
+
+        // Negative test were all points fits in a circle with radius 3.
+        parameters = new Parameter(0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        testDataPoints[2] = new Datapoints(0,0);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+        // Negative test where all points are on the circle with radius 1
+        parameters = new Parameter(0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testDataPoints = new Datapoints[3];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        testDataPoints[2] = new Datapoints(0,1);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+
     }
 
     @Test
@@ -338,11 +367,101 @@ class LICTest {
     }
 
     @Test
+    @DisplayName("Condition 11: Checks if there is a set of Datapoints such that they are separated by G_PTS and the first is bigger than the latter.")
     void condition11() {
+        // Positive test
+        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        parameter.G_PTS = 2;
+
+        Datapoints[] points = { new Datapoints(1, 1),
+                new Datapoints(2, 0),
+                new Datapoints(2, 0),
+                new Datapoints(0, 0),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition11());
+
+        // Negative test
+        parameter.G_PTS = 1;
+
+        Datapoints[] points1 = { new Datapoints(1, 1),
+                new Datapoints(1, 0),
+                new Datapoints(2, 0),
+                new Datapoints(1.01, 0),
+        };
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition11());
+
+        // Invalid input
+        parameter.G_PTS = 2;
+
+        Datapoints[] points2 = { new Datapoints(1, 1),
+                new Datapoints(-1, 0),
+                new Datapoints(-2, 0),
+        };
+        lic = new LIC(parameter, points2);
+        assertFalse(lic.Condition11());
+
+        // Invalid input (G_PTS>NUMPOINTS-2)
+        parameter.G_PTS = 3;
+
+        Datapoints[] points3 = { new Datapoints(1, 1),
+                new Datapoints(2, 0),
+                new Datapoints(2, 0),
+                new Datapoints(0, 0),
+        };
+        lic = new LIC(parameter, points3);
+        assertFalse(lic.Condition11());
+
     }
 
     @Test
     void condition12() {
+        // Positive test
+        Parameter parameter = new Parameter();
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 2;
+        Datapoints[] points = { new Datapoints(0,0),
+                new Datapoints(0,0),
+                new Datapoints(0,0.01),
+                new Datapoints(1,1),
+        };
+        LIC lic = new LIC(parameter, points);
+        assertTrue(lic.Condition12());
+
+        // Negative test
+        parameter = new Parameter();
+        parameter.LENGTH1 = 2;
+        parameter.LENGTH2 = 2;
+        parameter.K_PTS = 2;
+
+        lic = new LIC(parameter, points);
+        assertFalse(lic.Condition12());
+
+        // Invalid test (K_PTS>NUMPOINTS-2)
+        parameter = new Parameter();
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 3;
+
+        lic = new LIC(parameter, points);
+        assertFalse(lic.Condition12());
+
+        // Invalid test (NUMPOINTS<3)
+        parameter = new Parameter();
+        Datapoints[] points1 = { new Datapoints(0,0),
+                new Datapoints(0,0),
+        };
+        parameter.LENGTH1 = 1;
+        parameter.LENGTH2 = 1;
+        parameter.K_PTS = 3;
+
+        lic = new LIC(parameter, points1);
+        assertFalse(lic.Condition12());
+
+
+
     }
 
     @Test
