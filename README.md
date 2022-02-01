@@ -74,3 +74,11 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 | Luciano Zapata |                Skeleton, LIC0, LIC1, LIC2, FUV-implementation              |
 
 
+## Ways of working (Essence)
+
+Principles Established 
+Foundation Established 
+In Use 
+In Place
+**Working well**
+Retired
