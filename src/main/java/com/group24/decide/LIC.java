@@ -338,12 +338,39 @@ public class LIC {
     } 
 
      /**
-     *
+     *There exists three points seperated by E_PTS and F_PTS which form a triangle with triangleArea &gt; AREA1
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition10(){
-        return true;
+    public  boolean Condition10(){
+        
+        if(this.numberPoints < 5){
+            return false;
+        }
+
+        if(parameters.E_PTS <1 || parameters.F_PTS < 1){
+            return false;
+        }
+
+        if(parameters.E_PTS + parameters.F_PTS > this.numberPoints - 3){
+            return false;
+        }
+
+        for(int idx=0; idx < this.numberPoints - parameters.E_PTS -parameters.F_PTS-2; idx++){
+            Datapoints a = this.points[idx];
+            Datapoints b = this.points[idx+parameters.E_PTS+1];
+            Datapoints c = this.points[idx+parameters.E_PTS+ parameters.F_PTS +2];
+
+        double triangleArea = Utility.calcTriangleArea(a,b,c);
+            if (triangleArea > parameters.AREA1){
+
+                return true;
+            } 
+
+        }
+        return false;
+
+        
     }
 
 

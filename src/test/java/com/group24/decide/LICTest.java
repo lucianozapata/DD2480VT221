@@ -412,6 +412,36 @@ class LICTest {
 
     @Test
     void condition10() {
+            Parameter parameter = new Parameter();
+            Datapoints[] points = {
+                new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(1.0, 2.0),
+                new Datapoints(0, 0),
+                new Datapoints(2.0, 0)};
+           parameter.AREA1 = 1.95;
+           parameter.E_PTS =1;
+           parameter.F_PTS =1;
+         //For the 5 NUMPOINTS there exist at least one set of three points separated by exactly 1 and 1 consecutive
+         // intervening points respectively that are the vertices of a triangle with area greater than 1.95
+         // the result return true.
+           LIC lic = new LIC(parameter,points);
+           assertTrue(lic.Condition10());
+
+           Datapoints[] points1 = {
+                new Datapoints(-2.0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(-1.0, -2.0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 0)};
+           parameter.AREA1 = 2.0;
+           parameter.E_PTS =1;
+           parameter.F_PTS =1;
+          //For the 5 NUMPOINTS there exist no set of three points separated by exactly 1 and 1 consecutive intervening points
+          //intervening points respectively that are the vertices of a triangle with area greater than 2.
+          // the result return false.
+           LIC lic1 = new LIC(parameter,points1);
+           assertFalse(lic1.Condition10());
     }
 
     @Test
