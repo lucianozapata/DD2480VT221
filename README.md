@@ -71,6 +71,25 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 | Nikolai Limbrunner | README, Skeleton, JavaDocs, LIC3, LIC13, LIC14 |
 | Pontus Persman    |            Skeleton, Github Actions            |
 | Rafi Youssef |                  README, LIC5                  |
-| Luciano Zapata |                Skeleton, LIC0,                 |
+| Luciano Zapata |                Skeleton, LIC0, LIC1, LIC2, FUV-implementation              |
 
 
+## Ways of working (Essence)
+
+Principles Established.  
+Foundation Established.   
+In Use.   
+***In Place***.   
+Working well.   
+Retired.   
+
+Right now we're in the stage **IN PLACE**.   
+Firstly, we had a start-up meeting and discussed how we wanted to set up the project and what tools we wanted to use in our way of working. The decision was based on the group's previous experience and interest. After the meeting,a project was set up on Github where we also integrated the tools we had discussed and came to the conclusion that we would use at the meeting.    
+**Examples of tools / ways of working**   
+- Github actions  
+- Pull requests settings and reviewing   
+- Issue creation   
+- Documentation and how tests should be implemented.  
+
+Over time, more tools began to be implemented (such as Javadocs and Github Actions for tests). Recently, all team members have followed our way or working by following a clear way on how to create branches and creating issues in Github and gradually solving these by implementing and integrating code.  
+In order to be able to reach the next step,**working well** , it is still necessary for everyone in the group to clearly follow the practices and use the tools available to perform their work. Example is using Javadocs.
