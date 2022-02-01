@@ -162,12 +162,12 @@ public class Utility {
     /**
      * 
      * Find the angle between three data points where one is the Vertex points,
-     * described as the vertexPoints in this method.
+     * described as the vertexPoints in this method. The returned angle is in radians.
      * 
      * @param pointsA One datapoints
      * @param vertexPoints The datapoints which angle we are calculating
      * @param pointsB Second datapoints
-     * @return The angle of vertexPoints.
+     * @return The angle of vertexPoints in radians.
      */
     public static double calculateAngle(Datapoints pointsA, Datapoints vertexPoints, Datapoints pointsB){
         
