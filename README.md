@@ -76,9 +76,9 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 
 ## Ways of working (Essence)
 
-Principles Established 
-Foundation Established 
-In Use 
-In Place
-**Working well**
-Retired
+Principles Established.
+Foundation Established.
+In Use.
+In Place.
+**Working well**.
+Retired.
