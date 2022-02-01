@@ -71,6 +71,6 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 | Nikolai Limbrunner | README, Skeleton, JavaDocs, LIC3, LIC13, LIC14 |
 | Pontus Persman    |            Skeleton, Github Actions            |
 | Rafi Youssef |                  README, LIC5                  |
-| Luciano Zapata |                Skeleton, LIC0,                 |
+| Luciano Zapata |                Skeleton, LIC0, LIC1, LIC2, FUV-implementation              |
 
 
