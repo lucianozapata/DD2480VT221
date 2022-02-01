@@ -48,13 +48,15 @@ public class LIC {
     public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
-
-        CMV[3] = Condition3();
+        CMV[1] = Condition1();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
+        CMV[5] = Condition5();
         CMV[6] = Condition6();
         CMV[7] = Condition7();
+        CMV[8] = Condition8();
         CMV[11] = Condition11();
+        CMV[12] = Condition12();
         CMV[13] = Condition13();
         CMV[14] = Condition14();
 
@@ -64,11 +66,15 @@ public class LIC {
 
     /**
      *
-     * @return Return true if there exists at least one set
+     * Return true if there exists at least one set
      * of two consecutive data points that are a distance greater
      * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
+     * 
+     * @return Return true if the condition is met, other
+     * returns false.
      */
         public boolean Condition0() {
+
             // If the length in a negative number.
             if(parameters.LENGTH1 < 0){
                 return false;
@@ -77,7 +83,6 @@ public class LIC {
             if(numberPoints < 2) {
                 return false;
             }
-
             for (int index = 0; index < numberPoints-1; index++) {
                 // The distance between the two datapoints
                 double distance = Utility.calcEuclideanDistance(this.points[index], this.points[index + 1]);
@@ -89,9 +94,28 @@ public class LIC {
             }
             return false;
         }
+     /**
+     * There exists at least one set of three consecutive data points that cannot all be contained
+     * within or on a circle of radius RADIUS1. (0 ≤ RADIUS1)
+     *
+     * @return Return true if the condition is met, other
+     * returns false.
+     */
+        public boolean Condition1(){
+            if(parameters.RADIUS1 < 0){
+                return false;
+            }
+            if(numberPoints < 3){
+                return false;
+            }
 
-        public static boolean Condition1(){
-        return true;
+            for(int idx = 0; idx < numberPoints - 2; idx++){
+               double radius = Utility.calcMinEnclosingRadius(points[idx], points[idx+1], points[idx+2]);
+               if(radius > parameters.RADIUS1){
+                   return true;
+               }
+            }
+        return false;
     }
     /**
      *
@@ -238,7 +262,7 @@ public class LIC {
             Datapoints a = points[idx];
             Datapoints b = points[idx + parameters.A_PTS + 1];
             Datapoints c = points[idx + parameters.A_PTS + parameters.B_PTS + 2];
-            if (Utility.findSmallestCircle(a, b, c) < parameters.RADIUS1) {
+            if (Utility.calcMinEnclosingRadius(a, b, c) < parameters.RADIUS1) {
                 return true;
             }
         }
@@ -270,6 +294,7 @@ public class LIC {
      *
      * @return Return true if the condition is met, otherwise returns false.
      */
+
     public boolean Condition11(){
         if (numberPoints<3 || !( (1<=parameters.G_PTS) && (parameters.G_PTS<= numberPoints -2) ) ){return false;}
 
@@ -284,11 +309,28 @@ public class LIC {
 
     /**
      *
-     * @return Return true if the condition is met, other
+     * SubCondition1: That distance > LENGTH1
+     * SubCondition2: That distance > LENGTH2
+     *
+     * @return Return true if the condition is met, otherwise
      * returns false.
      */
-    public static boolean Condition12(){
-        return true;
+    public boolean Condition12(){
+        // 1 ≤ K_PTS ≤ (NUMPOINTS − 2)
+        if ( numberPoints<3 || !(0<=parameters.LENGTH1) || !(0<=parameters.LENGTH2) || !((1<= parameters.K_PTS) && (parameters.K_PTS<=numberPoints-2)) ) {return false;}
+
+        boolean geLength1 = false, geLength2 = false;
+        for(int i=0;i<numberPoints-parameters.K_PTS-1;i++){
+            int j = i + parameters.K_PTS + 1;
+            double dist = Utility.calcEuclideanDistance(points[i], points[j] );
+
+            if(dist>parameters.LENGTH1){geLength1=true;}
+            if(dist>parameters.LENGTH2){geLength2=true;}
+
+            if(geLength1 && geLength2){return true;}
+        }
+
+        return false;
     }
 
     /**
@@ -324,8 +366,8 @@ public class LIC {
     }
 
     /**
-     * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area > AREA1
-     * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area < AREA2
+     * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
+     * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area smaller AREA2
      *
      * @return Return true if the both SubConditions are met, otherwise return false
      */
