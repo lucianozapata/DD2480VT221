@@ -5,15 +5,71 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 
-
+import java.lang.reflect.Field;
+import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class for testing the LIC conditions.
- *
- * @author
  */
 class LICTest {
+
+    /**
+     * Create random parameter settings for test purposes
+     * @return randomized parameter
+     */
+    Parameter createRandomParameter() throws IllegalAccessException {
+
+        int randInt;
+        double randDouble;
+        Parameter parameters = new Parameter();
+
+        // Set random parameter values
+        for (Field f : parameters.getClass().getDeclaredFields()) {
+            Class<?> tmp = f.getType();
+            if (tmp.equals(Integer.TYPE)) {
+                // create Integers between 0 and 100
+                randInt =ThreadLocalRandom.current().nextInt(0, 101);
+                f.set(parameters, randInt);
+            } else {
+                // create Doubles between 0 and 100
+                randDouble =ThreadLocalRandom.current().nextDouble(0, 100);
+                f.set(parameters, randDouble);
+            }
+        }
+        return  parameters;
+    }
+
+
+    @Test
+    /**
+     * Test LIC conditions with randomized data points and parameters
+     */
+    void runLICConditions() throws IllegalAccessException {
+
+        int NUMBER_TESTS = 100;
+        int numberDataPoints, counter;
+        double xAxis, yAxis;
+        LIC testLIC;
+        Parameter parameters;
+
+        for (int i = 0; i < NUMBER_TESTS; i++) {
+            parameters = createRandomParameter();
+            // create between 2 and 100 data points
+            numberDataPoints= ThreadLocalRandom.current().nextInt(2, 100 + 1);
+            Datapoints[] testDataPoints = new Datapoints[numberDataPoints];
+            counter = 0;
+            while(counter < numberDataPoints) {
+                // data points between -100 and 100
+                xAxis = ThreadLocalRandom.current().nextDouble(-100, 100);
+                yAxis = ThreadLocalRandom.current().nextDouble(-100, 100);
+                testDataPoints[counter] = new Datapoints(xAxis, yAxis);
+                counter++;
+            }
+            testLIC = new LIC(parameters, testDataPoints);
+            testLIC.runLICConditions(numberDataPoints);
+        }
+    }
 
     @Test
     void condition0() {
