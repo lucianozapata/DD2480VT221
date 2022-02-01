@@ -79,6 +79,11 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 Principles Established.  
 Foundation Established.   
 In Use.   
-In Place.   
-**Working well**.   
+***In Place***.   
+Working well.   
 Retired.   
+
+Right now we are in the group in the stage **IN PLACE**. We started with a start-up meeting and discussed how we wanted to set up the project and what tools we wanted to use in our way of working. The decision was based on the group's previous experience and interest. After the meeting,a project was set up on Github where we also integrated the tools we had discussed and came to the conclusion that we would use at the meeting. **Examples of tools:**   
+Github actions, Pull requests and reviewing, Issue creation, Documentation and how tests would be implemented.   
+Over time, more tools began to be implemented (such as Javadocs and Github Actions for tests).   
+Recently, all team members have clearly followed our way or working by following a clear way on how to create branches and creating issues in Github and gradually solving these by implementing and integrating code.
