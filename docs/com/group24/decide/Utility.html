@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -182,6 +182,24 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calcMaxAngle(double,double,double)">calcMaxAngle</a></span>&#8203;(double&nbsp;lengthA,
+            double&nbsp;lengthB,
+            double&nbsp;lengthC)</code></th>
+<td class="colLast">
+<div class="block">Calculate the maximum angle in a triangle given by three points</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calcMinEnclosingRadius(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">calcMinEnclosingRadius</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;a,
+                      <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;b,
+                      <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;c)</code></th>
+<td class="colLast">
+<div class="block">Calculate the minimum radius of a circle which encloses the given data points</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calcTriangleArea(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">calcTriangleArea</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;a,
                 <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;b,
                 <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;c)</code></th>
@@ -189,19 +207,45 @@ extends java.lang.Object</pre>
 <div class="block">Calculate the area of a triangle</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculateAngle(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">calculateAngle</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;pointsA,
+              <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;vertexPoints,
+              <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;pointsB)</code></th>
+<td class="colLast">
+<div class="block">Find the angle between three data points where one is the Vertex points,
+ described as the vertexPoints in this method.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkIfEqual(com.group24.decide.Datapoints,com.group24.decide.Datapoints)">checkIfEqual</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;point1,
+            <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;point2)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#chooseQuadrant(com.group24.decide.Datapoints)">chooseQuadrant</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;x)</code></th>
 <td class="colLast">
 <div class="block">Determine which quadrant the point lies on</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#difference(com.group24.decide.Datapoints,com.group24.decide.Datapoints)">difference</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;a,
           <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;b)</code></th>
 <td class="colLast">
 <div class="block">Calculate the difference</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lineDistPoints(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">lineDistPoints</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;first,
+              <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;last,
+              <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;cpr)</code></th>
+<td class="colLast">
+<div class="block">Calculates the shortest distance between the line joining the
+ Datapoints first and last to that of cpr.</div>
 </td>
 </tr>
 </table>
@@ -306,7 +350,7 @@ extends java.lang.Object</pre>
 <a id="chooseQuadrant(com.group24.decide.Datapoints)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>chooseQuadrant</h4>
 <pre class="methodSignature">public static&nbsp;int&nbsp;chooseQuadrant&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;x)</pre>
@@ -316,6 +360,99 @@ extends java.lang.Object</pre>
 <dd><code>x</code> - First datapoint</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>one of the four quadrants</dd>
+</dl>
+</li>
+</ul>
+<a id="calcMaxAngle(double,double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calcMaxAngle</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;calcMaxAngle&#8203;(double&nbsp;lengthA,
+                                  double&nbsp;lengthB,
+                                  double&nbsp;lengthC)</pre>
+<div class="block">Calculate the maximum angle in a triangle given by three points</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>lengthA</code> - first length of triangle</dd>
+<dd><code>lengthB</code> - second length of triangle</dd>
+<dd><code>lengthC</code> - third length of triangle</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>maximum angle in this triangle</dd>
+</dl>
+</li>
+</ul>
+<a id="calcMinEnclosingRadius(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calcMinEnclosingRadius</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;calcMinEnclosingRadius&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;a,
+                                            <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;b,
+                                            <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;c)</pre>
+<div class="block">Calculate the minimum radius of a circle which encloses the given data points</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>a</code> - First datapoint</dd>
+<dd><code>b</code> - Second datapoint</dd>
+<dd><code>c</code> - Third datapoint</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>minimum enclosing radius</dd>
+</dl>
+</li>
+</ul>
+<a id="checkIfEqual(com.group24.decide.Datapoints,com.group24.decide.Datapoints)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>checkIfEqual</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;checkIfEqual&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;point1,
+                                   <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;point2)</pre>
+</li>
+</ul>
+<a id="lineDistPoints(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>lineDistPoints</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;lineDistPoints&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;first,
+                                    <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;last,
+                                    <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;cpr)</pre>
+<div class="block">Calculates the shortest distance between the line joining the
+ Datapoints first and last to that of cpr.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>first</code> - The first Datapoint, can not be identical to last</dd>
+<dd><code>last</code> - The last Datapoint, can not be identical to first</dd>
+<dd><code>cpr</code> - The Datapoint to check distance</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Returns the shortest distance between cpr
+ and the line between first and last.</dd>
+</dl>
+</li>
+</ul>
+<a id="calculateAngle(com.group24.decide.Datapoints,com.group24.decide.Datapoints,com.group24.decide.Datapoints)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>calculateAngle</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;calculateAngle&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;pointsA,
+                                    <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;vertexPoints,
+                                    <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>&nbsp;pointsB)</pre>
+<div class="block">Find the angle between three data points where one is the Vertex points,
+ described as the vertexPoints in this method. The returned angle is in radians.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pointsA</code> - One datapoints</dd>
+<dd><code>vertexPoints</code> - The datapoints which angle we are calculating</dd>
+<dd><code>pointsB</code> - Second datapoints</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The angle of vertexPoints in radians.</dd>
 </dl>
 </li>
 </ul>

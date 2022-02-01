@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":10,"i7":9,"i8":10,"i9":10,"i10":10,"i11":9,"i12":10,"i13":9,"i14":9,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":9,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -175,14 +175,21 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition0()">Condition0</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Return true if there exists at least one set
+ of two consecutive data points that are a distance greater
+ than the length, LENGTH1, apart.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition1()">Condition1</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of three consecutive data points that cannot all be contained
+ within or on a circle of radius RADIUS1.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
@@ -190,19 +197,29 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition11()">Condition11</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+ exactly G PTS consecutive intervening points, such that X[j] - X[i] less than 0.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition12()">Condition12</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">SubCondition1: That distance strict greater than LENGTH1
+ SubCondition2: That distance strict greater than LENGTH2</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition13()">Condition13</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Calculate the minimum enclosing radius for 3 data points, seperated by E_PTS and F_PTS points
+ SubCondition1: minimum enclosing radius greater than RADIUS1
+ SubCondition1: minimum enclosing radius smaller than RADIUS2</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -213,9 +230,12 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition2()">Condition2</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of three consecutive data points which form an angle such that:
+ angle &lt;  (PI − EPSILON) or angle  &gt; (PI + EPSILON) The second of the three consecutive points is always the vertex of the angle.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -238,9 +258,14 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition6()">Condition6</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Checks if there exists one point belonging to a set of N_PTS
+ consecutive points, such that the distance between the line made
+ up by the first and last point of this set and one point in the set
+ is greater than DIST.</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -248,9 +273,12 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition8()">Condition8</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Check if there exists at least one set of three data points separated by exactly A PTS and B PTS consecutive
+ intervening points, respectively, that cannot be contained within or on a circle of radius RADIUS1</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
@@ -362,7 +390,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition0</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition0()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition0()</pre>
+<div class="block">Return true if there exists at least one set
+ of two consecutive data points that are a distance greater
+ than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -376,7 +407,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition1</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition1()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition1()</pre>
+<div class="block">There exists at least one set of three consecutive data points that cannot all be contained
+ within or on a circle of radius RADIUS1. (0 ≤ RADIUS1)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -390,7 +423,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition2</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition2()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition2()</pre>
+<div class="block">There exists at least one set of three consecutive data points which form an angle such that:
+ angle &lt;  (PI − EPSILON) or angle  &gt; (PI + EPSILON) The second of the three consecutive points is always the vertex of the angle.
+ If either the first point or the last point (or both) coincides with the vertex, the angle is undefined and the LIC
+ is not satisfied by those three points. (0 &lt; EPSILON &lt; PI)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -449,10 +486,17 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition6</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition6()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition6()</pre>
+<div class="block">Checks if there exists one point belonging to a set of N_PTS
+ consecutive points, such that the distance between the line made
+ up by the first and last point of this set and one point in the set
+ is greater than DIST. If the the first and last point is the same
+ then the distance is simply from this coincident point. It is assumed
+ that the line joining the first and last point is infinite rather
+ the finite.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Return true if the condition is met, other
+<dd>Return true if the condition is met, otherwise it
  returns false.</dd>
 </dl>
 </li>
@@ -477,7 +521,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition8</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition8()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition8()</pre>
+<div class="block">Check if there exists at least one set of three data points separated by exactly A PTS and B PTS consecutive
+ intervening points, respectively, that cannot be contained within or on a circle of radius RADIUS1</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -519,11 +565,14 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition11</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition11()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition11()</pre>
+<div class="block">There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+ exactly G PTS consecutive intervening points, such that X[j] - X[i] less than 0. (where i is less than j ) The
+ condition is not met when NUMPOINTS less than 3.
+ (1 less or equal to G PTS less or equal to NUMPOINTS − 2)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Return true if the condition is met, other
- returns false.</dd>
+<dd>Return true if the condition is met, otherwise returns false.</dd>
 </dl>
 </li>
 </ul>
@@ -533,10 +582,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition12</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition12()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition12()</pre>
+<div class="block">SubCondition1: That distance strict greater than LENGTH1
+ SubCondition2: That distance strict greater than LENGTH2</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Return true if the condition is met, other
+<dd>Return true if the condition is met, otherwise
  returns false.</dd>
 </dl>
 </li>
@@ -547,11 +598,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Condition13</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Condition13()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;Condition13()</pre>
+<div class="block">Calculate the minimum enclosing radius for 3 data points, seperated by E_PTS and F_PTS points
+ SubCondition1: minimum enclosing radius greater than RADIUS1
+ SubCondition1: minimum enclosing radius smaller than RADIUS2</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Return true if the condition is met, other
- returns false.</dd>
+<dd>Return true if the both SubConditions are met, otherwise return false</dd>
 </dl>
 </li>
 </ul>
