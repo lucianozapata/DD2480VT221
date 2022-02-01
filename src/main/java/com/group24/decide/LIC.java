@@ -314,6 +314,14 @@ public class LIC {
             return false;
         }
 
+        if(parameters.C_PTS <1 || parameters.D_PTS < 1){
+            return false;
+        }
+
+        if(parameters.C_PTS + parameters.D_PTS > this.numberPoints - 3){
+            return false;
+        }
+
         for(int idx=0; idx < this.numberPoints - parameters.C_PTS -parameters.D_PTS-2; idx++){
             Datapoints a1 = this.points[idx];
             Datapoints a2 = this.points[idx + parameters.C_PTS +1];
