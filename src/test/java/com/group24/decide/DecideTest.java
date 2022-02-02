@@ -1,16 +1,10 @@
 package com.group24.decide;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
 
 /**
  * A class for testing the Decide class.
- *
- * @author
  */
 public class DecideTest {
    

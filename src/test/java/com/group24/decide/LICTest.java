@@ -1,17 +1,10 @@
 package com.group24.decide;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeEach;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class for testing the LIC conditions.
- *
- * @author
  */
 class LICTest {
 
@@ -31,8 +24,6 @@ class LICTest {
         testDataPoints[1] = new Datapoints(0,9);
         LIC postiveLIC = new LIC(parameters, testDataPoints);
         assertTrue(postiveLIC.Condition0());
-
-
 
     }
 
@@ -65,7 +56,6 @@ class LICTest {
         testDataPoints[2] = new Datapoints(0,1);
         testLIC = new LIC(parameters,testDataPoints);
         assertFalse(testLIC.Condition1());
-
 
     }
 
@@ -111,13 +101,9 @@ class LICTest {
 
         assertFalse(testLIC.Condition2());
 
-
-
-
     }
 
     @Test
-    @DisplayName("Condition3: compare max triangle area")
     void condition3() {
         // check max area of 3 consecutive data-points against threshold
 
@@ -212,7 +198,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition6: Compare distance of a point and the line between two other points")
     void condition6() {
         // Positive test
         Parameter parameter = new Parameter();
@@ -309,7 +294,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition8: check if three points fit in a circle")
     void condition8() {
         Datapoints[] points1 = {
                 new Datapoints(0, 1),
@@ -407,7 +391,6 @@ class LICTest {
         //Should return false if NUMPOINTS less than 5, the result return false.
         assertFalse(lic2.Condition9());
 
-
     }
 
     @Test
@@ -445,7 +428,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition 11: Checks if there is a set of Datapoints such that they are separated by G_PTS and the first is bigger than the latter.")
     void condition11() {
         // Positive test
         Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -564,7 +546,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition 14: smaller and bigger triangle area")
     void condition14() {
 
         Parameter parameter = new Parameter(0,0,0,10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.0);
