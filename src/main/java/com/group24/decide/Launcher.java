@@ -1,17 +1,20 @@
 package com.group24.decide;
 
 /**
- * Add description for javaDoc
- *
- * @author
+ * Class to run the software as standalone program.
  */
 public class Launcher {
+
+    /**
+     * Uses predefined data points and parameters to demonstrate usage.
+     * @param args not used
+     */
     public static void main(String[] args){
 
         Parameter parameters = new Parameter(1,0,0,0,0,0,0,0,0,0,0,0,0,0,
                 0,0,0,0,0);
 
-        // Create datapoints
+        // Create data points
         Datapoints[] points = {
                 new Datapoints(0, 1),
                 new Datapoints(-2, 0),

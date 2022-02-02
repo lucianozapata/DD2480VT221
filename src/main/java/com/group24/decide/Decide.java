@@ -2,9 +2,7 @@ package com.group24.decide;
 
 
 /**
- * Add description for javaDoc
- *
- * @author Pontus
+ * Class to process data points based on given configuration.
  */
 public class Decide {
 
@@ -23,9 +21,18 @@ public class Decide {
     boolean[][] PUM;
     boolean[] FUV;
 
-    public Decide(){
-    }
+    /**
+     * Default constructor
+     */
+    public Decide(){}
 
+    /**
+     * Constructor to create Decide objects.
+     * @param points input points used for calculating the response.
+     * @param parameters configuration of the LICs.
+     * @param LCM Logical connector matrix.
+     * @param PUV primary unlocking vector.
+     */
     public Decide(Datapoints[] points, Parameter parameters, CONNECTORS[][] LCM, boolean[] PUV) {
         this.points = points;
         this.numPoints = points.length;
@@ -73,6 +80,7 @@ public class Decide {
 
     /**
      * Calculates a Final unlocking vector using the PUM and PUV.
+     * Results are stored in the FUV variable.
      */
     public void calcFUV(){
         if (PUM.length == 0 || PUV.length == 0) {
@@ -105,10 +113,9 @@ public class Decide {
     }
 
     /**
-     *
+     * Calculate the CMV and PUM, and combine results into the FUV.
      * @return True if the entire vector FUV contains true values. Else false.
      */
-
     public boolean decide() {
         calcCMV();
         calcPUM();

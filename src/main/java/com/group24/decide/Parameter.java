@@ -1,11 +1,11 @@
 package com.group24.decide;
 
 /**
- * @author
+ * Class to store all given parameters.
  */
 public class Parameter {
     /**
-     * All parameters available.
+     * All predefined parameters.
      */
     double LENGTH1;
     double RADIUS1;
@@ -29,9 +29,27 @@ public class Parameter {
 
 
     /**
-     *
+     *Initializing all the parameters with given values.
+     * @param LENGTH1 length1
+     * @param RADIUS1 radius1
+     * @param EPSILON epsilon
+     * @param AREA1 area1
+     * @param Q_PTS q_pts
+     * @param QUADS quads
+     * @param DIST dist
+     * @param N_PTS n_pts
+     * @param K_PTS k_pts
+     * @param A_PTS a_pts
+     * @param B_PTS b_pts
+     * @param C_PTS c_pts
+     * @param D_PTS d_pts
+     * @param E_PTS e_pts
+     * @param F_PTS f_pts
+     * @param G_PTS g_pts
+     * @param LENGTH2 length2
+     * @param RADIUS2 radius2
+     * @param AREA2 area2
      */
-    // Initializing all the parameters to ZERO when creating the PARAMETER-object.
     public Parameter(double LENGTH1, double RADIUS1, double EPSILON, double AREA1, int Q_PTS, int QUADS, double DIST,
                      int N_PTS, int K_PTS, int A_PTS, int B_PTS, int C_PTS, int D_PTS, int E_PTS, int F_PTS,
                      int G_PTS, double LENGTH2, double RADIUS2, double AREA2
@@ -57,6 +75,9 @@ public class Parameter {
         this.AREA2 = AREA2;
     }
 
+    /**
+     *Initializing all the parameters with 0.
+     */
     public Parameter() {
         this.LENGTH1 = 0;
         this.RADIUS1 = 0;
