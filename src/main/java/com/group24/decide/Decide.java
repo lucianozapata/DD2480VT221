@@ -38,6 +38,9 @@ public class Decide {
      * Calculate CMV using points and LIC conditions
      */
     public void calcCMV() {
+        if (numPoints < 2 || numPoints > 100) {
+            return;
+        }
         LIC lic = new LIC(parameters, points);
         CMV = lic.runLICConditions(15);
     }
@@ -106,7 +109,7 @@ public class Decide {
      * @return True if the entire vector FUV contains true values. Else false.
      */
 
-    public boolean launch() {
+    public boolean decide() {
         calcCMV();
         calcPUM();
         calcFUV();

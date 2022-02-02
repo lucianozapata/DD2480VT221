@@ -32,6 +32,6 @@ public class Launcher {
         boolean[] PUV = new boolean[15];
 
         Decide decide = new Decide(points, parameters, LCM, PUV);
-        System.out.println(decide.launch());
+        System.out.println(decide.decide());
     }
 }
