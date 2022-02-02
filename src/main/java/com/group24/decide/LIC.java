@@ -6,10 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * A class for the LIC conditions
- *
- * @author
- *
+ * Class containing all the Launch Interceptor Conditions (LIC) conditions.
  */
 public class LIC {
 
@@ -18,8 +15,9 @@ public class LIC {
     int numberPoints;
 
     /**
-     *
-     * @param parameters Contains the inputs for LIC.
+     * Constructor creating LIC object.
+     * @param parameters configuration of the LICs.
+     * @param points input points used for calculating the response.
      */
     public LIC(Parameter parameters, Datapoints[] points){
         this.parameters = parameters;
@@ -27,23 +25,10 @@ public class LIC {
         this.numberPoints = points.length;
     }
 
-    public void setPoints(Datapoints[] points) {
-        this.points = points;
-    }
-
-    public void setParameters(Parameter parameters){
-        this.parameters = parameters;
-    }
-
     /**
-     *
-     * @param size Definiens how many conditions there
-     *             are for LIC.
-     *
-     * @return Returns the Conditions Met Vector,
-     * which contains boolean values corresponding
-     * to each LIC condition.
-     *
+     * Run all LICs on the given data points and save results the Conditions Met Vector.
+     * @param size Defines how many conditions there are for LIC.
+     * @return Returns the Conditions Met Vector, boolean values corresponding to each LIC condition.
      */
     public boolean[] runLICConditions(int size){
         boolean[] CMV = new boolean[size];
@@ -67,11 +52,9 @@ public class LIC {
     }
 
     /**
-     *
      * Return true if there exists at least one set
      * of two consecutive data points that are a distance greater
      * than the length, LENGTH1, apart. (0 ≤ LENGTH1), else return false.
-     * 
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -81,12 +64,12 @@ public class LIC {
             if(parameters.LENGTH1 < 0){
                 return false;
             }
-            // If the number of points is less than 2, we can't have two consectutive points.
+            // If the number of points is less than 2, we can't have two consecutive points.
             if(numberPoints < 2) {
                 return false;
             }
             for (int index = 0; index < numberPoints-1; index++) {
-                // The distance between the two datapoints
+                // The distance between the two data points
                 double distance = Utility.calcEuclideanDistance(this.points[index], this.points[index + 1]);
 
                 if ( distance > this.parameters.LENGTH1) {
@@ -99,7 +82,6 @@ public class LIC {
      /**
      * There exists at least one set of three consecutive data points that cannot all be contained
      * within or on a circle of radius RADIUS1. (0 ≤ RADIUS1)
-     *
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -130,7 +112,7 @@ public class LIC {
      */
     public boolean Condition2(){
 
-        // Input criterias for the method.
+        // Input criteria for the method.
         if(this.parameters.EPSILON < 0 || this.parameters.EPSILON >= Math.PI || this.points.length < 3){
             return false;
         }
@@ -157,7 +139,6 @@ public class LIC {
     /**
      * Check if there exists at least one set of three consecutive data points that are the vertices of a triangle
      * with area greater than AREA1 (parameters.AREA)
-     *
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -174,7 +155,6 @@ public class LIC {
 
     /**
      *Check if there exists one set of Q_PTS consecutive data points that lie in more than QUADS quadrants
-     *
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -196,8 +176,11 @@ public class LIC {
             }
         }
         return false;
-    }    /**
-     *
+    }
+
+    /**
+     * There exists at least one set of two consecutive data points, that the difference
+     * in the x-axis is &lt; 0.
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -217,15 +200,13 @@ public class LIC {
 
 
     /**
-     * Checks if there exists one point belonging to a set of N_PTS
+     * There exists one point belonging to a set of N_PTS
      * consecutive points, such that the distance between the line made
      * up by the first and last point of this set and one point in the set
-     * is greater than DIST. If the the first and last point is the same
+     * is greater than DIST. If the first and last point is the same
      * then the distance is simply from this coincident point. It is assumed
      * that the line joining the first and last point is infinite rather
      * the finite.
-     *
-     *
      * @return Return true if the condition is met, otherwise it
      * returns false.
      */
@@ -245,7 +226,8 @@ public class LIC {
 
 
     /**
-     *
+     * There exists at least one set of two data points seperated by exactly K_PTS consecutive intervening points
+     * that are a distance greater than the length, LENGTH1, apart.
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -268,7 +250,6 @@ public class LIC {
     /**
      * Check if there exists at least one set of three data points separated by exactly A PTS and B PTS consecutive
      * intervening points, respectively, that cannot be contained within or on a circle of radius RADIUS1
-     *
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -295,14 +276,12 @@ public class LIC {
     }
 
     /**
-     *
-      There exists at least one set of three data points separated by exactly C PTS and D PTS
-       consecutive intervening points, respectively, that form an angle such that: 
-       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
-       The second point of the set of three points is always the vertex of the angle. If either the first
-       point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
-       is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.
-
+      * There exists at least one set of three data points separated by exactly C PTS and D PTS
+      * consecutive intervening points, respectively, that form an angle such that:
+      * angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+      * The second point of the set of three points is always the vertex of the angle. If either the first
+      * point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+      * is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.
      * @return Return true if the condition is met, other
      * returns false.
      */
@@ -337,12 +316,39 @@ public class LIC {
     } 
 
      /**
-     *
+     *There exists three points seperated by E_PTS and F_PTS which form a triangle with triangleArea &gt; AREA1
      * @return Return true if the condition is met, other
      * returns false.
      */
-    public static boolean Condition10(){
-        return true;
+    public  boolean Condition10(){
+        
+        if(this.numberPoints < 5){
+            return false;
+        }
+
+        if(parameters.E_PTS <1 || parameters.F_PTS < 1){
+            return false;
+        }
+
+        if(parameters.E_PTS + parameters.F_PTS > this.numberPoints - 3){
+            return false;
+        }
+
+        for(int idx=0; idx < this.numberPoints - parameters.E_PTS -parameters.F_PTS-2; idx++){
+            Datapoints a = this.points[idx];
+            Datapoints b = this.points[idx+parameters.E_PTS+1];
+            Datapoints c = this.points[idx+parameters.E_PTS+ parameters.F_PTS +2];
+
+        double triangleArea = Utility.calcTriangleArea(a,b,c);
+            if (triangleArea > parameters.AREA1){
+
+                return true;
+            } 
+
+        }
+        return false;
+
+        
     }
 
 
@@ -351,10 +357,8 @@ public class LIC {
      * exactly G PTS consecutive intervening points, such that X[j] - X[i] less than 0. (where i is less than j ) The
      * condition is not met when NUMPOINTS less than 3.
      * (1 less or equal to G PTS less or equal to NUMPOINTS − 2)
-     *
      * @return Return true if the condition is met, otherwise returns false.
      */
-
     public boolean Condition11(){
         if (numberPoints<3 || (parameters.G_PTS < 1)){return false;}
         for(int i=0;i<numberPoints-parameters.G_PTS-1;i++ ){
@@ -367,10 +371,9 @@ public class LIC {
     }
 
     /**
-     *
+     * There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
      * SubCondition1: That distance strict greater than LENGTH1
      * SubCondition2: That distance strict greater than LENGTH2
-     *
      * @return Return true if the condition is met, otherwise
      * returns false.
      */
@@ -384,7 +387,7 @@ public class LIC {
             double dist = Utility.calcEuclideanDistance(points[i], points[j] );
 
             if(dist>parameters.LENGTH1){geLength1=true;}
-            if(dist>parameters.LENGTH2){geLength2=true;}
+            if(dist<parameters.LENGTH2){geLength2=true;}
 
             if(geLength1 && geLength2){return true;}
         }
@@ -396,7 +399,6 @@ public class LIC {
      * Calculate the minimum enclosing radius for 3 data points, seperated by E_PTS and F_PTS points
      * SubCondition1: minimum enclosing radius greater than RADIUS1
      * SubCondition1: minimum enclosing radius smaller than RADIUS2
-     *
      * @return Return true if the both SubConditions are met, otherwise return false
      */
     public boolean Condition13(){
@@ -425,9 +427,9 @@ public class LIC {
     }
 
     /**
+     * Calculate the area given by 3 data points, seperated by E_PTS and F_PTS points
      * SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
      * SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area smaller AREA2
-     *
      * @return Return true if the both SubConditions are met, otherwise return false
      */
     public boolean Condition14(){

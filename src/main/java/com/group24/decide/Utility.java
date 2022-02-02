@@ -4,10 +4,13 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.abs;
 
+/**
+ * Class geometric utility functions used multiple times.
+ */
 public class Utility {
 
     /**
-     * Calculate the euclidean distance of two data points
+     * Calculate the euclidean distance of two data points.
      * @param a First datapoint
      * @param b Second datapoint
      * @return distance
@@ -18,7 +21,7 @@ public class Utility {
 
 
     /**
-     * Calculate the difference
+     * Calculate the difference in the x-axis.
      * @param a First datapoint
      * @param b Second datapoint
      * @return difference
@@ -29,7 +32,7 @@ public class Utility {
     }
 
     /**
-     * Calculate the difference
+     * Calculate the difference in the y-axis.
      * @param a First datapoint
      * @param b Second datapoint
      * @return difference
@@ -42,7 +45,7 @@ public class Utility {
 
 
     /**
-     * Calculate the area of a triangle
+     * Calculate the area of a triangle (Heron's formula)
      * @param a First datapoint
      * @param b Second datapoint
      * @param c Third datapoint
@@ -57,7 +60,7 @@ public class Utility {
     }
 
     /**
-     * Determine which quadrant the point lies on
+     * Determine which quadrant the point lies on.
      * @param x First datapoint
      * @return one of the four quadrants
      */
@@ -77,7 +80,7 @@ public class Utility {
     }
 
     /**
-     * Calculate the maximum angle in a triangle given by three points
+     * Calculate the maximum angle in a triangle given by three points.
      * @param lengthA first length of triangle
      * @param lengthB second length of triangle
      * @param lengthC third length of triangle
@@ -133,14 +136,11 @@ public class Utility {
         return Math.max(distanceAB, Math.max(distanceAC, distanceBC)) / 2;
     }
 
-    /*
-     * Two Datapoints should be considered equal if
-     * they have the same coordinates
-     *
+    /**
+     * Two Data points are equal if they have the same coordinates
      * @param point1 The first Datapoint to compare
      * @param point2 The second Datapoint to compare
-     * @return True if the the x-and y-coordinate
-     *  of the two datapoints are equal, otherwise
+     * @return True if x-and y-coordinate of the two data points are equal, otherwise
      *  returns false
      */
     public static boolean checkIfEqual(Datapoints point1, Datapoints point2){
@@ -149,9 +149,7 @@ public class Utility {
     }
 
     /**
-     * Calculates the shortest distance between the line joining the
-     * Datapoints first and last to that of cpr.
-     *
+     * Calculates the shortest distance between the line joining the data points first and last to that of cpr.
      * @param first The first Datapoint, can not be identical to last
      * @param last The last Datapoint, can not be identical to first
      * @param cpr The Datapoint to check distance
@@ -172,13 +170,11 @@ public class Utility {
     }
 
     /**
-     * 
-     * Find the angle between three data points where one is the Vertex points,
+     * Calculate the angle between three data points where one is the Vertex points,
      * described as the vertexPoints in this method. The returned angle is in radians.
-     * 
-     * @param pointsA One datapoints
-     * @param vertexPoints The datapoints which angle we are calculating
-     * @param pointsB Second datapoints
+     * @param pointsA One data point
+     * @param vertexPoints The data point which angle we are calculating
+     * @param pointsB Second data point
      * @return The angle of vertexPoints in radians.
      */
     public static double calculateAngle(Datapoints pointsA, Datapoints vertexPoints, Datapoints pointsB){
@@ -189,7 +185,6 @@ public class Utility {
 
         // Law of cosinus a2=b2+c2−2bc⋅cosα
         // α = aCos((b2 + c2 - a2) / 2bc)
-        
         double angle = Math.acos((Math.pow(a, 2) +Math.pow(b, 2) - Math.pow(c, 2))/(2*b*a));
 
         return angle;

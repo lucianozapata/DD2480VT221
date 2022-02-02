@@ -489,6 +489,36 @@ class LICTest {
 
     @Test
     void condition10() {
+            Parameter parameter = new Parameter();
+            Datapoints[] points = {
+                new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(1.0, 2.0),
+                new Datapoints(0, 0),
+                new Datapoints(2.0, 0)};
+           parameter.AREA1 = 1.95;
+           parameter.E_PTS =1;
+           parameter.F_PTS =1;
+         //For the 5 NUMPOINTS there exist at least one set of three points separated by exactly 1 and 1 consecutive
+         // intervening points respectively that are the vertices of a triangle with area greater than 1.95
+         // the result return true.
+           LIC lic = new LIC(parameter,points);
+           assertTrue(lic.Condition10());
+
+           Datapoints[] points1 = {
+                new Datapoints(-2.0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(-1.0, -2.0),
+                new Datapoints(0, 0),
+                new Datapoints(0, 0)};
+           parameter.AREA1 = 2.0;
+           parameter.E_PTS =1;
+           parameter.F_PTS =1;
+          //For the 5 NUMPOINTS there exist no set of three points separated by exactly 1 and 1 consecutive intervening points
+          //intervening points respectively that are the vertices of a triangle with area greater than 2.
+          // the result return false.
+           LIC lic1 = new LIC(parameter,points1);
+           assertFalse(lic1.Condition10());
     }
 
     @Test
@@ -545,7 +575,7 @@ class LICTest {
         // Positive test
         Parameter parameter = new Parameter();
         parameter.LENGTH1 = 1;
-        parameter.LENGTH2 = 1;
+        parameter.LENGTH2 = 2;
         parameter.K_PTS = 2;
         Datapoints[] points = { new Datapoints(0,0),
                 new Datapoints(0,0),
@@ -558,7 +588,7 @@ class LICTest {
         // Negative test
         parameter = new Parameter();
         parameter.LENGTH1 = 2;
-        parameter.LENGTH2 = 2;
+        parameter.LENGTH2 = 3;
         parameter.K_PTS = 2;
 
         lic = new LIC(parameter, points);
@@ -567,7 +597,7 @@ class LICTest {
         // Invalid test (K_PTS>NUMPOINTS-2)
         parameter = new Parameter();
         parameter.LENGTH1 = 1;
-        parameter.LENGTH2 = 1;
+        parameter.LENGTH2 = 2;
         parameter.K_PTS = 3;
 
         lic = new LIC(parameter, points);
@@ -576,11 +606,11 @@ class LICTest {
         // Invalid test (NUMPOINTS<3)
         parameter = new Parameter();
         Datapoints[] points1 = { new Datapoints(0,0),
-                new Datapoints(0,0),
+                new Datapoints(1,1),
         };
-        parameter.LENGTH1 = 1;
+        parameter.LENGTH1 = 0;
         parameter.LENGTH2 = 1;
-        parameter.K_PTS = 3;
+        parameter.K_PTS = 1;
 
         lic = new LIC(parameter, points1);
         assertFalse(lic.Condition12());
