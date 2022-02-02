@@ -36,7 +36,10 @@ public class DecideTest {
         LCM[1][0] = Decide.CONNECTORS.ANDD;
         LCM[1][1] = Decide.CONNECTORS.ORR;
 
-        boolean[][] PUM = decide.calcPUM(CMV, LCM);
+        decide.CMV = CMV;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        boolean[][] PUM = decide.PUM;
 
         assertTrue(PUM[0][0]);
         assertTrue(PUM[0][1]);
@@ -52,13 +55,18 @@ public class DecideTest {
         // Positive test where the entire PUV has false values.
         boolean[] PUV = new boolean[15];
         boolean[][] PUM = new boolean[15][15];
-        boolean[] FUV = decide.calcFUV(PUM, PUV);
+        decide.PUV = PUV;
+        decide.PUM = PUM;
+        decide.calcFUV();
+        boolean[] FUV = decide.FUV;
         
         assertArrayEquals(trueArray, FUV);
 
         // Negative test where the entire PUV is true but PUM false
         boolean[] newPUV = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
-        FUV = decide.calcFUV(PUM,newPUV);
+        decide.PUV = newPUV;
+        decide.calcFUV();
+        FUV = decide.FUV;
         assertNotEquals(trueArray, FUV);
 
         // Positive test where entire PUV is false but PUV[4] is true. Entire PUM[4][i] is true for all i
@@ -68,7 +76,9 @@ public class DecideTest {
         for (int i = 0; i < PUM.length; i++) {
             PUM[4][i] = true;
         }
-        FUV = decide.calcFUV(PUM, secondPUV);
+        decide.PUV = secondPUV;
+        decide.calcFUV();
+        FUV = decide.FUV;
         assertArrayEquals(trueArray, FUV);
 
 
@@ -80,12 +90,16 @@ public class DecideTest {
                 newPUM[i][j] = true;
             }
         }
+        decide.PUV = thirdPUV;
+        decide.PUM = newPUM;
+        decide.calcFUV();
         // FUV should be true for all indexes since PUM is true for all rows and columns.
-        FUV = decide.calcFUV(newPUM, thirdPUV);
+        FUV = decide.FUV;
         assertArrayEquals(trueArray, FUV);
         // Changed one value to false, should not be equal anymore.
         newPUM[13][14] = false;
-        FUV = decide.calcFUV(newPUM, thirdPUV);
+        decide.calcFUV();
+        FUV = decide.FUV;
         assertNotEquals(trueArray, FUV);
 
     }
