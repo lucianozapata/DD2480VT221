@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Decide</span>
 extends java.lang.Object</pre>
-<div class="block">Add description for javaDoc</div>
+<div class="block">Class to process data points based on given configuration.</div>
 </li>
 </ul>
 </div>
@@ -153,14 +153,18 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Decide</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor</div>
+</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.group24.decide.Datapoints%5B%5D,com.group24.decide.Parameter,com.group24.decide.Decide.CONNECTORS%5B%5D%5B%5D,boolean%5B%5D)">Decide</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>[]&nbsp;points,
       <a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters,
       com.group24.decide.Decide.CONNECTORS[][]&nbsp;LCM,
       boolean[]&nbsp;PUV)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor to create Decide objects.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -204,7 +208,9 @@ extends java.lang.Object</pre>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#decide()">decide</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Calculate the CMV and PUM, and combine results into the FUV.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -237,6 +243,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Decide</h4>
 <pre>public&nbsp;Decide()</pre>
+<div class="block">Default constructor</div>
 </li>
 </ul>
 <a id="&lt;init&gt;(com.group24.decide.Datapoints[],com.group24.decide.Parameter,com.group24.decide.Decide.CONNECTORS[][],boolean[])">
@@ -249,6 +256,14 @@ extends java.lang.Object</pre>
               <a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters,
               com.group24.decide.Decide.CONNECTORS[][]&nbsp;LCM,
               boolean[]&nbsp;PUV)</pre>
+<div class="block">Constructor to create Decide objects.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>points</code> - input points used for calculating the response.</dd>
+<dd><code>parameters</code> - configuration of the LICs.</dd>
+<dd><code>LCM</code> - Logical connector matrix.</dd>
+<dd><code>PUV</code> - primary unlocking vector.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -288,7 +303,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>calcFUV</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;calcFUV()</pre>
-<div class="block">Calculates a Final unlocking vector using the PUM and PUV.</div>
+<div class="block">Calculates a Final unlocking vector using the PUM and PUV.
+ Results are stored in the FUV variable.</div>
 </li>
 </ul>
 <a id="decide()">
@@ -298,6 +314,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>decide</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;decide()</pre>
+<div class="block">Calculate the CMV and PUM, and combine results into the FUV.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>True if the entire vector FUV contains true values. Else false.</dd>

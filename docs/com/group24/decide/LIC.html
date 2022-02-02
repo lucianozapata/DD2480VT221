@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">LIC</span>
 extends java.lang.Object</pre>
-<div class="block">A class for the LIC conditions</div>
+<div class="block">Class containing all the Launch Interceptor Conditions (LIC) conditions.</div>
 </li>
 </ul>
 </div>
@@ -154,7 +154,9 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.group24.decide.Parameter,com.group24.decide.Datapoints%5B%5D)">LIC</a></span>&#8203;(<a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters,
    <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>[]&nbsp;points)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constructor creating LIC object.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -210,7 +212,8 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition12()">Condition12</a></span>()</code></th>
 <td class="colLast">
-<div class="block">SubCondition1: That distance strict greater than LENGTH1
+<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
+ SubCondition1: That distance strict greater than LENGTH1
  SubCondition2: That distance strict greater than LENGTH2</div>
 </td>
 </tr>
@@ -227,7 +230,8 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition14()">Condition14</a></span>()</code></th>
 <td class="colLast">
-<div class="block">SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
+<div class="block">Calculate the area given by 3 data points, seperated by E_PTS and F_PTS points
+ SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
  SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area smaller AREA2</div>
 </td>
 </tr>
@@ -257,13 +261,16 @@ extends java.lang.Object</pre>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition5()">Condition5</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of two consecutive data points, that the difference
+ in the x-axis is &lt; 0.</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition6()">Condition6</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Checks if there exists one point belonging to a set of N_PTS
+<div class="block">There exists one point belonging to a set of N_PTS
  consecutive points, such that the distance between the line made
  up by the first and last point of this set and one point in the set
  is greater than DIST.</div>
@@ -272,7 +279,10 @@ extends java.lang.Object</pre>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition7()">Condition7</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">There exists at least one set of two data points seperated by exactly K_PTS consecutive intervening points
+ that are a distance greater than the length, LENGTH1, apart.</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -287,25 +297,17 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition9()">Condition9</a></span>()</code></th>
 <td class="colLast">
 <div class="block">There exists at least one set of three data points separated by exactly C PTS and D PTS
-       consecutive intervening points, respectively, that form an angle such that: 
-       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
-       The second point of the set of three points is always the vertex of the angle.</div>
+ consecutive intervening points, respectively, that form an angle such that:
+ angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+ The second point of the set of three points is always the vertex of the angle.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#runLICConditions(int)">runLICConditions</a></span>&#8203;(int&nbsp;size)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setParameters(com.group24.decide.Parameter)">setParameters</a></span>&#8203;(<a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPoints(com.group24.decide.Datapoints%5B%5D)">setPoints</a></span>&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>[]&nbsp;points)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Run all LICs on the given data points and save results the Conditions Met Vector.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -339,9 +341,11 @@ extends java.lang.Object</pre>
 <h4>LIC</h4>
 <pre>public&nbsp;LIC&#8203;(<a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters,
            <a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>[]&nbsp;points)</pre>
+<div class="block">Constructor creating LIC object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parameters</code> - Contains the inputs for LIC.</dd>
+<dd><code>parameters</code> - configuration of the LICs.</dd>
+<dd><code>points</code> - input points used for calculating the response.</dd>
 </dl>
 </li>
 </ul>
@@ -355,24 +359,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="setPoints(com.group24.decide.Datapoints[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setPoints</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setPoints&#8203;(<a href="Datapoints.html" title="class in com.group24.decide">Datapoints</a>[]&nbsp;points)</pre>
-</li>
-</ul>
-<a id="setParameters(com.group24.decide.Parameter)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setParameters</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setParameters&#8203;(<a href="Parameter.html" title="class in com.group24.decide">Parameter</a>&nbsp;parameters)</pre>
-</li>
-</ul>
 <a id="runLICConditions(int)">
 <!--   -->
 </a>
@@ -380,14 +366,12 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>runLICConditions</h4>
 <pre class="methodSignature">public&nbsp;boolean[]&nbsp;runLICConditions&#8203;(int&nbsp;size)</pre>
+<div class="block">Run all LICs on the given data points and save results the Conditions Met Vector.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>size</code> - Definiens how many conditions there
-             are for LIC.</dd>
+<dd><code>size</code> - Defines how many conditions there are for LIC.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Returns the Conditions Met Vector,
- which contains boolean values corresponding
- to each LIC condition.</dd>
+<dd>Returns the Conditions Met Vector, boolean values corresponding to each LIC condition.</dd>
 </dl>
 </li>
 </ul>
@@ -480,6 +464,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition5</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition5()</pre>
+<div class="block">There exists at least one set of two consecutive data points, that the difference
+ in the x-axis is &lt; 0.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -494,10 +480,10 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition6</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition6()</pre>
-<div class="block">Checks if there exists one point belonging to a set of N_PTS
+<div class="block">There exists one point belonging to a set of N_PTS
  consecutive points, such that the distance between the line made
  up by the first and last point of this set and one point in the set
- is greater than DIST. If the the first and last point is the same
+ is greater than DIST. If the first and last point is the same
  then the distance is simply from this coincident point. It is assumed
  that the line joining the first and last point is infinite rather
  the finite.</div>
@@ -515,6 +501,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition7</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition7()</pre>
+<div class="block">There exists at least one set of two data points seperated by exactly K_PTS consecutive intervening points
+ that are a distance greater than the length, LENGTH1, apart.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -546,11 +534,11 @@ extends java.lang.Object</pre>
 <h4>Condition9</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition9()</pre>
 <div class="block">There exists at least one set of three data points separated by exactly C PTS and D PTS
-       consecutive intervening points, respectively, that form an angle such that: 
-       angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
-       The second point of the set of three points is always the vertex of the angle. If either the first
-       point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
-       is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.</div>
+ consecutive intervening points, respectively, that form an angle such that:
+ angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
+ The second point of the set of three points is always the vertex of the angle. If either the first
+ point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+ is not satisfied by those three points. When NUMPOINTS  &lt; 5, the condition is not met.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, other
@@ -597,7 +585,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition12</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition12()</pre>
-<div class="block">SubCondition1: That distance strict greater than LENGTH1
+<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
+ SubCondition1: That distance strict greater than LENGTH1
  SubCondition2: That distance strict greater than LENGTH2</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -629,7 +618,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition14</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition14()</pre>
-<div class="block">SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
+<div class="block">Calculate the area given by 3 data points, seperated by E_PTS and F_PTS points
+ SubCondition1: a set of 3 data points, seperated by E_PTS and F_PTS points, with area greater AREA1
  SubCondition2 a set of 3 data points, seperated by E_PTS and F_PTS points, with area smaller AREA2</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
