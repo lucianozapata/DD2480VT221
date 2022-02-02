@@ -1,7 +1,7 @@
 package com.group24.decide;
 
 /**
- * @author
+ * Class to create 2 dimensional data points
  */
 public class Datapoints {
 
@@ -9,22 +9,12 @@ public class Datapoints {
     double y;
 
     /**
-     *
+     * Constructor to create a datapoint
+     * @param x x-axis
+     * @param y y-axis
      */
     public Datapoints(double x, double y){
         this.x = x;
         this.y = y;
-
-    }
-
-    /**
-     * Method for comparing datapoints.
-     *
-     * @param point1
-     * @param point2
-     * @return
-     */
-    public double compareDistance(Datapoints point1, Datapoints point2){
-        return 0;
     }
 }

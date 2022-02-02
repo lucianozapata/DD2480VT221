@@ -2,9 +2,9 @@ package com.group24.decide;
 
 
 /**
- * Add description for javaDoc
- *
- * @author Pontus
+ * Main class of this software package.
+ * Here data points are read in and parameters can be configured.
+ * Based on this data, the individual conditions are called and the final result of the program is calculated.
  */
 public class Decide {
 
@@ -55,7 +55,6 @@ public class Decide {
 
     /**
      * Calculates a Final unlocking vector using the PUM and PUV. 
-     * 
      * @param PUM Preliminary Unlocking Matrix
      * @param PUV Preliminary Unlocking Vector
      * @return Returns the FUV (Final unlocking vector) with boolean values.
@@ -89,8 +88,8 @@ public class Decide {
     }
 
     /**
-     *
-     * @param args
+     * Entry point to run the software as standalone program. Uses predefined data points and parameters.
+     * @param args is not evaluated
      */
     public static void main(String[] args){
 
