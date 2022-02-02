@@ -72,6 +72,27 @@ class LICTest {
     }
 
     @Test
+    void checkCMV(){
+        Parameter parameters = new Parameter(1,1,0,4,4,3,2,3,1,1,1,1,1,1,1,2,1,2,1);
+        Datapoints[] testDataPoints = new Datapoints[5];
+
+        testDataPoints[0] = new Datapoints(0,0);
+        testDataPoints[1] = new Datapoints(2,0);
+        testDataPoints[2] = new Datapoints(5,0);
+        testDataPoints[3] = new Datapoints(0,5);
+        testDataPoints[4] = new Datapoints(3,1);
+        LIC testLIC = new LIC(parameters, testDataPoints);
+
+        boolean[] expectedCMV = {
+                true, true, true, true, false,
+                true, true, true, false, true,
+                true, false, false, false, false
+        };
+        boolean[] CMV = testLIC.runLICConditions(15);
+        assertEquals(expectedCMV, CMV);
+    }
+
+    @Test
     void condition0() {
 
         // Negative test where the distance is 1 and LENGTH1 is 1.

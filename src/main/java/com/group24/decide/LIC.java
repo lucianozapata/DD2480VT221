@@ -49,12 +49,15 @@ public class LIC {
         boolean[] CMV = new boolean[size];
         CMV[0] = Condition0();
         CMV[1] = Condition1();
+        CMV[2] = Condition2();
         CMV[3] = Condition3();
         CMV[4] = Condition4();
         CMV[5] = Condition5();
         CMV[6] = Condition6();
         CMV[7] = Condition7();
         CMV[8] = Condition8();
+        CMV[9] = Condition9();
+        CMV[10] = Condition10();
         CMV[11] = Condition11();
         CMV[12] = Condition12();
         CMV[13] = Condition13();
@@ -164,7 +167,6 @@ public class LIC {
             Datapoints a = this.points[idx];
             Datapoints b = this.points[idx+1];
             Datapoints c = this.points[idx+2];
-
             double triangleArea = Utility.calcTriangleArea(a,b,c);
             if (triangleArea > parameters.AREA1) return true;
         }
@@ -229,10 +231,8 @@ public class LIC {
      * returns false.
      */
     public boolean Condition6(){
-
         //3 ≤ N PTS ≤ NUMPOINTS
         if(numberPoints<3 || parameters.DIST<0 || !( (3<=parameters.N_PTS) && (parameters.N_PTS<=numberPoints)) ){return false;}
-
         for(int i=0;i<=numberPoints-parameters.N_PTS;i++){
             for(int j=i; j<i + parameters.N_PTS; j++){
                 double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS-1], points[j]);
