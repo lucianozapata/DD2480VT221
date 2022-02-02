@@ -498,7 +498,7 @@ class LICTest {
         // Positive test
         Parameter parameter = new Parameter();
         parameter.LENGTH1 = 1;
-        parameter.LENGTH2 = 1;
+        parameter.LENGTH2 = 2;
         parameter.K_PTS = 2;
         Datapoints[] points = { new Datapoints(0,0),
                 new Datapoints(0,0),
@@ -511,7 +511,7 @@ class LICTest {
         // Negative test
         parameter = new Parameter();
         parameter.LENGTH1 = 2;
-        parameter.LENGTH2 = 2;
+        parameter.LENGTH2 = 3;
         parameter.K_PTS = 2;
 
         lic = new LIC(parameter, points);
@@ -520,7 +520,7 @@ class LICTest {
         // Invalid test (K_PTS>NUMPOINTS-2)
         parameter = new Parameter();
         parameter.LENGTH1 = 1;
-        parameter.LENGTH2 = 1;
+        parameter.LENGTH2 = 2;
         parameter.K_PTS = 3;
 
         lic = new LIC(parameter, points);
@@ -529,11 +529,11 @@ class LICTest {
         // Invalid test (NUMPOINTS<3)
         parameter = new Parameter();
         Datapoints[] points1 = { new Datapoints(0,0),
-                new Datapoints(0,0),
+                new Datapoints(1,1),
         };
-        parameter.LENGTH1 = 1;
+        parameter.LENGTH1 = 0;
         parameter.LENGTH2 = 1;
-        parameter.K_PTS = 3;
+        parameter.K_PTS = 1;
 
         lic = new LIC(parameter, points1);
         assertFalse(lic.Condition12());

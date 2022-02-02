@@ -413,7 +413,7 @@ public class LIC {
             double dist = Utility.calcEuclideanDistance(points[i], points[j] );
 
             if(dist>parameters.LENGTH1){geLength1=true;}
-            if(dist>parameters.LENGTH2){geLength2=true;}
+            if(dist<parameters.LENGTH2){geLength2=true;}
 
             if(geLength1 && geLength2){return true;}
         }
