@@ -32,6 +32,20 @@ class LICTest {
         LIC postiveLIC = new LIC(parameters, testDataPoints);
         assertTrue(postiveLIC.Condition0());
 
+        // Negative test because of LENGTH1 is less than 0
+        parameters = new Parameter(-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        LIC negLIC = new LIC(parameters,testDataPoints);
+        assertFalse(negLIC.Condition0());
+
+        //Negative test because of only having 1 datapoint
+        Datapoints[] oneDataPoint = new Datapoints[1];
+        oneDataPoint[0] = new Datapoints(1, 4);
+        LIC onePointLIC = new LIC(parameters, oneDataPoint);
+        assertFalse(onePointLIC.Condition0());
+
+
+        
+
 
 
     }
@@ -63,6 +77,18 @@ class LICTest {
         testDataPoints[0] = new Datapoints(0,1);
         testDataPoints[1] = new Datapoints(1,0);
         testDataPoints[2] = new Datapoints(0,1);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+        // Negative test where RADIUS1 is less than 0
+        parameters = new Parameter(0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testLIC = new LIC(parameters, testDataPoints);
+        assertFalse(testLIC.Condition1());
+
+        // Negative test where the number of datapoints is less than 3.
+        testDataPoints = new Datapoints[2];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
         testLIC = new LIC(parameters,testDataPoints);
         assertFalse(testLIC.Condition1());
 
