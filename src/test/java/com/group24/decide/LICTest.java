@@ -41,13 +41,13 @@ class LICTest {
     }
 
 
-    @Test
     /**
      * Test LIC conditions with randomized data points and parameters
      */
+    @Test
     void runLICConditions() throws IllegalAccessException {
 
-        int NUMBER_TESTS = 100;
+        int NUMBER_TESTS = 10000;
         int numberDataPoints, counter;
         double xAxis, yAxis;
         LIC testLIC;
@@ -67,7 +67,7 @@ class LICTest {
                 counter++;
             }
             testLIC = new LIC(parameters, testDataPoints);
-            testLIC.runLICConditions(numberDataPoints);
+            testLIC.runLICConditions(15);
         }
     }
 

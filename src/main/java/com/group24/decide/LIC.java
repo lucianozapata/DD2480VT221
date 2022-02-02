@@ -55,11 +55,12 @@ public class LIC {
         CMV[6] = Condition6();
         CMV[7] = Condition7();
         CMV[8] = Condition8();
+        CMV[9] = Condition9();
+        CMV[10] = Condition10();
         CMV[11] = Condition11();
         CMV[12] = Condition12();
         CMV[13] = Condition13();
         CMV[14] = Condition14();
-
 
         return CMV;
     }
@@ -233,9 +234,9 @@ public class LIC {
         //3 ≤ N PTS ≤ NUMPOINTS
         if(numberPoints<3 || parameters.DIST<0 || !( (3<=parameters.N_PTS) && (parameters.N_PTS<=numberPoints)) ){return false;}
 
-        for(int i=0;i<=numberPoints-parameters.N_PTS;i++){
+        for(int i=0;i<=numberPoints-parameters.N_PTS-1;i++){
             for(int j=i; j<i + parameters.N_PTS; j++){
-                double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS-1], points[j]);
+                double distance = Utility.lineDistPoints(points[i], points[i+ parameters.N_PTS], points[j]);
                 if (distance>parameters.DIST){return true;}
             }
         }
@@ -357,8 +358,7 @@ public class LIC {
      */
 
     public boolean Condition11(){
-        if (numberPoints<3 || !( (1<=parameters.G_PTS) && (parameters.G_PTS<= numberPoints -2) ) ){return false;}
-
+        if (numberPoints<3 || (parameters.G_PTS < 1)){return false;}
         for(int i=0;i<numberPoints-parameters.G_PTS-1;i++ ){
             int j = i + parameters.G_PTS + 1;
             if( (points[j].x - points[i].x) < 0 ){
