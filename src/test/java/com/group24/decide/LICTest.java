@@ -162,31 +162,31 @@ class LICTest {
         parameters.QUADS = 2;
         parameters.Q_PTS = 4;
 
-        // Positive test because points are in differnet quadrants.
+        // Positive test because points1[1], points1[2], points1[3], points1[4] are in three different quadrants.
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition4());
 
-        // Negative test 1: invalid input for parameter Q_PTS (input too small)
+        // Negative test 1: invalid input for parameter Q_PTS (Q_PTS should be bigger than 1)
         parameters.Q_PTS = 1;
         LIC lic2 = new LIC(parameters, points1);
         assertFalse(lic2.Condition4());
 
-        // Negative test 2: invalid input for parameter Q_PTS (input too large)
+        // Negative test 2: invalid input for parameter Q_PTS (Q_PTS should not exceed the number of points)
         parameters.Q_PTS = 7;
         LIC lic3 = new LIC(parameters, points1);
         assertFalse(lic3.Condition4());
 
-        // Negative test 3: invalid input for parameter QUADs (input too small)
+        // Negative test 3: invalid input for parameter QUADS (QUADS should be bigger than 0)
         parameters.QUADS = 0;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition4());
 
-        // Negative test 4: invalid input for parameter QUADs (input too large)
+        // Negative test 4: invalid input for parameter QUADS (QUADS should be smaller than 4)
         parameters.QUADS = 4;
         LIC lic5 = new LIC(parameters, points1);
         assertFalse(lic5.Condition4());
 
-        // Negative test 5: all inputs are valid but the result is false
+        // Negative test 5: all inputs are valid but the result is false, since all points are in two quadrants.
         Datapoints[] points2 = {
                 new Datapoints(1, 1),
                 new Datapoints(1, 3),
@@ -286,13 +286,13 @@ class LICTest {
         };
         Parameter parameters = new Parameter();
 
-        // Positive test
+        // Positive test: return true since points[0] and points[3] has a distance greater than 3.
         parameters.K_PTS = 2;
         parameters.LENGTH1 = 3;
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition7());
 
-        // Negative test 1: invalid input for points (input too few)
+        // Negative test 1: invalid input for points (points less than 3)
         Datapoints[] points2 = {
                 new Datapoints(-1, 5),
                 new Datapoints(-1, -1)
@@ -300,17 +300,18 @@ class LICTest {
         LIC lic2 = new LIC(parameters, points2);
         assertFalse(lic2.Condition7());
 
-        // Negative test 2: invalid input for parameter K_PTS (input too small)
+        // Negative test 2: invalid input for parameter K_PTS (K_PTS should be bigger than 0)
         parameters.K_PTS = 0;
         LIC lic3 = new LIC(parameters, points1);
         assertFalse(lic3.Condition7());
 
-        // Negative test 3: invalid input for parameter K_PTS (input too small)
+        // Negative test 3: invalid input for parameter K_PTS (K_PTS should not exceed the number of points - 2)
         parameters.K_PTS = 4;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition7());
 
-        // Negative test 4: all inputs are valid but the result is false
+        // Negative test 4: all inputs are valid but the result is false since no pair of points with interval of two points
+        // has distance greater than 5.1.
         parameters.K_PTS = 2;
         parameters.LENGTH1 = 5.1;
         LIC lic5 = new LIC(parameters, points1);
@@ -329,19 +330,20 @@ class LICTest {
         };
         Parameter parameters = new Parameter();
 
-        // Positive test
+        // Positive test: return true since points1[1], points1[3], points1[5] form a circle with radius = 2, smaller than 3.
         parameters.A_PTS = 1;
         parameters.B_PTS = 1;
         parameters.RADIUS1 = 3;
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition8());
 
-        // Negative test 1: all inputs are valid but the result is false
+        // Negative test 1: all inputs are valid but the result is false, since points1[1], points1[3], points1[5]
+        // form a circle with radius = 2, larger than 1.9.
         parameters.RADIUS1 = 1.9;
         LIC lic2 = new LIC(parameters, points1);
         assertFalse(lic2.Condition8());
 
-        // Negative test 2: invalid input for points (input too few)
+        // Negative test 2: invalid input for points (points should be no less than 5)
         Datapoints[] points2 = {
                 new Datapoints(-1, 5),
                 new Datapoints(-1, -1)
@@ -349,7 +351,7 @@ class LICTest {
         LIC lic3 = new LIC(parameters, points2);
         assertFalse(lic3.Condition8());
 
-        // Negative test 3: invalid inputs for parameters A_PTS and B_PTS (inputs too small)
+        // Negative test 3: invalid inputs for parameters A_PTS and B_PTS (A_PTS or B_PTS < 1)
         parameters.A_PTS = 0;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition8());
@@ -358,7 +360,7 @@ class LICTest {
         LIC lic5 = new LIC(parameters, points1);
         assertFalse(lic5.Condition8());
 
-        // Negative test 4: invalid inputs for parameters A_PTS and B_PTS (inputs too large)
+        // Negative test 4: invalid inputs for parameters A_PTS and B_PTS (A_PTS + B_PTS > number of points - 3)
         parameters.A_PTS = 3;
         parameters.B_PTS = 1;
         LIC lic6 = new LIC(parameters, points1);
