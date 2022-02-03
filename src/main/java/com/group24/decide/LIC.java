@@ -274,7 +274,7 @@ public class LIC {
     }
 
     /**
-      * There exists at least one set of three data points separated by exactly C PTS and D PTS
+      * There exists at least one set of three data points separated by exactly C_PTS and D_PTS
       * consecutive intervening points, respectively, that form an angle such that:
       * angle &lt;  (PI−EPSILON) or angle &gt; (PI+EPSILON)
       * The second point of the set of three points is always the vertex of the angle. If either the first
@@ -285,7 +285,7 @@ public class LIC {
      */
     
     public  boolean Condition9(){
-        //There exists three points seperated by C_PTS and D_PTS apart which have PI - EPSILON &lt; angle and &lt;  PI + EPSILON
+        //There exists three points seperated by C_PTS and D_PTS apart which have PI - EPSILON &lt; angle and &gt;  PI + EPSILON.
         if(this.numberPoints < 5){
             return false;
         }
@@ -314,7 +314,7 @@ public class LIC {
     } 
 
      /**
-     *There exists three points seperated by E_PTS and F_PTS which form a triangle with triangleArea &gt; AREA1
+     *There exists three points seperated by E_PTS and F_PTS which form a triangle with triangleArea &gt; AREA1.
      * @return Return true if the condition is met, other
      * returns false.
      */
