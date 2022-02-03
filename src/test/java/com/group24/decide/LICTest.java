@@ -1,9 +1,6 @@
 package com.group24.decide;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.ThreadLocalRandom;
@@ -109,7 +106,16 @@ class LICTest {
         LIC postiveLIC = new LIC(parameters, testDataPoints);
         assertTrue(postiveLIC.Condition0());
 
+        // Negative test because of LENGTH1 is less than 0
+        parameters = new Parameter(-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        LIC negLIC = new LIC(parameters,testDataPoints);
+        assertFalse(negLIC.Condition0());
 
+        //Negative test because of only having 1 datapoint
+        Datapoints[] oneDataPoint = new Datapoints[1];
+        oneDataPoint[0] = new Datapoints(1, 4);
+        LIC onePointLIC = new LIC(parameters, oneDataPoint);
+        assertFalse(onePointLIC.Condition0());
 
     }
 
@@ -143,7 +149,17 @@ class LICTest {
         testLIC = new LIC(parameters,testDataPoints);
         assertFalse(testLIC.Condition1());
 
+        // Negative test where RADIUS1 is less than 0
+        parameters = new Parameter(0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        testLIC = new LIC(parameters, testDataPoints);
+        assertFalse(testLIC.Condition1());
 
+        // Negative test where the number of datapoints is less than 3.
+        testDataPoints = new Datapoints[2];
+        testDataPoints[0] = new Datapoints(0,1);
+        testDataPoints[1] = new Datapoints(1,0);
+        testLIC = new LIC(parameters,testDataPoints);
+        assertFalse(testLIC.Condition1());
     }
 
     @Test
@@ -188,13 +204,9 @@ class LICTest {
 
         assertFalse(testLIC.Condition2());
 
-
-
-
     }
 
     @Test
-    @DisplayName("Condition3: compare max triangle area")
     void condition3() {
         // check max area of 3 consecutive data-points against threshold
 
@@ -289,7 +301,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition6: Compare distance of a point and the line between two other points")
     void condition6() {
         // Positive test
         Parameter parameter = new Parameter();
@@ -386,7 +397,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition8: check if three points fit in a circle")
     void condition8() {
         Datapoints[] points1 = {
                 new Datapoints(0, 1),
@@ -484,7 +494,6 @@ class LICTest {
         //Should return false if NUMPOINTS less than 5, the result return false.
         assertFalse(lic2.Condition9());
 
-
     }
 
     @Test
@@ -522,7 +531,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition 11: Checks if there is a set of Datapoints such that they are separated by G_PTS and the first is bigger than the latter.")
     void condition11() {
         // Positive test
         Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -641,7 +649,6 @@ class LICTest {
     }
 
     @Test
-    @DisplayName("Condition 14: smaller and bigger triangle area")
     void condition14() {
 
         Parameter parameter = new Parameter(0,0,0,10.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.0);

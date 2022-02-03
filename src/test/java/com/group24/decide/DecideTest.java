@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class for testing the Decide class.
+<<<<<<< HEAD
  *
  *
+=======
+>>>>>>> main
  */
 public class DecideTest {
    

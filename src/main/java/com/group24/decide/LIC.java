@@ -1,7 +1,5 @@
 package com.group24.decide;
 
-
-import static java.lang.Math.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -414,7 +412,7 @@ public class LIC {
         for (int i = 0; i < maxIndex; i++) {
 
             indexPoint1 = i + 1 + parameters.A_PTS;
-            indexPoint2 = i + 2 + + parameters.A_PTS + parameters.B_PTS;
+            indexPoint2 = i + 2 + parameters.A_PTS + parameters.B_PTS;
 
             double radius = Utility.calcMinEnclosingRadius(this.points[i],this.points[indexPoint1], this.points[indexPoint2]);
 
@@ -444,7 +442,7 @@ public class LIC {
         for (int i = 0; i < maxIndex; i++) {
 
             indexPoint1 = i + 1 + parameters.E_PTS;
-            indexPoint2 = i + 2 + + parameters.E_PTS + parameters.F_PTS;
+            indexPoint2 = i + 2 + parameters.E_PTS + parameters.F_PTS;
 
             double area = Utility.calcTriangleArea(this.points[i],this.points[indexPoint1], this.points[indexPoint2]);
 
@@ -455,18 +453,4 @@ public class LIC {
         }
         return false;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
