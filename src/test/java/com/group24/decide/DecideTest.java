@@ -13,34 +13,60 @@ public class DecideTest {
     
     @Test
     void calcPUM() {
+        // Creating a CMV where all values but CMV[0] are false 
         Decide decide = new Decide();
-
         boolean[] CMV = new boolean[15];
-        for (int i = 0; i < 15; i++) {
-            CMV[i] = false;
-        }
         CMV[0] = true;
 
+        // Creating a LCM where all values are NOTUSED
         Decide.CONNECTORS[][] LCM = new Decide.CONNECTORS[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 LCM[i][j] = NOTUSED;
             }
         }
-        LCM[0][0] = ANDD;
-        LCM[0][1] = ORR;
-        LCM[1][0] = ANDD;
-        LCM[1][1] = ORR;
 
+
+        // Updating the CMV and LCM in the decide class
         decide.CMV = CMV;
         decide.LCM = LCM;
+        // Evaluating the PUM
         decide.calcPUM();
         boolean[][] PUM = decide.PUM;
 
+        // Positive test because CMV[0] is true and LCM[0][0] is ANDD
+        LCM[0][0] = Decide.CONNECTORS.ANDD;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        PUM = decide.PUM;
         assertTrue(PUM[0][0]);
+
+        // Positive test because CMV[0] is true and LCM[0][1] is ORR, PUM[0][1] is true.
+        LCM[0][1] = Decide.CONNECTORS.ORR;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        PUM = decide.PUM;
         assertTrue(PUM[0][1]);
+
+        // Negative test because CMV[1] is false and CMV[0] is true, but LCM[1][0] is ANDD
+        LCM[1][0] = Decide.CONNECTORS.ANDD;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        PUM = decide.PUM;
         assertFalse(PUM[1][0]);
+
+        // Negative test because CMV[1] is false and LCM[1][1] is ORR
+        LCM[1][1] = Decide.CONNECTORS.ORR;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        PUM = decide.PUM;
         assertFalse(PUM[1][1]);
+
+        // Positive test because CMV[1] and CMV[2] are false, but LCM[i][j] are NOTUSED
+        LCM[1][2] = Decide.CONNECTORS.NOTUSED;
+        decide.LCM = LCM;
+        decide.calcPUM();
+        PUM = decide.PUM;
         assertTrue(PUM[1][2]);
     }
 

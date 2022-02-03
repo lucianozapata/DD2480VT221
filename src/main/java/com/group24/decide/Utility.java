@@ -132,7 +132,7 @@ public class Utility {
         }
 
         // case 2: obtuse triangle (one angle bigger than 90 deg)
-        // the smallest radius is the longest distance
+        // the smallest radius is half of the longest distance
         return Math.max(distanceAB, Math.max(distanceAC, distanceBC)) / 2;
     }
 

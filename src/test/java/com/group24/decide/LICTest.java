@@ -212,20 +212,22 @@ class LICTest {
     @Test
     void condition3() {
         // check max area of 3 consecutive data-points against threshold
-
         Parameter parameter = new Parameter();
+        // Area given by the three data points is 12.5
         Datapoints[] points = { new Datapoints(0, 0),
                                 new Datapoints(5, 0),
                                 new Datapoints(0, 5),};
         LIC lic = new LIC(parameter, points);
 
-        // default AREA1 is set to 0
+        // Positive test because default value for AREA is 0.
         assertTrue(lic.Condition3());
 
         parameter.AREA1 = 10;
+        // Positive test because 12.5 is greater than AREA1 (10)
         assertTrue(lic.Condition3());
 
         parameter.AREA1 = 15;
+        // Negative test because 12.5 is smaller than AREA1 (15)
         assertFalse(lic.Condition3());
     }
 
@@ -244,31 +246,31 @@ class LICTest {
         parameters.QUADS = 2;
         parameters.Q_PTS = 4;
 
-        // Positive test
+        // Positive test because points1[1], points1[2], points1[3], points1[4] are in three different quadrants.
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition4());
 
-        // Negative test 1: invalid input for parameter Q_PTS (input too small)
+        // Negative test 1: invalid input for parameter Q_PTS (Q_PTS should be bigger than 1)
         parameters.Q_PTS = 1;
         LIC lic2 = new LIC(parameters, points1);
         assertFalse(lic2.Condition4());
 
-        // Negative test 2: invalid input for parameter Q_PTS (input too large)
+        // Negative test 2: invalid input for parameter Q_PTS (Q_PTS should not exceed the number of points)
         parameters.Q_PTS = 7;
         LIC lic3 = new LIC(parameters, points1);
         assertFalse(lic3.Condition4());
 
-        // Negative test 3: invalid input for parameter QUADs (input too small)
+        // Negative test 3: invalid input for parameter QUADS (QUADS should be bigger than 0)
         parameters.QUADS = 0;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition4());
 
-        // Negative test 4: invalid input for parameter QUADs (input too large)
+        // Negative test 4: invalid input for parameter QUADS (QUADS should be smaller than 4)
         parameters.QUADS = 4;
         LIC lic5 = new LIC(parameters, points1);
         assertFalse(lic5.Condition4());
 
-        // Negative test 5: all inputs are valid but the result is false
+        // Negative test 5: all inputs are valid but the result is false, since all points are in two quadrants.
         Datapoints[] points2 = {
                 new Datapoints(1, 1),
                 new Datapoints(1, 3),
@@ -291,15 +293,22 @@ class LICTest {
                                 new Datapoints(-1,0),
                                 new Datapoints(0,0),};
         LIC lic = new LIC(parameter,points);
-        //there exist at least one set of two consecutive points such that X[j] - X[i] < 0 where i = j-1, LIC5 should return true.
+        //There exist at least one set of two consecutive points such that X[j] - X[i] &lt 0 where i = j-1, LIC5 should return true.
         assertTrue(lic.Condition5());
 
         Datapoints[] points1 = { new Datapoints(0,0),
                                 new Datapoints(1,0),
                                 new Datapoints(2,0),};
         LIC lic1 = new LIC(parameter,points1);
-        //there exist no set of two consecutive points such that X[j] - X[i] < 0 where i = j-1, LIC5 should return false.
+        //There exist no set of two consecutive points such that X[j] - X[i] &lt 0 where i = j-1, LIC5 should return false.
         assertFalse(lic1.Condition5()); 
+
+        Datapoints[] points2 = { new Datapoints(1,1)};
+        LIC lic2 = new LIC(parameter,points2);
+        //Testing with a valid input that contains less than two data points. LIC5 should return false.
+        assertFalse(lic2.Condition5());
+
+
 
     }
 
@@ -368,13 +377,13 @@ class LICTest {
         };
         Parameter parameters = new Parameter();
 
-        // Positive test
+        // Positive test: return true since points[0] and points[3] has a distance greater than 3.
         parameters.K_PTS = 2;
         parameters.LENGTH1 = 3;
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition7());
 
-        // Negative test 1: invalid input for points (input too few)
+        // Negative test 1: invalid input for points (points less than 3)
         Datapoints[] points2 = {
                 new Datapoints(-1, 5),
                 new Datapoints(-1, -1)
@@ -382,17 +391,18 @@ class LICTest {
         LIC lic2 = new LIC(parameters, points2);
         assertFalse(lic2.Condition7());
 
-        // Negative test 2: invalid input for parameter K_PTS (input too small)
+        // Negative test 2: invalid input for parameter K_PTS (K_PTS should be bigger than 0)
         parameters.K_PTS = 0;
         LIC lic3 = new LIC(parameters, points1);
         assertFalse(lic3.Condition7());
 
-        // Negative test 3: invalid input for parameter K_PTS (input too small)
+        // Negative test 3: invalid input for parameter K_PTS (K_PTS should not exceed the number of points - 2)
         parameters.K_PTS = 4;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition7());
 
-        // Negative test 4: all inputs are valid but the result is false
+        // Negative test 4: all inputs are valid but the result is false since no pair of points with interval of two points
+        // has distance greater than 5.1.
         parameters.K_PTS = 2;
         parameters.LENGTH1 = 5.1;
         LIC lic5 = new LIC(parameters, points1);
@@ -411,19 +421,20 @@ class LICTest {
         };
         Parameter parameters = new Parameter();
 
-        // Positive test
+        // Positive test: return true since points1[1], points1[3], points1[5] form a circle with radius = 2, larger than 1.9.
         parameters.A_PTS = 1;
         parameters.B_PTS = 1;
         parameters.RADIUS1 = 1.9;
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition8());
 
-        // Negative test 1: all inputs are valid but the result is false
+        // Negative test 1: all inputs are valid but the result is false, since points1[1], points1[3], points1[5]
+        // form a circle with radius = 2, smaller than 3.
         parameters.RADIUS1 = 3;
         LIC lic2 = new LIC(parameters, points1);
         assertFalse(lic2.Condition8());
 
-        // Negative test 2: invalid input for points (input too few)
+        // Negative test 2: invalid input for points (points should be no less than 5)
         Datapoints[] points2 = {
                 new Datapoints(-1, 5),
                 new Datapoints(-1, -1)
@@ -431,7 +442,7 @@ class LICTest {
         LIC lic3 = new LIC(parameters, points2);
         assertFalse(lic3.Condition8());
 
-        // Negative test 3: invalid inputs for parameters A_PTS and B_PTS (inputs too small)
+        // Negative test 3: invalid inputs for parameters A_PTS and B_PTS (A_PTS or B_PTS < 1)
         parameters.A_PTS = 0;
         LIC lic4 = new LIC(parameters, points1);
         assertFalse(lic4.Condition8());
@@ -440,7 +451,7 @@ class LICTest {
         LIC lic5 = new LIC(parameters, points1);
         assertFalse(lic5.Condition8());
 
-        // Negative test 4: invalid inputs for parameters A_PTS and B_PTS (inputs too large)
+        // Negative test 4: invalid inputs for parameters A_PTS and B_PTS (A_PTS + B_PTS > number of points - 3)
         parameters.A_PTS = 3;
         parameters.B_PTS = 1;
         LIC lic6 = new LIC(parameters, points1);
@@ -481,7 +492,7 @@ class LICTest {
         LIC lic1 = new LIC(parameter,points1);
         ////For the 5 NUMPOINTS exist no set of three points separated by exactly 1 and 1 
         //consecutive intervening points respectively that form an angle that is either smaller than PI - (Math.PI/2)
-        // or bigger than PI + (Math.PI/2), the result return true.
+        // or bigger than PI + (Math.PI/2), the result return false.
         assertFalse(lic1.Condition9());
 
         Datapoints[] points2 = {
@@ -531,6 +542,19 @@ class LICTest {
           // the result return false.
            LIC lic1 = new LIC(parameter,points1);
            assertFalse(lic1.Condition10());
+
+            
+            Datapoints[] points2 = {
+                new Datapoints(0, 0),
+                new Datapoints(0, 0),
+                new Datapoints(1.0, 2.0),
+                new Datapoints(0, 0)};
+           parameter.AREA1 = 1.95;
+           parameter.E_PTS =1;
+           parameter.F_PTS =1;
+         //Should return false if NUMPOINTS less than 5, the result return false.
+           LIC lic2 = new LIC(parameter,points2);
+           assertFalse(lic2.Condition10());
     }
 
     @Test
@@ -632,7 +656,11 @@ class LICTest {
 
     @Test
     void condition13() {
-        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Parameter parameter = new Parameter();
+
+        // Manual calculated radius for the following data points
+        // Smallest enclosing radius: 0.5
+        // Biggest enclosing radius: 1.15
         Datapoints[] points = { new Datapoints(0, 0),
                 new Datapoints(0, 0),
                 new Datapoints(0, 1),
@@ -641,13 +669,14 @@ class LICTest {
         };
         LIC lic = new LIC(parameter, points);
 
-        // for these points then smallest radius is 0.5 and biggest 1.15
         parameter.RADIUS1 = 1;
         parameter.RADIUS2 = 1;
+        // Smallest radius smaller than 1 and biggest bigger than 1
         assertTrue(lic.Condition13());
 
         parameter.RADIUS1 = 2;
         parameter.RADIUS2 = 1;
+        // No radius that can not be contained within a circle with radius 2
         assertFalse(lic.Condition13());
     }
 
@@ -662,7 +691,8 @@ class LICTest {
         // less than 5 data-points
         assertFalse(lic.Condition14());
 
-        // first 3 points create triangle bigger than 10, last 3 points smaller than 1
+        // First 3 points create triangle bigger than 10
+        // Last 3 points create triangle smaller than 1
         Datapoints[] points = { new Datapoints(0, 0),
                                 new Datapoints(5, 0),
                                 new Datapoints(0, 5),
@@ -670,6 +700,7 @@ class LICTest {
                                 new Datapoints(1, 6),
         };
         lic = new LIC(parameter, points);
+        // AREA1 = 10, AREA2 = 1 therefore true
         assertTrue(lic.Condition14());
 
         // 3 first data points have the biggest area but still < 15
