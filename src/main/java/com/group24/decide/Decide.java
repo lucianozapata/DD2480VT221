@@ -56,7 +56,7 @@ public class Decide {
      * Calculate PUM using CMV and LCM
      */
     public void calcPUM() {
-        if (CMV.length == 0 || LCM.length == 0) {
+        if (CMV == null || LCM == null) {
             return;
         }
         PUM = new boolean[15][15];
@@ -83,7 +83,7 @@ public class Decide {
      * Results are stored in the FUV variable.
      */
     public void calcFUV(){
-        if (PUM.length == 0 || PUV.length == 0) {
+        if (PUM == null || PUV == null) {
             return;
         }
         FUV = new boolean[15];
@@ -120,7 +120,7 @@ public class Decide {
         calcCMV();
         calcPUM();
         calcFUV();
-        if (FUV.length == 0) {
+        if (FUV == null) {
             return false;
         }
         for (boolean b : FUV) {

@@ -1,12 +1,96 @@
 package com.group24.decide;
 
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class for testing the LIC conditions.
  */
 class LICTest {
+
+    /**
+     * Create random parameter settings for test purposes
+     * @return randomized parameter
+     */
+    Parameter createRandomParameter() throws IllegalAccessException {
+
+        int randInt;
+        double randDouble;
+        Parameter parameters = new Parameter();
+
+        // Set random parameter values
+        for (Field f : parameters.getClass().getDeclaredFields()) {
+            Class<?> tmp = f.getType();
+            if (tmp.equals(Integer.TYPE)) {
+                // create Integers between 0 and 100
+                randInt =ThreadLocalRandom.current().nextInt(0, 101);
+                f.set(parameters, randInt);
+            } else {
+                // create Doubles between 0 and 100
+                randDouble =ThreadLocalRandom.current().nextDouble(0, 100);
+                f.set(parameters, randDouble);
+            }
+        }
+        return  parameters;
+    }
+
+
+    /**
+     * Test LIC conditions with randomized data points and parameters
+     */
+    @Test
+    void runLICConditions() throws IllegalAccessException {
+
+        int NUMBER_TESTS = 10000;
+        int numberDataPoints, counter;
+        double xAxis, yAxis;
+        LIC testLIC;
+        Parameter parameters;
+
+        for (int i = 0; i < NUMBER_TESTS; i++) {
+            parameters = createRandomParameter();
+            // create between 2 and 100 data points
+            numberDataPoints= ThreadLocalRandom.current().nextInt(2, 100 + 1);
+            Datapoints[] testDataPoints = new Datapoints[numberDataPoints];
+            counter = 0;
+            while(counter < numberDataPoints) {
+                // data points between -100 and 100
+                xAxis = ThreadLocalRandom.current().nextDouble(-100, 100);
+                yAxis = ThreadLocalRandom.current().nextDouble(-100, 100);
+                testDataPoints[counter] = new Datapoints(xAxis, yAxis);
+                counter++;
+            }
+            testLIC = new LIC(parameters, testDataPoints);
+            testLIC.runLICConditions(15);
+        }
+    }
+
+    /**
+     * Checks if the CMV vector is the same as the expected vector (expectedCMV).
+     */
+    @Test
+    void checkCMV(){
+        Parameter parameters = new Parameter(1,1,0,4,4,3,2,3,1,1,1,1,1,1,1,2,1,2,1);
+        Datapoints[] testDataPoints = new Datapoints[5];
+
+        testDataPoints[0] = new Datapoints(0,0);
+        testDataPoints[1] = new Datapoints(2,0);
+        testDataPoints[2] = new Datapoints(5,0);
+        testDataPoints[3] = new Datapoints(0,5);
+        testDataPoints[4] = new Datapoints(3,1);
+        LIC testLIC = new LIC(parameters, testDataPoints);
+
+        boolean[] expectedCMV = {
+                true, true, true, true, false,
+                true, true, true, false, true,
+                false, false, false, false, false
+        };
+        boolean[] CMV = testLIC.runLICConditions(15);
+        assertArrayEquals(expectedCMV, CMV);
+    }
 
     @Test
     void condition0() {
