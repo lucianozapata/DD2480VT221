@@ -147,7 +147,7 @@ public class DecideTest {
                 false, false, false, false, false
         };
 
-        dec.calcCMV();;
+        dec.calcCMV();
 
         boolean[] CMV = dec.CMV;
 
@@ -201,46 +201,46 @@ public class DecideTest {
      */
     void DecideExpectTrue(){
         Decide.CONNECTORS[][] LCM = {
-                { ANDD, ORR, ORR, NOTUSED, NOTUSED, ORR, NOTUSED, NOTUSED, ANDD, ORR, NOTUSED, NOTUSED, NOTUSED, ORR, ANDD },
+                { ANDD, ORR, ORR, NOTUSED, NOTUSED, ORR, NOTUSED, NOTUSED, ORR, ORR, NOTUSED, NOTUSED, NOTUSED, ORR, ORR },
                 { ORR, ANDD, ANDD, ORR, ANDD, ANDD, ORR, ANDD, NOTUSED, ANDD, ORR, ORR, NOTUSED, ORR, ORR },
                 { ORR, ANDD, ANDD, NOTUSED, NOTUSED, NOTUSED, ORR, ANDD, ORR, ANDD, ANDD, ORR, ANDD, NOTUSED, ANDD },
                 { NOTUSED, ORR, NOTUSED, ANDD, ANDD, ANDD, ANDD, ORR, ORR, ORR, ANDD, NOTUSED, NOTUSED, ORR, ORR },
-                { NOTUSED, ANDD, NOTUSED, ANDD, ANDD, NOTUSED, ANDD, NOTUSED, ORR, NOTUSED, ORR, ORR, ORR, ORR, ORR },
+                { NOTUSED, ANDD, NOTUSED, ANDD, ANDD, NOTUSED, ANDD, NOTUSED, ORR, NOTUSED, ORR, ORR, ORR, ANDD, ANDD },
                 { ORR, ANDD, NOTUSED, ANDD, NOTUSED, ANDD, NOTUSED, ANDD, ORR, ANDD, ANDD, ORR, ANDD, NOTUSED, ANDD },
                 { NOTUSED, ORR, ORR, ANDD, ANDD, NOTUSED, ANDD, ANDD, NOTUSED, ORR, ORR, ANDD, NOTUSED, ANDD, NOTUSED },
                 { NOTUSED, ANDD, ANDD, ORR, NOTUSED, ANDD, ANDD, ANDD, ORR, ANDD, ANDD, ORR, ORR, ANDD, NOTUSED },
-                { ANDD, NOTUSED, ORR, ORR, ORR, ORR, NOTUSED, ORR, ANDD, NOTUSED, ANDD, ORR, ANDD, ANDD, ANDD },
+                { ORR, NOTUSED, ORR, ORR, ORR, ORR, NOTUSED, ORR, ANDD, NOTUSED, ANDD, ORR, ANDD, ANDD, ANDD },
                 { ORR, ANDD, ANDD, ORR, NOTUSED, ANDD, ORR, ANDD, NOTUSED, ANDD, NOTUSED, ANDD, ANDD, NOTUSED, NOTUSED },
-                { NOTUSED, ORR, ANDD, ANDD, ORR, ANDD, ORR, ANDD, ANDD, NOTUSED, ANDD, NOTUSED, ORR, ORR, ANDD },
+                { NOTUSED, ORR, ANDD, ANDD, ORR, ANDD, ORR, ANDD, ANDD, NOTUSED, ANDD, NOTUSED, ORR, ANDD, ANDD },
                 { NOTUSED, ORR, ORR, NOTUSED, ORR, ORR, ANDD, ORR, ORR, ANDD, NOTUSED, ANDD, ORR, ANDD, ORR },
                 { NOTUSED, NOTUSED, ANDD, NOTUSED, ORR, ANDD, NOTUSED, ORR, ANDD, ANDD, ORR, ORR, ANDD, NOTUSED, ANDD },
-                { ORR, ORR, NOTUSED, ORR, ORR, NOTUSED, ANDD, ANDD, ANDD, NOTUSED, ORR, ANDD, NOTUSED, ANDD, NOTUSED },
-                { ANDD, ORR, ANDD, ORR, ORR, ANDD, NOTUSED, NOTUSED, ANDD, NOTUSED, ANDD, ORR, ANDD, NOTUSED, ANDD },
+                { ORR, ORR, NOTUSED, ORR, ANDD, NOTUSED, ANDD, ANDD, ANDD, NOTUSED, ANDD, ANDD, NOTUSED, ANDD, NOTUSED },
+                { ORR, ORR, ANDD, ORR, ANDD, ANDD, NOTUSED, NOTUSED, ANDD, NOTUSED, ANDD, ORR, ANDD, NOTUSED, ANDD },
         };
-        // Same input as checkCMV()
-        Parameter parameters = new Parameter(1,1,0,4,4,3,2,3,1,1,1,1,1,1,1,2,1,2,1);
-        Datapoints[] testDataPoints = new Datapoints[5];
+        Parameter parameters = new Parameter(1,1,0,4,4,1,2,3,1,1,1,1,1,1,1,2,1,2,1);
+        Datapoints[] testDataPoints = new Datapoints[6];
 
         testDataPoints[0] = new Datapoints(0,0);
         testDataPoints[1] = new Datapoints(2,0);
         testDataPoints[2] = new Datapoints(5,0);
         testDataPoints[3] = new Datapoints(0,5);
         testDataPoints[4] = new Datapoints(3,1);
+        testDataPoints[5] = new Datapoints(-1, -1);
 
         boolean[] PUV = new boolean[15];
-        for(int i=0; i<PUV.length;i++){
-            PUV[i] = false;
-        }
+        PUV[0] = true;
+        PUV[1] = true;
+        PUV[3] = true;
 
         Decide dec = new Decide(testDataPoints, parameters, LCM, PUV);
 
         boolean[] expectedCMV = {
-                true, true, true, true, false,
+                true, true, true, true, true,
                 true, true, true, false, true,
-                false, false, false, false, false
+                true, true, false, false, false
         };
 
-        dec.calcCMV();;
+        dec.calcCMV();
 
         boolean[] CMV = dec.CMV;
 
@@ -248,21 +248,21 @@ public class DecideTest {
 
         boolean[][] ExpectedPUM = {
                 /* 0    1      2      3      4      5      6      7     8       9      10     11     12     13    14      */
-                {true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true, false}, // 0
-                {true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}, // 1
-                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false}, // 2
-                {true,  true,  true,  true, false,  true,  true,  true,  true,  true, false,  true,  true,  true,  true}, // 3
-                {true,  false, true, false, false,  true, false,  true, false,  true, false, false, false, false, false}, // 4
-                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false}, // 5
-                {true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, false,  true, false,  true}, // 6
-                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true, false,  true}, // 7
-                {false, true,  true,  true, false,  true,  true,  true, false,  true, false, false, false, false, false}, // 8
-                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false, false,  true,  true}, // 9
-                {true,  true, false, false, false, false,  true, false, false,  true, false,  true, false, false, false}, // 10
-                {true,  true,  true,  true, false,  true, false,  true, false, false,  true, false, false, false, false}, // 11
-                {true,  true, false,  true, false, false,  true,  true, false, false, false, false, false,  true, false}, // 12
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}, // 0
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}, // 1
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false}, // 2
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}, // 3
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false, false}, // 4
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false}, // 5
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 6
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 7
+                {true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false, false, false}, // 8
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true}, // 9
+                {true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true, false, false}, // 10
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 11
+                {true,  true, false,  true,  true, false,  true,  true, false, false,  true,  true, false,  true, false}, // 12
                 {true,  true,  true,  true, false,  true, false, false, false,  true, false, false,  true, false,  true}, // 13
-                {false, true, false,  true, false, false,  true,  true, false,  true, false, false, false,  true, false} // 14
+                {true,  true, false,  true, false, false,  true,  true, false,  true, false,  true, false,  true, false} // 14
         };
 
         dec.calcPUM();
