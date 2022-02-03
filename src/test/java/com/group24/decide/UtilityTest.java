@@ -1,4 +1,5 @@
 package com.group24.decide;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,10 +36,6 @@ class UtilityTest {
         assertEquals(4, Utility.chooseQuadrant(p4));
     }
 
-
-    /**
-     *
-     */
     @Test
     void lineDistPoints() {
         // Test a valid input
@@ -61,9 +58,6 @@ class UtilityTest {
 
     }
 
-    /**
-     *
-     */
     @Test
     void checkIfEqual(){
         // Check if true for two identical points
@@ -76,7 +70,6 @@ class UtilityTest {
         p2 = new Datapoints(1, 2);
         assertFalse(Utility.checkIfEqual(p1,p2) );
     }
-
 
     @Test
     void calcMaxAngle() {
@@ -121,7 +114,6 @@ class UtilityTest {
         minRadius = Utility.calcMinEnclosingRadius(p1, p2, p3);
         assertEquals(1.15, minRadius, 0.01);
     }
-
 
     @Test
     void calcAngleInRadians() {
