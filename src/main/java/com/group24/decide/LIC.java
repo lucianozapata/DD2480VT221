@@ -266,7 +266,7 @@ public class LIC {
             Datapoints a = points[idx];
             Datapoints b = points[idx + parameters.A_PTS + 1];
             Datapoints c = points[idx + parameters.A_PTS + parameters.B_PTS + 2];
-            if (Utility.calcMinEnclosingRadius(a, b, c) < parameters.RADIUS1) {
+            if (Utility.calcMinEnclosingRadius(a, b, c) > parameters.RADIUS1) {
                 return true;
             }
         }

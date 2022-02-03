@@ -85,7 +85,7 @@ class LICTest {
 
         boolean[] expectedCMV = {
                 true, true, true, true, false,
-                true, true, true, false, true,
+                true, true, true, true, true,
                 false, false, false, false, false
         };
         boolean[] CMV = testLIC.runLICConditions(15);
@@ -414,12 +414,12 @@ class LICTest {
         // Positive test
         parameters.A_PTS = 1;
         parameters.B_PTS = 1;
-        parameters.RADIUS1 = 3;
+        parameters.RADIUS1 = 1.9;
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition8());
 
         // Negative test 1: all inputs are valid but the result is false
-        parameters.RADIUS1 = 1.9;
+        parameters.RADIUS1 = 3;
         LIC lic2 = new LIC(parameters, points1);
         assertFalse(lic2.Condition8());
 
