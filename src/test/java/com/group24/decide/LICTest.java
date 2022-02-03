@@ -86,10 +86,10 @@ class LICTest {
         boolean[] expectedCMV = {
                 true, true, true, true, false,
                 true, true, true, false, true,
-                true, false, false, false, false
+                false, false, false, false, false
         };
         boolean[] CMV = testLIC.runLICConditions(15);
-        assertEquals(expectedCMV, CMV);
+        assertArrayEquals(expectedCMV, CMV);
     }
 
     @Test
