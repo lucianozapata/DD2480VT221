@@ -128,8 +128,8 @@ class LICTest {
     @Test
     void condition3() {
         // check max area of 3 consecutive data-points against threshold
-
         Parameter parameter = new Parameter();
+        // Area given by the three data points is 12.5
         Datapoints[] points = { new Datapoints(0, 0),
                                 new Datapoints(5, 0),
                                 new Datapoints(0, 5),};
@@ -138,12 +138,12 @@ class LICTest {
         // Positive test because default value for AREA is 0.
         assertTrue(lic.Condition3());
 
-        // Positive test because area(12.5) is greater than AREA1 (10)
         parameter.AREA1 = 10;
+        // Positive test because 12.5 is greater than AREA1 (10)
         assertTrue(lic.Condition3());
-        
-        //Negative test because AREA is now 15.
+
         parameter.AREA1 = 15;
+        // Negative test because 12.5 is smaller than AREA1 (15)
         assertFalse(lic.Condition3());
     }
 
@@ -550,7 +550,11 @@ class LICTest {
 
     @Test
     void condition13() {
-        Parameter parameter = new Parameter(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+        Parameter parameter = new Parameter();
+
+        // Manual calculated radius for the following data points
+        // Smallest enclosing radius: 0.5
+        // Biggest enclosing radius: 1.15
         Datapoints[] points = { new Datapoints(0, 0),
                 new Datapoints(0, 0),
                 new Datapoints(0, 1),
@@ -559,13 +563,14 @@ class LICTest {
         };
         LIC lic = new LIC(parameter, points);
 
-        // for these points then smallest radius is 0.5 and biggest 1.15
         parameter.RADIUS1 = 1;
         parameter.RADIUS2 = 1;
+        // Smallest radius smaller than 1 and biggest bigger than 1
         assertTrue(lic.Condition13());
 
         parameter.RADIUS1 = 2;
         parameter.RADIUS2 = 1;
+        // No radius that can not be contained within a circle with radius 2
         assertFalse(lic.Condition13());
     }
 
@@ -580,7 +585,8 @@ class LICTest {
         // less than 5 data-points
         assertFalse(lic.Condition14());
 
-        // first 3 points create triangle bigger than 10, last 3 points smaller than 1
+        // First 3 points create triangle bigger than 10
+        // Last 3 points create triangle smaller than 1
         Datapoints[] points = { new Datapoints(0, 0),
                                 new Datapoints(5, 0),
                                 new Datapoints(0, 5),
@@ -588,6 +594,7 @@ class LICTest {
                                 new Datapoints(1, 6),
         };
         lic = new LIC(parameter, points);
+        // AREA1 = 10, AREA2 = 1 therefore true
         assertTrue(lic.Condition14());
 
         // 3 first data points have the biggest area but still < 15

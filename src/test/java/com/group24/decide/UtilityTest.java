@@ -7,23 +7,25 @@ class UtilityTest {
 
     @Test
     void calcEuclideanDistance() {
-        // Test for the EuclidianDistance method where datapoint1 is x=0,y=0 and datapoints2 x=10,y=0. Distance should therefore be 10.
+        // Euclidean distance for two data points which only differ on x-axis.
+        // Therefore, result should be the delta on x-axis.
         Datapoints p1 = new Datapoints(0,0);
         Datapoints p2 = new Datapoints(10,0);
         double distance = Utility.calcEuclideanDistance(p1, p2);
         assertEquals(10, distance);
 
-        // Test for the EuclidianDistance method where datapoint1 is x=0,y=10 and datapoints2 x=0,y=0. Distance should therefore be 10.
+        // Euclidean distance for two data points which only differ on y-axis.
+        // Therefore, result should be the delta on y-axis.
         Datapoints p3 = new Datapoints(0,10);
         Datapoints p4 = new Datapoints(0,0);
         distance = Utility.calcEuclideanDistance(p3, p4);
         assertEquals(10, distance);
-
     }
 
     @Test
     void calcTriangleArea() {
-        // Test where a triangle with base = 10 and height = 10 gives the area of 50. (B*H/2)
+        // Rectangular triangle with width=10, height=10.
+        // On rectangular triangle the area can be calculated with: width*height/2 = 50.
         Datapoints p1 = new Datapoints(0,0);
         Datapoints p2 = new Datapoints(10,0);
         Datapoints p3 = new Datapoints(0, 10);
@@ -87,7 +89,7 @@ class UtilityTest {
 
     @Test
     void calcMaxAngle() {
-        // Test if a triangle with a rectangular edge gives the output of 90 degrees.
+        // Rectangular triangle, max angle should therefore be 90 deg.
         Datapoints p1 = new Datapoints(0, 0);
         Datapoints p2 = new Datapoints(1, 0);
         Datapoints p3 = new Datapoints(0, 1);
@@ -97,23 +99,22 @@ class UtilityTest {
         double maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
         assertEquals(90, maxAngle, 0.01);
 
-        // Testcase if the maximum angle is ~157.38 in triangle (0,0), (10,0), (5,1)
+        // Obtuse triangle
+        // Maximum angle is ~157.38 (calculated online).
         p1 = new Datapoints(0, 0);
         p2 = new Datapoints(10, 0);
         p3 = new Datapoints(5, 1);
-
         distanceA = Utility.calcEuclideanDistance(p1,p2);
         distanceB = Utility.calcEuclideanDistance(p1,p3);
         distanceC = Utility.calcEuclideanDistance(p2,p3);
-
         maxAngle = Utility.calcMaxAngle(distanceA, distanceB, distanceC);
-
         assertEquals(157.38, maxAngle, 0.01);
     }
 
     @Test
     void calcMinEnclosingRadius() {
-        // Test if middle point of three points is equal to sqrt(2)/2
+        // Acute triangle
+        // The minimum radius should be the circumcircle of the triangle
         Datapoints p1 = new Datapoints(0, 0);
         Datapoints p2 = new Datapoints(1, 0);
         Datapoints p3 = new Datapoints(0, 1);
@@ -121,7 +122,8 @@ class UtilityTest {
         double minRadius = Utility.calcMinEnclosingRadius(p1, p2, p3);
         assertEquals(Math.sqrt(2) / 2, minRadius, 0.01);
 
-        // Test if the minimum radius for a circle that covers all points for three datapoints in a line with x distance between each point,  is exactly x.
+        // Rectangular triangle
+        // The minimum radius should be the half of the longest distance (p1 to p3)
         p1 = new Datapoints(0, 0);
         p2 = new Datapoints(0, 1);
         p3 = new Datapoints(0, 2);
