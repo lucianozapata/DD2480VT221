@@ -135,12 +135,14 @@ class LICTest {
                                 new Datapoints(0, 5),};
         LIC lic = new LIC(parameter, points);
 
-        // default AREA1 is set to 0
+        // Positive test because default value for AREA is 0.
         assertTrue(lic.Condition3());
 
+        // Positive test because area(12.5) is greater than AREA1 (10)
         parameter.AREA1 = 10;
         assertTrue(lic.Condition3());
-
+        
+        //Negative test because AREA is now 15.
         parameter.AREA1 = 15;
         assertFalse(lic.Condition3());
     }
@@ -160,7 +162,7 @@ class LICTest {
         parameters.QUADS = 2;
         parameters.Q_PTS = 4;
 
-        // Positive test
+        // Positive test because points are in differnet quadrants.
         LIC lic1 = new LIC(parameters, points1);
         assertTrue(lic1.Condition4());
 
