@@ -65,14 +65,15 @@ To open the documentation, open build/docs/javadoc/index.html with your browser.
 
 ## Statement of contributions
 
-| Name      |                    Features                    |
-|:----------|:----------------------------------------------:|
-| Yilin Chang    |                LIC4, LIC7, LIC8                |
-| Nikolai Limbrunner | README, Skeleton, JavaDocs, LIC3, LIC13, LIC14 |
-| Pontus Persman    |            Skeleton, Github Actions            |
-| Rafi Youssef |                  README, LIC5                  |
-| Luciano Zapata |                Skeleton, LIC0, LIC1, LIC2, FUV-implementation              |
+| Name      |                          Contributions                          |
+|:----------|:---------------------------------------------------------------:|
+| Yilin Chang    |      Refactoring, PUM, LIC4, LIC7, LIC8      |
+| Nikolai Limbrunner | README, JavaDocs, Github Actions, LIC3, LIC13, LIC14  |
+| Pontus Persman    | Skeleton, Github Actions, Integration Tests, LIC6, LIC11, LIC12 |
+| Rafi Youssef |               README, JavaDocs, LIC5, LIC9, LIC10               |
+| Luciano Zapata |         Skeleton, Way of working, FUV, LIC0, LIC1, LIC2         |
 
+All members contributed to the unit tests and the utility functions used for geometric calculations.
 
 ## Ways of working (Essence)
 
