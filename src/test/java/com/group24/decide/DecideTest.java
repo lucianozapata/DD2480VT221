@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class for testing the Decide class.
-<<<<<<< HEAD
- *
- *
-=======
->>>>>>> main
  */
 public class DecideTest {
    
@@ -107,7 +102,7 @@ public class DecideTest {
 
 
     @Test
-    /*
+    /**
         The expected return value of running decide() should be false.
         All the calculations to reach this results has their own assertions.
      */
@@ -200,7 +195,7 @@ public class DecideTest {
     }
 
     @Test
-    /*
+    /**
         The expected return value of running decide() should be true.
         All the calculations to reach this results has their own assertions.
      */
@@ -291,7 +286,7 @@ public class DecideTest {
     }
 
     @Test
-    /*
+    /**
         The expected return value of running decide() should be false since the input is invalid.
         All the calculations to reach this results has their own assertions.
      */

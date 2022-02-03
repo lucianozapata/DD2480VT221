@@ -68,6 +68,9 @@ class LICTest {
         }
     }
 
+    /**
+     * Checks if the CMV vector is the same as the expected vector (expectedCMV).
+     */
     @Test
     void checkCMV(){
         Parameter parameters = new Parameter(1,1,0,4,4,3,2,3,1,1,1,1,1,1,1,2,1,2,1);
