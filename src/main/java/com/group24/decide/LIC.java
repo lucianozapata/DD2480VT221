@@ -369,14 +369,13 @@ public class LIC {
     }
 
     /**
-     * There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
+     * There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points such that:
      * SubCondition1: That distance strict greater than LENGTH1
-     * SubCondition2: That distance strict greater than LENGTH2
+     * SubCondition2: That distance strict smaller than LENGTH2
      * @return Return true if the condition is met, otherwise
      * returns false.
      */
     public boolean Condition12(){
-        // 1 ≤ K_PTS ≤ (NUMPOINTS − 2)
         if ( numberPoints<3 || !(0<=parameters.LENGTH1) || !(0<=parameters.LENGTH2) || !((1<= parameters.K_PTS) && (parameters.K_PTS<=numberPoints-2)) ) {return false;}
 
         boolean geLength1 = false, geLength2 = false;
