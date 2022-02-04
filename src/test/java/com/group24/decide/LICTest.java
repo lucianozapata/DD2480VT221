@@ -324,6 +324,7 @@ class LICTest {
                 new Datapoints(1,0),
         };
         LIC lic = new LIC(parameter, points);
+        // The distance between the line made up of point 2 and 4, and to that of point 3 is 1.01 which is > DIST
         assertTrue(lic.Condition6());
 
         // Negative test
@@ -337,6 +338,7 @@ class LICTest {
                 new Datapoints(1,1),
                 };
         lic = new LIC(parameter, points1);
+        // None of the points 2,3 has DIST>line from point 1 and 4. Which is the same for points 3,4 to the line made up from 2 and 5
         assertFalse(lic.Condition6());
 
         // Invalid input (N_PTS>NUMPOINTS)
@@ -569,6 +571,7 @@ class LICTest {
                 new Datapoints(0, 0),
         };
         LIC lic = new LIC(parameter, points);
+        // Should be true since x[3] - x[0] = 0 - 1 < 0.
         assertTrue(lic.Condition11());
 
         // Negative test
@@ -580,9 +583,10 @@ class LICTest {
                 new Datapoints(1.01, 0),
         };
         lic = new LIC(parameter, points1);
+        // Should be false since x[2] - x[0] = 2 - 1 > 0 and x[3] - x[1] = 1.01 - 1 > 0
         assertFalse(lic.Condition11());
 
-        // Invalid input
+        // Invalid input since G_PTS>NUMPOINTS-2
         parameter.G_PTS = 2;
 
         Datapoints[] points2 = { new Datapoints(1, 1),
@@ -618,6 +622,7 @@ class LICTest {
                 new Datapoints(1,1),
         };
         LIC lic = new LIC(parameter, points);
+        // Dist between first and last point is 1 < srt(2) < 2
         assertTrue(lic.Condition12());
 
         // Negative test
@@ -627,6 +632,7 @@ class LICTest {
         parameter.K_PTS = 2;
 
         lic = new LIC(parameter, points);
+        // Dist between first and last point is sqrt(2) < 2 (length1)
         assertFalse(lic.Condition12());
 
         // Invalid test (K_PTS>NUMPOINTS-2)
