@@ -169,7 +169,7 @@ public class DecideTest {
 
         boolean[] expectedCMV = {
                 true, true, true, true, false,
-                true, true, true, false, true,
+                true, true, true, true, true,
                 false, false, false, false, false
         };
 
@@ -182,18 +182,18 @@ public class DecideTest {
 
         boolean[][] ExpectedPUM = {
                 /* 0    1      2      3      4      5      6      7     8       9      10     11     12     13    14      */
-                {true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true,  true, false}, // 0
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false}, // 0
                 {true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true}, // 1
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false}, // 2
                 {true,  true,  true,  true, false,  true,  true,  true,  true,  true, false,  true,  true,  true,  true}, // 3
-                {true,  false, true, false, false,  true, false,  true, false,  true, false, false, false, false, false}, // 4
+                {true,  false, true, false, false,  true, false,  true,  true,  true, false, false, false, false, false}, // 4
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false}, // 5
                 {true,  true,  true,  true, false,  true,  true,  true,  true,  true,  true, false,  true, false,  true}, // 6
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true, false,  true}, // 7
-                {false, true,  true,  true, false,  true,  true,  true, false,  true, false, false, false, false, false}, // 8
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false, false, false}, // 8
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false, false,  true,  true}, // 9
                 {true,  true, false, false, false, false,  true, false, false,  true, false,  true, false, false, false}, // 10
-                {true,  true,  true,  true, false,  true, false,  true, false, false,  true, false, false, false, false}, // 11
+                {true,  true,  true,  true, false,  true, false,  true,  true, false,  true, false, false, false, false}, // 11
                 {true,  true, false,  true, false, false,  true,  true, false, false, false, false, false,  true, false}, // 12
                 {true,  true,  true,  true, false,  true, false, false, false,  true, false, false,  true, false,  true}, // 13
                 {false, true, false,  true, false, false,  true,  true, false,  true, false, false, false,  true, false} // 14
@@ -262,7 +262,7 @@ public class DecideTest {
 
         boolean[] expectedCMV = {
                 true, true, true, true, true,
-                true, true, true, false, true,
+                true, true, true, true, true,
                 true, true, false, false, false
         };
 
@@ -282,9 +282,9 @@ public class DecideTest {
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true, false}, // 5
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 6
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 7
-                {true,  true,  true,  true,  true,  true,  true,  true, false,  true, false,  true, false, false, false}, // 8
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false, false, false}, // 8
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true}, // 9
-                {true,  true,  true,  true,  true,  true,  true,  true, false,  true,  true,  true,  true, false, false}, // 10
+                {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false, false}, // 10
                 {true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true, false,  true}, // 11
                 {true,  true, false,  true,  true, false,  true,  true, false, false,  true,  true, false,  true, false}, // 12
                 {true,  true,  true,  true, false,  true, false, false, false,  true, false, false,  true, false,  true}, // 13
