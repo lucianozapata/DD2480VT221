@@ -212,9 +212,9 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Condition12()">Condition12</a></span>()</code></th>
 <td class="colLast">
-<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
+<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points such that:
  SubCondition1: That distance strict greater than LENGTH1
- SubCondition2: That distance strict greater than LENGTH2</div>
+ SubCondition2: That distance strict smaller than LENGTH2</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -585,9 +585,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Condition12</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;Condition12()</pre>
-<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points that:
+<div class="block">There exists at least one set of data points, seperated by exactly K_PTS consecutive intervening points such that:
  SubCondition1: That distance strict greater than LENGTH1
- SubCondition2: That distance strict greater than LENGTH2</div>
+ SubCondition2: That distance strict smaller than LENGTH2</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Return true if the condition is met, otherwise
