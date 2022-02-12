@@ -15,7 +15,7 @@ public class Launcher {
                 0,0,0,0,0);
 
         // Create data points
-        Datapoints[] points = {
+        Datapoints[] points = 
                 new Datapoints(0, 1),
                 new Datapoints(-2, 0),
                 new Datapoints(-1, 5),
